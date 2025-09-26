@@ -1,0 +1,72 @@
+---
+title: "A numerical method for Wasserstein gradient flows applied to generative modeling"
+author: "Quentin Giton"
+format: 
+    revealjs: 
+        incremental: true
+toc: true
+number-sections: false
+---
+
+## What is a generative model?
+
+- Given $x_1,\dots,x_N\sim\mu\in\mathcal{P}(\mathbb{R}^d)$ **i.i.d.**
+- $\mu$ is unknown
+- "Learn" $\mu$ so that we can sample from it
+
+## Different approaches
+
+All of them are based on the continuity equation:
+$$
+\partial_t\rho_t + \mathrm{div}(\rho_t v_t) = 0
+$$ {#eq-continuity}
+
+. . .
+
+**GOAL:** Given $\mu$ and $\gamma$, build $v_t$ such that the corresponding $\rho_t$ evolve from $\mu$ to $\gamma$ according to ([-@eq-continuity]).
+
+. . .
+
+**HOW?** (Different paradigms)
+
+1. **Neural ODEs:** $v_t$ is parametrized by a neural network, trained minimizing some functional.
+
+::: {.notes}
+Parler des avantages & incovénients !
+:::
+
+---
+
+2. **Score-based diffusion models:** $v_t=-\nabla(\ln{\rho_t}+V)$, then ([-@eq-continuity]) becomes a Fokker-Planck equation (FPE)
+$$
+\partial_t\rho_t=\Delta\rho_t+\mathrm{div}(\rho_t\nabla V).
+$$ {#eq-FPE}
+Under mild assumptions on $V$, the stationary solution is $\rho_\infty=\gamma\propto e^{-V}$.
+
+::: {.notes}
+Parler du score $\nabla\ln{\rho_t}$ (et des avantages & incovénients) !
+:::
+
+3. **Flow mathcing:** Given a trajectory $(\rho_t)$ that evolves from $\mu$ to $\gamma$, learn the vector field that solves ([-@eq-continuity]).
+
+::: {.notes}
+Parler des avantages & incovénients !
+:::
+
+## My work
+
+Score-based diffusion models with potential $V(x)=\frac{\|x\|^2}{2}$. Thanks to [REF JKO], ([-@eq-FPE]) rewrites as
+$$
+\partial_t\rho_t = -\nabla_{W_2}\mathcal{F}(\rho_t).
+$$ {#eq-WGF}
+We can as well discretize it
+
+::: {.hidden}
+$$
+\def\argmin#1{{\underset{#1}{\mathrm{arg}\,\mathrm{min} \ }}}
+$$
+:::
+
+$$
+\rho_\tau^{k+1}:= \argmin{\rho\in\mathcal{P}(\mathbb{R}^d)} \mathcal{F}(\rho)+\frac{1}{2\tau}W_2(\rho,\rho_\tau^k)^2.
+$$ {#eq-JKO}
