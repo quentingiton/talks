@@ -3,27 +3,37 @@ title: "A numerical method for Wasserstein gradient flows applied to generative 
 author: "Quentin Giton"
 format: 
     revealjs: 
-        incremental: true
+        theme: [default, theme.scss]
+        highlight-style: github 
+        css: styles.css
+        slide-number: true
+        incremental: false
+        auto-play-media: false
+        embed-resources: true
 toc: true
 number-sections: false
+theorems: true
+bibliography: references.bib
 ---
 
 ## What is a generative model?
 
+::: {.incremental}
 - Given $x_1,\dots,x_N\sim\mu\in\mathcal{P}(\mathbb{R}^d)$ **i.i.d.**
 - $\mu$ is unknown
 - "Learn" $\mu$ so that we can sample from it
+:::
 
 ## Different approaches
 
 All of them are based on the continuity equation:
 $$
-\partial_t\rho_t + \mathrm{div}(\rho_t v_t) = 0
-$$ {#eq-continuity}
+\partial_t\rho_t + \mathrm{div}(\rho_t v_t) = 0 \tag{1}\label{eq:continuity}
+$$
 
 . . .
 
-**GOAL:** Given $\mu$ and $\gamma$, build $v_t$ such that the corresponding $\rho_t$ evolve from $\mu$ to $\gamma$ according to ([-@eq-continuity]).
+**GOAL:** Given $\mu$ and $\gamma$, build $v_t$ such that the corresponding $\rho_t$ evolve from $\mu$ to $\gamma$ according to \eqref{eq:continuity}.
 
 . . .
 
@@ -37,17 +47,19 @@ Parler des avantages & incovénients !
 
 ---
 
-2. **Score-based diffusion models:** $v_t=-\nabla(\ln{\rho_t}+V)$, then ([-@eq-continuity]) becomes a Fokker-Planck equation (FPE)
+2. **Score-based diffusion models:** $v_t=-\nabla(\ln{\rho_t}+V)$, then \eqref{eq:continuity} becomes a Fokker-Planck equation (FPE)
 $$
-\partial_t\rho_t=\Delta\rho_t+\mathrm{div}(\rho_t\nabla V).
-$$ {#eq-FPE}
+\partial_t\rho_t=\Delta\rho_t+\mathrm{div}(\rho_t\nabla V) \tag{FPE}\label{eq:FPE}.
+$$
 Under mild assumptions on $V$, the stationary solution is $\rho_\infty=\gamma\propto e^{-V}$.
 
 ::: {.notes}
 Parler du score $\nabla\ln{\rho_t}$ (et des avantages & incovénients) !
 :::
 
-3. **Flow mathcing:** Given a trajectory $(\rho_t)$ that evolves from $\mu$ to $\gamma$, learn the vector field that solves ([-@eq-continuity]).
+. . .
+
+3. **Flow matching:** Given a trajectory $(\rho_t)$ that evolves from $\mu$ to $\gamma$, learn the vector field that solves \eqref{eq:continuity}.
 
 ::: {.notes}
 Parler des avantages & incovénients !
@@ -55,18 +67,225 @@ Parler des avantages & incovénients !
 
 ## My work
 
-Score-based diffusion models with potential $V(x)=\frac{\|x\|^2}{2}$. Thanks to [REF JKO], ([-@eq-FPE]) rewrites as
+::: {.hidden}
 $$
-\partial_t\rho_t = -\nabla_{W_2}\mathcal{F}(\rho_t).
-$$ {#eq-WGF}
-We can as well discretize it
+\def\R{\mathbb{R}}
+\def\probSpace{\mathcal P(\mathbb R^d)}
+\def\pSpace{\mathcal P_2(\mathbb R^d)}
+$$
+:::
+
+Score-based diffusion models with potential $V(x)=\frac{\|x\|^2}{2}$. 
+Hence \eqref{eq:FPE}:
 
 ::: {.hidden}
 $$
-\def\argmin#1{{\underset{#1}{\mathrm{arg}\,\mathrm{min} \ }}}
+\let\ln=\relax
+\let\exp=\relax
+
+\def\ln#1{\mathrm{ln}\left(#1\right)}
+\def\exp#1{\mathrm{exp}\left(#1\right)}
+$$
+:::
+
+::: {.incremental}
+- transports any initial condition $\rho_0\in\probSpace$ towards the standard gaussian $\gamma=\mathcal N(0,I_d)$ and
+- can be seen as the Wasserstein gradient flow of the free energy [@JKO98]
+
+    $$
+    \mathcal F(\rho):=\int V\rho+\int\rho\ln\rho.
+    $$
+:::
+
+
+---
+
+::: {.hidden}
+$$
+\def\argmin#1{{\underset{#1}{\mathrm{arg}\,\mathrm{min}\ }}}
+\def\argmax#1{{\underset{#1}{\mathrm{arg}\,\mathrm{max}\ }}}
+$$
+:::
+
+From this viewpoint, we can discretize the gradient flow using implicit Euler scheme (known under the name of JKO scheme):
+$$
+\rho_\tau^{n+1}:= \argmin{\rho\in\pSpace} \left\{\mathcal{F}(\rho)+\frac{1}{2\tau}W_2(\rho,\rho_\tau^n)^2\right\}.\tag{2}\label{eq:JKO}
+$$
+
+## Numerical implementation of one JKO step
+
+Fix $n\geq 0$, we aim to solve for $\inf_{\rho\in\pSpace} \left\{\mathcal F(\rho)+\frac{1}{2\tau}W_2(\rho,\rho_n^\tau)^2\right\}$.
+
+. . .
+
+Kantorovich duality yields
+
+::: {.hidden}
+$$
+\def\d{\mathrm{d}}
+\def\dx{\d x}
+\def\dy{\d y}
 $$
 :::
 
 $$
-\rho_\tau^{k+1}:= \argmin{\rho\in\mathcal{P}(\mathbb{R}^d)} \mathcal{F}(\rho)+\frac{1}{2\tau}W_2(\rho,\rho_\tau^k)^2.
-$$ {#eq-JKO}
+\rho_{n+1}^\tau(\dy) = \frac{1}{Z(\psi_n)}\exp{-\psi_n^\frac{c}{2\tau}(y)}\gamma(\dy),
+$$
+
+::: {.notes}
+Ecrire $Z(\psi)$ au tableau
+:::
+
+. . .
+
+where $\psi_n$ solves
+
+$$
+\psi_n\in\argmin{\psi\in\mathcal{C}_0(\R^d)} \left\{ \tilde{J}_n^\tau(\psi) := \ln{Z(\psi)}-\int_{\R^d} \psi(x)\rho_n^\tau(\d x)\right\}.
+$$
+
+::: {.notes}
+Parler de l'analogie entre problème primal/dual dans le TO normal et ici. $\widetilde{J}_n^\tau(\psi)$ est l'analogue de $\mathcal{K}(\psi)$, et satisfait la même invariance par ajout d'une constante.
+:::
+
+---
+
+Since $\tilde{J}_n^\tau(\psi + c)=\tilde{J}_n^\tau(\psi)$ for any constant function $c$, it is enough to find
+
+$$
+\psi_n = \argmin{\psi\in\mathcal{C}_0(\R^d)} \left\{  J_n^\tau(\psi) := Z(\psi)-\int_{\R^d}\psi(x)\rho_n^\tau(\dx) \right\}.
+$$
+
+. . .
+
+### Linear parametrization
+
+::: {.incremental}
+- $\theta\in\R^{d_\theta},\ \phi=(\phi_i)_{i=1}^{d_\theta}\in(\mathcal{C}_0(\R^d))^{d_\theta}$
+- $\psi = \psi(x;\theta)=\theta^\top \phi(x)$
+:::
+
+::: {.fragment}
+Then $\psi_n$ is approximated by $\psi(\cdot;\theta_n^\tau)$ where $\theta_n^\tau$ solves
+
+$$
+\theta_n^\tau = \argmin{\theta\in\R^{d_\theta}} \left\{ G_n^\tau(\theta) := Z(\psi(\cdot;\theta))-\int\psi(x;\theta)\rho_n^\tau(\dx)\right\}.
+$$
+:::
+
+---
+
+### SGD
+
+Since
+
+$$
+G_n^\tau(\theta)=\mathbb E_{y\sim\gamma}\Big[ \underbrace{\exp{-\psi^\frac{c}{2\tau}(y;\theta)}-\int\psi(x;\theta)\rho_n^\tau(\dx)}_{=:\mathcal{G}_n^\tau(y;\theta)} \Big],
+$$
+
+we can do SGD: let $C>0$ be such that $\theta_n^\tau\in B(0,C)$. For a given initial datum $\theta^{(1)}$ and a step-size sequence $(\alpha_k)_{k\geq 1}$, we define:
+
+$$
+\left\{ \begin{array}{l}
+    \mathrm{pick}\ y_k\sim\gamma,                                                                                                \\
+    \theta^{(k+1)}=\mathrm{proj}_{B(0,C)}\big( \theta^{(k)}-\alpha_k\nabla_\theta\mathcal{G}_n^\tau(y_k,\theta^{(k)}) \big).
+\end{array}\right.
+$$
+
+---
+
+::: {.theorem .unnumbered #thm-sgd}
+
+If $\alpha_k=\frac{C}{B\sqrt{k}}$, then
+
+$$
+\forall T\geq 1,\quad \mathbb{E}\left[ G_{n}^{\tau}(\bar{\theta}_{T})-G_{n}^{\tau}(\theta^{\tau}_{n}) \right]\leq BC\left(\frac{2}{ T}+\frac{1}{\sqrt{T}}\right),
+$$
+
+:::
+
+where $\bar{\theta}_{T}$ denotes the arithmetic mean of the family $(\theta^{(k)})_{k=1}^{T}$.
+
+::: {.notes}
+Parler de ce que sont $C$ et $B$.
+:::
+
+. . .
+
+No hope for better results without more assumptions on the features family $\phi$ (no strong convexity of $G_n^\tau$ in general).
+
+## The SD case
+
+Approximate each JKO step $\rho_n^\tau$ by its optimal quantization $\hat\rho_n^N:=\frac{1}{N}\sum_{i=1}^N \delta_{x_i^{(n)}}$.
+
+. . .
+
+It fits within the described framework, just choose: 
+
+::: {.incremental}
+- $d_\theta=N$
+- $\phi_i(x)=\mathbf{1}_{\{ x=x_i^{(n)}\}}(x)$
+:::
+
+::: {.notes}
+Dire qu'on peut identifier $\psi(\cdot;\theta)$ à un vecteur $\theta\in\R^N$
+:::
+
+::: {.fragment}
+Recall the definition of a Laguerre cell:
+
+$$
+L_{i}(\theta) = \left\{ y\in\R^{d}\::\: \|x_{i}^{(n)}-y\|^{2}-\theta_{i}\leq \|x_{j}^{(n)}-y\|^{2}-\theta_{j},\ \forall j \right\}.
+$$
+:::
+
+---
+
+The dual objective becomes
+
+$$
+G_{n}^{\tau}(\theta) = \sum_{i=1}^{N}\int_{L_i(\theta)}\exp{-\frac{\| x_{i}^{(n)}-y\|^{2}}{2\tau}+\theta_i}\gamma(\d y)-\frac{1}{N}\sum_{i=1}^{N} \theta_{i}
+$$
+
+and the optimal $\theta_n^\tau$ is such that each $L_i(\theta_n^\tau)$ has mass $1/N$ for $\rho_{n+1}^\tau$. 
+
+. . .
+
+Then $\rho_{n+1}^\tau$ is approximated by $\frac{1}{N}\sum_{i=1}^N \delta_{x_i^{(n+1)}}$, where
+
+$$
+\forall 1\leq i\leq N,\quad x_{i}^{(n+1)}:=x_{i}^{(n)}-\tau\left( x_{i}^{(n)}-N\int_{L_i(\theta_n^\tau)}y\rho_{n+1}^{\tau} (\d y)\right).
+$$
+
+. . .
+
+This scheme is exactly the one described in [@gallouet2022] for $\varepsilon = 1$ (the points $x_{i}^{(n)}$ are moved towards the barycenter of their Laguerre cell).
+
+## Some animations
+
+<!-- ![](medias\forward.mp4)
+
+::: {.notes}
+Donner + de détails
+:::
+
+---
+-->
+
+![](medias\backward.mp4)
+
+::: {.notes}
+Résumer ce qu'on a vu pendant le talk
+:::
+
+## Work in Progress & Outlook
+
+::: {.incremental}
+- (WiP) Error bounds $\mathbb E[W_2(\rho_{\bar\theta_T},\gamma)]$
+- (Outlook) Use entropic $c$-transform to reverse the flow?
+- (Outlook) Other kind of parametrization?
+- (Outlook) Specific feature families $\phi$?
+:::
+
+
+## References
