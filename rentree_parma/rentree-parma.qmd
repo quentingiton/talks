@@ -9,7 +9,7 @@ format:
         slide-number: true
         incremental: false
         auto-play-media: false
-        embed-resources: true
+        embed-resources: false
 toc: true
 number-sections: false
 theorems: true
