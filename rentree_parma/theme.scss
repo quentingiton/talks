@@ -4,6 +4,8 @@
 $brand-accent-light: #e6a08a4a;
 $brand-accent:      #d77e62;  // your link color
 $brand-accent-dark: #b7654b;  // hover/darker accent
+$brand-title:      #d77e62;
+$brand-bold:      #d77e62;
 
 /*-- scss:rules --*/
 /* Brand tokens exposed as CSS variables */
@@ -17,7 +19,15 @@ $brand-accent-dark: #b7654b;  // hover/darker accent
 :root {
   --r-link-color:      var(--brand-accent);
   --r-link-color-dark: var(--brand-accent-dark);
+  --brand-title:      #{$brand-title};
+  --brand-bold:      #{$brand-bold};
 }
+
+/* Slide titles & headings */
+.reveal h1, .reveal h2, .reveal h3 {
+   color: var(--brand-title); 
+}
+
 
 /* Links with a neat underline */
 .reveal a {
@@ -58,3 +68,13 @@ $brand-accent-dark: #b7654b;  // hover/darker accent
   color: #fff;
   font-weight: 700;
 }
+
+
+
+/* Bold text (but not inside headings) */
+/* .reveal p strong, .reveal li strong, .reveal blockquote strong,
+.reveal dd strong, .reveal dt strong, .reveal figcaption strong,
+.reveal p b, .reveal li b {
+  color: var(--brand-bold);
+  font-weight: 800; /* keep it bold */
+/* } */

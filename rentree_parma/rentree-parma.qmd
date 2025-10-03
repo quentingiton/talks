@@ -18,51 +18,55 @@ bibliography: references.bib
 
 ## What is a generative model?
 
+::: {.hidden}
+$$
+\let\ln=\relax
+\let\exp=\relax
+
+\def\ln#1{\mathrm{ln}\left(#1\right)}
+\def\exp#1{\mathrm{exp}\left(#1\right)}
+$$
+:::
+
 ::: {.incremental}
 - Given $x_1,\dots,x_N\sim\mu\in\mathcal{P}(\mathbb{R}^d)$ **i.i.d.**
 - $\mu$ is unknown
 - "Learn" $\mu$ so that we can sample from it
 :::
 
-## Different approaches
+. . .
 
-All of them are based on the continuity equation:
+The main approaches are based on the continuity equation
 $$
 \partial_t\rho_t + \mathrm{div}(\rho_t v_t) = 0 \tag{1}\label{eq:continuity}
 $$
 
-. . .
-
-**GOAL:** Given $\mu$ and $\gamma$, build $v_t$ such that the corresponding $\rho_t$ evolve from $\mu$ to $\gamma$ according to \eqref{eq:continuity}.
-
-. . .
-
-**HOW?** (Different paradigms)
-
-1. **Neural ODEs:** $v_t$ is parametrized by a neural network, trained minimizing some functional.
-
-::: {.notes}
-Parler des avantages & incovénients !
-:::
+**GOAL:** Given $\mu$ (unknown) and $\gamma$ (easy to sample from), **build/find** $v_t$ such that the corresponding $\rho_t$ evolve from $\mu$ to $\gamma$ according to \eqref{eq:continuity}.
 
 ---
 
-2. **Score-based diffusion models:** $v_t=-\nabla(\ln{\rho_t}+V)$, then \eqref{eq:continuity} becomes a Fokker-Planck equation (FPE)
-$$
-\partial_t\rho_t=\Delta\rho_t+\mathrm{div}(\rho_t\nabla V) \tag{FPE}\label{eq:FPE}.
-$$
-Under mild assumptions on $V$, the stationary solution is $\rho_\infty=\gamma\propto e^{-V}$.
+### Score-based diffusion models
 
-::: {.notes}
-Parler du score $\nabla\ln{\rho_t}$ (et des avantages & incovénients) !
+Let $v_t=-\nabla(\ln{\rho_t}+V)$ be fixed. The **score** at time $t$ is $\nabla\ln{\rho_t}$.
+
+::: {.fragment}
+### Main ways of learning the score
 :::
 
-. . .
+::: {.incremental}
+- Assume that the data have been noised accoriding to $x_t=\alpha_t x_0+\sigma_t\varepsilon$, $\varepsilon\sim\mathcal{N}(0,I_d)$. Then:
+- train a neural network that tries to directly approximate the score;
+- or train a neural network $x_{0,\theta}$ that tries to denoise the data, then the score is given by the Tweedie formula:
+:::
 
-3. **Flow matching:** Given a trajectory $(\rho_t)$ that evolves from $\mu$ to $\gamma$, learn the vector field that solves \eqref{eq:continuity}.
+::: {.fragment}
+$$
+\nabla\ln{\rho_t(x_t)}\approx\frac{\alpha_t x_{0,\theta}(x_t,t)-x_t}{\sigma_t^2}.
+$$
+:::
 
-::: {.notes}
-Parler des avantages & incovénients !
+::: {.fragment}
+**How to use optimal transport to learn the score?**
 :::
 
 ## My work
@@ -75,18 +79,12 @@ $$
 $$
 :::
 
-Score-based diffusion models with potential $V(x)=\frac{\|x\|^2}{2}$. 
-Hence \eqref{eq:FPE}:
-
-::: {.hidden}
+For $v_t=-\nabla(\ln{\rho_t}+V)$, equation \eqref{eq:continuity} becomes the Fokker-Planck equation:
 $$
-\let\ln=\relax
-\let\exp=\relax
-
-\def\ln#1{\mathrm{ln}\left(#1\right)}
-\def\exp#1{\mathrm{exp}\left(#1\right)}
+\partial_t\rho_t=\Delta\rho_t+\mathrm{div}(\rho_t\nabla V) \tag{FPE}\label{eq:FPE}.
 $$
-:::
+
+Hence \eqref{eq:FPE} (for $V(x)=\|x\|^2/2$):
 
 ::: {.incremental}
 - transports any initial condition $\rho_0\in\probSpace$ towards the standard gaussian $\gamma=\mathcal N(0,I_d)$ and
@@ -95,6 +93,10 @@ $$
     $$
     \mathcal F(\rho):=\int V\rho+\int\rho\ln\rho.
     $$
+:::
+
+::: {.hidden}
+$\mathcal{F}$ est (à une constante près) l'entropie relative entre $\rho$ et $\gamma$.
 :::
 
 
@@ -107,10 +109,23 @@ $$
 $$
 :::
 
-From this viewpoint, we can discretize the gradient flow using implicit Euler scheme (known under the name of JKO scheme):
+From this viewpoint, we can discretize the gradient flow using implicit Euler scheme (known under the name of **JKO scheme**):
 $$
 \rho_\tau^{n+1}:= \argmin{\rho\in\pSpace} \left\{\mathcal{F}(\rho)+\frac{1}{2\tau}W_2(\rho,\rho_\tau^n)^2\right\}.\tag{2}\label{eq:JKO}
 $$
+
+. . .
+
+As explained in [@santambrogio_optimal_2015],
+
+$$
+\nabla\psi_n^\frac{c}{2\tau}=v_{n\tau}=-\nabla(\ln{\rho_{n+1}^\tau}+V),
+$$
+
+. . .
+
+thus approximating the score amounts to approximating $\nabla\psi_n^\frac{c}{2\tau}$ where $\psi_n$ is a Kantorovich potential related to the transport from $\rho_n^\tau$ to $\rho_{n+1}^\tau$.
+
 
 ## Numerical implementation of one JKO step
 
@@ -144,6 +159,15 @@ $$
 \psi_n\in\argmin{\psi\in\mathcal{C}_0(\R^d)} \left\{ \tilde{J}_n^\tau(\psi) := \ln{Z(\psi)}-\int_{\R^d} \psi(x)\rho_n^\tau(\d x)\right\}.
 $$
 
+. . .
+
+**Remarks:**
+
+::: {.incremental}
+- Infinite dimensional problem
+- Even though we parametrize $\psi$, we can't use SGD to find the best parameter (the functional cannot be written as an expectation, because of the log)
+:::
+
 ::: {.notes}
 Parler de l'analogie entre problème primal/dual dans le TO normal et ici. $\widetilde{J}_n^\tau(\psi)$ est l'analogue de $\mathcal{K}(\psi)$, et satisfait la même invariance par ajout d'une constante.
 :::
@@ -153,7 +177,7 @@ Parler de l'analogie entre problème primal/dual dans le TO normal et ici. $\wid
 Since $\tilde{J}_n^\tau(\psi + c)=\tilde{J}_n^\tau(\psi)$ for any constant function $c$, it is enough to find
 
 $$
-\psi_n = \argmin{\psi\in\mathcal{C}_0(\R^d)} \left\{  J_n^\tau(\psi) := Z(\psi)-\int_{\R^d}\psi(x)\rho_n^\tau(\dx) \right\}.
+\psi_n \in \argmin{\psi\in\mathcal{C}_0(\R^d)} \left\{  J_n^\tau(\psi) := Z(\psi)-\int_{\R^d}\psi(x)\rho_n^\tau(\dx) \right\}.
 $$
 
 . . .
@@ -166,7 +190,7 @@ $$
 :::
 
 ::: {.fragment}
-Then $\psi_n$ is approximated by $\psi(\cdot;\theta_n^\tau)$ where $\theta_n^\tau$ solves
+Then $\psi_n\approx\psi(\cdot;\theta_n^\tau)$ where $\theta_n^\tau$ solves
 
 $$
 \theta_n^\tau = \argmin{\theta\in\R^{d_\theta}} \left\{ G_n^\tau(\theta) := Z(\psi(\cdot;\theta))-\int\psi(x;\theta)\rho_n^\tau(\dx)\right\}.
@@ -175,20 +199,20 @@ $$
 
 ---
 
-### SGD
+### Stochastic Gradient Descent
 
-Since
+This time
 
 $$
 G_n^\tau(\theta)=\mathbb E_{y\sim\gamma}\Big[ \underbrace{\exp{-\psi^\frac{c}{2\tau}(y;\theta)}-\int\psi(x;\theta)\rho_n^\tau(\dx)}_{=:\mathcal{G}_n^\tau(y;\theta)} \Big],
 $$
 
-we can do SGD: let $C>0$ be such that $\theta_n^\tau\in B(0,C)$. For a given initial datum $\theta^{(1)}$ and a step-size sequence $(\alpha_k)_{k\geq 1}$, we define:
+Hence we can do SGD: let $R>0$ be such that $\theta_n^\tau\in B(0,R)$. For a given initial datum $\theta^{(1)}$ and a step-size sequence $(\alpha_k)_{k\geq 1}$, we define:
 
 $$
 \left\{ \begin{array}{l}
     \mathrm{pick}\ y_k\sim\gamma,                                                                                                \\
-    \theta^{(k+1)}=\mathrm{proj}_{B(0,C)}\big( \theta^{(k)}-\alpha_k\nabla_\theta\mathcal{G}_n^\tau(y_k,\theta^{(k)}) \big).
+    \theta^{(k+1)}=\mathrm{proj}_{B(0,R)}\big( \theta^{(k)}-\alpha_k\nabla_\theta\mathcal{G}_n^\tau(y_k,\theta^{(k)}) \big).
 \end{array}\right.
 $$
 
@@ -196,15 +220,15 @@ $$
 
 ::: {.theorem .unnumbered #thm-sgd}
 
-If $\alpha_k=\frac{C}{B\sqrt{k}}$, then
+If $\alpha_k=\frac{R}{B\sqrt{k}}$, then
 
 $$
-\forall T\geq 1,\quad \mathbb{E}\left[ G_{n}^{\tau}(\bar{\theta}_{T})-G_{n}^{\tau}(\theta^{\tau}_{n}) \right]\leq BC\left(\frac{2}{ T}+\frac{1}{\sqrt{T}}\right),
+\forall T\geq 1,\quad \mathbb{E}\left[ G_{n}^{\tau}(\bar{\theta}_{T})-G_{n}^{\tau}(\theta^{\tau}_{n}) \right]\leq B\left(\frac{2}{ T}+\frac{1}{\sqrt{T}}\right),
 $$
 
 :::
 
-where $\bar{\theta}_{T}$ denotes the arithmetic mean of the family $(\theta^{(k)})_{k=1}^{T}$.
+where $\bar{\theta}_{T}$ denotes the arithmetic mean of the family $(\theta^{(k)})_{k=1}^{T}$ and $B$ depends only on $R$ and $\sup_x \|\phi(x)\|$.
 
 ::: {.notes}
 Parler de ce que sont $C$ et $B$.
@@ -214,7 +238,7 @@ Parler de ce que sont $C$ et $B$.
 
 No hope for better results without more assumptions on the features family $\phi$ (no strong convexity of $G_n^\tau$ in general).
 
-## The SD case
+## The semi-discrete case
 
 Approximate each JKO step $\rho_n^\tau$ by its optimal quantization $\hat\rho_n^N:=\frac{1}{N}\sum_{i=1}^N \delta_{x_i^{(n)}}$.
 
@@ -254,23 +278,22 @@ and the optimal $\theta_n^\tau$ is such that each $L_i(\theta_n^\tau)$ has mass 
 Then $\rho_{n+1}^\tau$ is approximated by $\frac{1}{N}\sum_{i=1}^N \delta_{x_i^{(n+1)}}$, where
 
 $$
-\forall 1\leq i\leq N,\quad x_{i}^{(n+1)}:=x_{i}^{(n)}-\tau\left( x_{i}^{(n)}-N\int_{L_i(\theta_n^\tau)}y\rho_{n+1}^{\tau} (\d y)\right).
+\forall 1\leq i\leq N,\quad x_{i}^{(n+1)}:=N\int_{L_i(\theta_n^\tau)}y\rho_{n+1}^{\tau} (\d y).
 $$
 
 . . .
 
-This scheme is exactly the one described in [@gallouet2022] for $\varepsilon = 1$ (the points $x_{i}^{(n)}$ are moved towards the barycenter of their Laguerre cell).
+We recover a special case of the numerical scheme introduced in [@gallouet2022] (the points $x_{i}^{(n)}$ are moved towards the barycenter of their Laguerre cell).
 
 ## Some animations
 
-<!-- ![](medias\forward.mp4)
+![](medias\forward.mp4)
 
 ::: {.notes}
 Donner + de détails
 :::
 
 ---
--->
 
 ![](medias\backward.mp4)
 
