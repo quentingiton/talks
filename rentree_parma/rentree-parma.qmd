@@ -111,7 +111,7 @@ $$
 
 From this viewpoint, we can discretize the gradient flow using implicit Euler scheme (known under the name of **JKO scheme**):
 $$
-\rho_\tau^{n+1}:= \argmin{\rho\in\pSpace} \left\{\mathcal{F}(\rho)+\frac{1}{2\tau}W_2(\rho,\rho_\tau^n)^2\right\}.\tag{2}\label{eq:JKO}
+\rho^\tau_{n+1}:= \argmin{\rho\in\pSpace} \left\{\mathcal{F}(\rho)+\frac{1}{2\tau}W_2(\rho,\rho_\tau^n)^2\right\}.\tag{2}\label{eq:JKO}
 $$
 
 . . .
@@ -284,6 +284,14 @@ $$
 . . .
 
 We recover a special case of the numerical scheme introduced in [@gallouet2022] (the points $x_{i}^{(n)}$ are moved towards the barycenter of their Laguerre cell).
+
+. . .
+
+The score learned here is
+
+$$
+\forall 1\leq i\leq N,\ \forall x\in \mathrm{int} L_i(\theta_n^\tau),\quad x\mapsto -x-\frac{1}{\tau}(x-x_i^{(n)}).
+$$
 
 ## Some animations
 
