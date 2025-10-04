@@ -69,7 +69,8 @@ $brand-bold:      #d77e62;
   font-weight: 700;
 }
 
-
+.spacer      { display:block; height: 1rem; }   /* ≈ 16px */
+.spacer-2    { display:block; height: 2rem; }  /* ≈ 32px */
 
 /* Bold text (but not inside headings) */
 /* .reveal p strong, .reveal li strong, .reveal blockquote strong,
@@ -78,3 +79,57 @@ $brand-bold:      #d77e62;
   color: var(--brand-bold);
   font-weight: 800; /* keep it bold */
 /* } */
+
+/*-- scss:rules --*/
+
+/* Slide layout: top title + centered content + footnotes pinned bottom */
+.reveal .slides section.layout-tc {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+/* Put the first H2/H3 at the very top of the slide */
+.reveal .slides section.layout-tc > h2:first-of-type,
+.reveal .slides section.layout-tc > h3:first-of-type {
+  margin-top: 0;
+  align-self: flex-start;
+}
+
+/* If you keep a second heading, leave it in the content block, not at top */
+
+/* Content centered vertically in remaining space (left-aligned text) */
+.reveal .slides section.layout-tc .center-v {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;     /* vertical center */
+  align-items: flex-start;     /* keep text left-aligned */
+  text-align: left;
+  width: 100%;
+}
+
+/* Content centered both vertically & horizontally (for videos/demos) */
+.reveal .slides section.layout-tc .center-vh {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;     /* vertical center via flex item filling,
+                                  horizontal center via align-items below */
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+/* Make media scale nicely inside the centered blocks */
+.reveal .slides section.layout-tc .center-vh img,
+.reveal .slides section.layout-tc .center-vh video {
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+}
+
+/* Keep footnotes at the bottom on these slides */
+.reveal .slides section.layout-tc > .footnotes,
+.reveal .slides section.layout-tc > .aside-footnotes {
+  margin-top: auto;
+}

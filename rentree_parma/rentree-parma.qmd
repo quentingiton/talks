@@ -1,5 +1,5 @@
 ---
-title: "A numerical method for Wasserstein gradient flows applied to generative modeling"
+title: "Using Optimal Transport to learn the score function"
 author: "Quentin Giton"
 format: 
     revealjs: 
@@ -10,13 +10,15 @@ format:
         incremental: false
         auto-play-media: false
         embed-resources: false
-toc: true
+        center: false
+        auto-stretch: false
+toc: false
 number-sections: false
 theorems: true
 bibliography: references.bib
 ---
 
-## What is a generative model?
+## What is a generative model? {.layout-tc}
 
 ::: {.hidden}
 $$
@@ -45,12 +47,18 @@ $$
 
 ---
 
-### Score-based diffusion models
+### Score-based diffusion models {.layout-tc}
 
-Let $v_t=-\nabla(\ln{\rho_t}+V)$ be fixed. The **score** at time $t$ is $\nabla\ln{\rho_t}$.
+Let $v_t=-\nabla(\ln{\rho_t}+V)$ be fixed. The **score** at time $t$ is $\nabla\ln{\rho_t}$. The continuity equation becomes
+
+$$
+\partial_t\rho_t=\Delta\rho_t+\mathrm{div}(\rho_t\nabla V) \tag{FPE}\label{eq:FPE}.
+$$
+
+<span class="spacer-2" aria-hidden="true"></span>
 
 ::: {.fragment}
-### Main ways of learning the score
+### Main ways of learning the score {.layout-tc}
 :::
 
 ::: {.incremental}
@@ -69,7 +77,7 @@ $$
 **How to use optimal transport to learn the score?**
 :::
 
-## My work
+## My work {.layout-tc}
 
 ::: {.hidden}
 $$
@@ -79,12 +87,12 @@ $$
 $$
 :::
 
-For $v_t=-\nabla(\ln{\rho_t}+V)$, equation \eqref{eq:continuity} becomes the Fokker-Planck equation:
+Consider $v_t=-\nabla(\ln{\rho_t}+V)$ with $V(x)=\frac{\|x\|^2}{2}$. Then, the Fokker-Planck equation
 $$
-\partial_t\rho_t=\Delta\rho_t+\mathrm{div}(\rho_t\nabla V) \tag{FPE}\label{eq:FPE}.
+\partial_t\rho_t=\Delta\rho_t+\mathrm{div}(\rho_t\nabla V) \tag{FPE}.
 $$
 
-Hence \eqref{eq:FPE} (for $V(x)=\|x\|^2/2$):
+<span class="spacer-2" aria-hidden="true"></span>
 
 ::: {.incremental}
 - transports any initial condition $\rho_0\in\probSpace$ towards the standard gaussian $\gamma=\mathcal N(0,I_d)$ and
@@ -111,7 +119,7 @@ $$
 
 From this viewpoint, we can discretize the gradient flow using implicit Euler scheme (known under the name of **JKO scheme**):
 $$
-\rho^\tau_{n+1}:= \argmin{\rho\in\pSpace} \left\{\mathcal{F}(\rho)+\frac{1}{2\tau}W_2(\rho,\rho_\tau^n)^2\right\}.\tag{2}\label{eq:JKO}
+\rho^\tau_{n+1}:= \argmin{\rho\in\pSpace} \left\{\mathcal{F}(\rho)+\frac{1}{2\tau}W_2(\rho,\rho^\tau_n)^2\right\}.\tag{2}\label{eq:JKO}
 $$
 
 . . .
@@ -127,7 +135,7 @@ $$
 thus approximating the score amounts to approximating $\nabla\psi_n^\frac{c}{2\tau}$ where $\psi_n$ is a Kantorovich potential related to the transport from $\rho_n^\tau$ to $\rho_{n+1}^\tau$.
 
 
-## Numerical implementation of one JKO step
+## Numerical implementation of one JKO step {.layout-tc}
 
 Fix $n\geq 0$, we aim to solve for $\inf_{\rho\in\pSpace} \left\{\mathcal F(\rho)+\frac{1}{2\tau}W_2(\rho,\rho_n^\tau)^2\right\}$.
 
@@ -182,7 +190,7 @@ $$
 
 . . .
 
-### Linear parametrization
+### Linear parametrization {.layout-tc}
 
 ::: {.incremental}
 - $\theta\in\R^{d_\theta},\ \phi=(\phi_i)_{i=1}^{d_\theta}\in(\mathcal{C}_0(\R^d))^{d_\theta}$
@@ -199,7 +207,7 @@ $$
 
 ---
 
-### Stochastic Gradient Descent
+### Stochastic Gradient Descent {.layout-tc}
 
 This time
 
@@ -207,6 +215,7 @@ $$
 G_n^\tau(\theta)=\mathbb E_{y\sim\gamma}\Big[ \underbrace{\exp{-\psi^\frac{c}{2\tau}(y;\theta)}-\int\psi(x;\theta)\rho_n^\tau(\dx)}_{=:\mathcal{G}_n^\tau(y;\theta)} \Big],
 $$
 
+::: {.fragment}
 Hence we can do SGD: let $R>0$ be such that $\theta_n^\tau\in B(0,R)$. For a given initial datum $\theta^{(1)}$ and a step-size sequence $(\alpha_k)_{k\geq 1}$, we define:
 
 $$
@@ -215,6 +224,7 @@ $$
     \theta^{(k+1)}=\mathrm{proj}_{B(0,R)}\big( \theta^{(k)}-\alpha_k\nabla_\theta\mathcal{G}_n^\tau(y_k,\theta^{(k)}) \big).
 \end{array}\right.
 $$
+:::
 
 ---
 
@@ -223,7 +233,7 @@ $$
 If $\alpha_k=\frac{R}{B\sqrt{k}}$, then
 
 $$
-\forall T\geq 1,\quad \mathbb{E}\left[ G_{n}^{\tau}(\bar{\theta}_{T})-G_{n}^{\tau}(\theta^{\tau}_{n}) \right]\leq B\left(\frac{2}{ T}+\frac{1}{\sqrt{T}}\right),
+\forall T\geq 1,\quad \mathbb{E}\left[ G_{n}^{\tau}(\bar{\theta}_{T})-G_{n}^{\tau}(\theta^{\tau}_{n}) \right]\leq BR\left(\frac{2}{ T}+\frac{1}{\sqrt{T}}\right),
 $$
 
 :::
@@ -231,14 +241,16 @@ $$
 where $\bar{\theta}_{T}$ denotes the arithmetic mean of the family $(\theta^{(k)})_{k=1}^{T}$ and $B$ depends only on $R$ and $\sup_x \|\phi(x)\|$.
 
 ::: {.notes}
-Parler de ce que sont $C$ et $B$.
+Parler de ce que sont $R$ et $B$.
 :::
 
 . . .
 
+<span class="spacer" aria-hidden="true"></span>
+
 No hope for better results without more assumptions on the features family $\phi$ (no strong convexity of $G_n^\tau$ in general).
 
-## The semi-discrete case
+## The semi-discrete case {.layout-tc}
 
 Approximate each JKO step $\rho_n^\tau$ by its optimal quantization $\hat\rho_n^N:=\frac{1}{N}\sum_{i=1}^N \delta_{x_i^{(n)}}$.
 
@@ -293,29 +305,34 @@ $$
 \forall 1\leq i\leq N,\ \forall x\in \mathrm{int} L_i(\theta_n^\tau),\quad x\mapsto -x-\frac{1}{\tau}(x-x_i^{(n)}).
 $$
 
-## Some animations
+## Some animations{.layout-tc}
 
+::: {.center-v}
+::: {.columns}
+::: {.column width="50%"}
 ![](medias\forward.mp4)
+:::
+
+::: {.column width="50%"}
+![](medias\backward.mp4)
+:::
+:::
+:::
 
 ::: {.notes}
 Donner + de détails
-:::
-
----
-
-![](medias\backward.mp4)
-
-::: {.notes}
 Résumer ce qu'on a vu pendant le talk
 :::
 
-## Work in Progress & Outlook
+## Work in Progress & Outlook {.layout-tc}
 
+::: {.center-v}
 ::: {.incremental}
 - (WiP) Error bounds $\mathbb E[W_2(\rho_{\bar\theta_T},\gamma)]$
 - (Outlook) Use entropic $c$-transform to reverse the flow?
 - (Outlook) Other kind of parametrization?
 - (Outlook) Specific feature families $\phi$?
+:::
 :::
 
 
