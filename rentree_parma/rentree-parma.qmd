@@ -233,12 +233,12 @@ $$
 If $\alpha_k=\frac{R}{B\sqrt{k}}$, then
 
 $$
-\forall T\geq 1,\quad \mathbb{E}\left[ G_{n}^{\tau}(\bar{\theta}_{T})-G_{n}^{\tau}(\theta^{\tau}_{n}) \right]\leq BR\left(\frac{2}{ T}+\frac{1}{\sqrt{T}}\right),
+\forall T\geq 1,\quad \mathbb{E}\left[ G_{n}^{\tau}(\bar{\theta}_{T}^n)-G_{n}^{\tau}(\theta^{\tau}_{n}) \right]\leq BR\left(\frac{2}{T}+\frac{1}{\sqrt{T}}\right),
 $$
 
 :::
 
-where $\bar{\theta}_{T}$ denotes the arithmetic mean of the family $(\theta^{(k)})_{k=1}^{T}$ and $B$ depends only on $R$ and $\sup_x \|\phi(x)\|$.
+where $\bar{\theta}_{T}^n$ denotes the arithmetic mean of the family $(\theta^{(k)})_{k=1}^{T}$ and $B$ depends only on $R$ and $\sup_x \|\phi(x)\|$.
 
 ::: {.notes}
 Parler de ce que sont $R$ et $B$.
@@ -295,10 +295,6 @@ $$
 
 . . .
 
-We recover a special case of the numerical scheme introduced in [@gallouet2022] (the points $x_{i}^{(n)}$ are moved towards the barycenter of their Laguerre cell).
-
-. . .
-
 The score learned here is
 
 $$
@@ -328,12 +324,14 @@ Résumer ce qu'on a vu pendant le talk
 
 ::: {.center-v}
 ::: {.incremental}
-- (WiP) Error bounds $\mathbb E[W_2(\rho_{\bar\theta_T},\gamma)]$
+- (WiP) Error bounds $\mathbb E[W_2(\rho_{\bar\theta_T^n},\gamma)]$
 - (Outlook) Use entropic $c$-transform to reverse the flow?
 - (Outlook) Other kind of parametrization?
 - (Outlook) Specific feature families $\phi$?
 :::
 :::
+
+## Thank you for your attention! {.final-slide}
 
 
 ## References

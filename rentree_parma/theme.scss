@@ -133,3 +133,25 @@ $brand-bold:      #d77e62;
 .reveal .slides section.layout-tc > .aside-footnotes {
   margin-top: auto;
 }
+
+
+
+/* Center the TITLE slide */
+.reveal .slides > section.title-slide {
+  display: grid;
+  place-content: center;
+  min-height: 100%;
+}
+
+/* Final slide with the same look/feel as the title */
+.reveal .slides > section.final-slide {
+  display: grid;
+  place-content: center;
+  min-height: 100%;
+}
+
+/* Make H2 on the final slide as big as an H1 title */
+.reveal .slides section.final-slide h2 {
+  font-size: var(--r-heading1-size);
+  color: var(--brand-title);
+}
