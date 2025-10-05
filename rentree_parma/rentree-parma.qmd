@@ -1,5 +1,5 @@
 ---
-title: "Using Optimal Transport to learn the score function"
+title: "Using Optimal Transport to do Diffusion Models"
 author: "Quentin Giton"
 format: 
     revealjs: 
