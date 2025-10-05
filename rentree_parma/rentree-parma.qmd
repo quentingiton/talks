@@ -287,10 +287,10 @@ and the optimal $\theta_n^\tau$ is such that each $L_i(\theta_n^\tau)$ has mass 
 
 . . .
 
-Then $\rho_{n+1}^\tau$ is approximated by $\frac{1}{N}\sum_{i=1}^N \delta_{x_i^{(n+1)}}$, where
+Then $\rho_{n+1}^\tau$ is approximated by $\frac{1}{N}\sum_{i=1}^N \delta_{x_i^{(n+1)}}$, where 
 
 $$
-\forall 1\leq i\leq N,\quad x_{i}^{(n+1)}:=N\int_{L_i(\theta_n^\tau)}y\rho_{n+1}^{\tau} (\d y).
+x_{i}^{(n+1)}:=N\int_{L_i(\theta_n^\tau)}y\rho_{n+1}^{\tau} (\d y). \tag{$\forall 1\leq i\leq N$}
 $$
 
 . . .
@@ -298,7 +298,7 @@ $$
 The score learned here is
 
 $$
-\forall 1\leq i\leq N,\ \forall x\in \mathrm{int} L_i(\theta_n^\tau),\quad x\mapsto -x-\frac{1}{\tau}(x-x_i^{(n)}).
+\forall x\in \mathrm{int} L_i(\theta_n^\tau),\qquad x\mapsto -x-\frac{1}{\tau}(x-x_i^{(n)}). \tag{$\forall 1\leq i\leq N$}
 $$
 
 ## Some animations{.layout-tc}
@@ -318,6 +318,21 @@ $$
 ::: {.notes}
 Donner + de détails
 Résumer ce qu'on a vu pendant le talk
+:::
+
+---
+### Some issues
+
+::: {.center-v}
+::: {.columns}
+::: {.column width="50%"}
+![](medias\forward_cloud_29.mp4)
+:::
+
+::: {.column width="50%"}
+![](medias\backward_cloud_29.mp4)
+:::
+:::
 :::
 
 ## Work in Progress & Outlook {.layout-tc}
