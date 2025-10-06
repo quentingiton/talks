@@ -52,7 +52,7 @@ $$
 Let $v_t=-\nabla(\ln{\rho_t}+V)$ be fixed. The **score** at time $t$ is $\nabla\ln{\rho_t}$. The continuity equation becomes
 
 $$
-\partial_t\rho_t=\Delta\rho_t+\mathrm{div}(\rho_t\nabla V) \tag{FPE}\label{eq:FPE}.
+\partial_t\rho_t=\Delta\rho_t+\mathrm{div}(\rho_t\nabla V) \tag{FP}\label{eq:FPE}.
 $$
 
 <span class="spacer-2" aria-hidden="true"></span>
@@ -89,7 +89,7 @@ $$
 
 Consider $v_t=-\nabla(\ln{\rho_t}+V)$ with $V(x)=\frac{\|x\|^2}{2}$. Then, the Fokker-Planck equation
 $$
-\partial_t\rho_t=\Delta\rho_t+\mathrm{div}(\rho_t\nabla V) \tag{FPE}.
+\partial_t\rho_t=\Delta\rho_t+\mathrm{div}(\rho_t\nabla V) \tag{FP}.
 $$
 
 <span class="spacer-2" aria-hidden="true"></span>
