@@ -1,5 +1,5 @@
 ---
-title: "Using Optimal Transport to do Diffusion Models"
+title: "Optimal Transport for Diffusion Models"
 author: "Quentin Giton"
 format: 
     revealjs: 
@@ -132,7 +132,7 @@ $$
 
 . . .
 
-thus approximating the score amounts to approximating $\nabla\psi_n^\frac{c}{2\tau}$ where $\psi_n$ is a Kantorovich potential related to the transport from $\rho_n^\tau$ to $\rho_{n+1}^\tau$.
+thus approximating the score amounts to approximating $\nabla\psi_n^\frac{c}{2\tau}$ where $\psi_n^\frac{c}{2\tau}$ is a Kantorovich potential related to the transport from $\rho_n^\tau$ to $\rho_{n+1}^\tau$.
 
 
 ## Numerical implementation of one JKO step {.layout-tc}
