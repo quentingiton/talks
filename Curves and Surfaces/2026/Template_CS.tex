@@ -1,0 +1,58 @@
+\documentclass[a4paper]{article} 
+
+
+%%%%%%%% DO NOT MODIFY THIS PART %%%%%%%%%%
+\usepackage{url}
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\newcommand{\mytitle}[1]{\title{\textsf{\bf{#1}}}}
+\date{} %
+\pagestyle{empty} %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%% INCLUDE MACRO HERE IF NEEDED %%%%%%%%%%
+\def\e{\varepsilon}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%% TITLE %%%
+\mytitle{Approximating the score function using Optimal Transport}
+
+%%%% SPEAKER (OR PRESENTATOR OF POSTER) %%%
+\author{
+\begin{tabular}{c}
+	Quentin Giton \\ %
+    Laboratoire de Mathématiques d'Orsay (LMO) \\ 
+    \url{quentin.giton.pro@gmail.com}
+\end{tabular}
+}
+
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+
+%%%% MAIN BODY -- MODIFY THIS %%%%%
+We propose a novel framework to approximate the gradient flow of the free energy functional in Wasserstein space via Kantorovich potential. By reformulating the Jordan-Kinderlehrer-Otto (JKO) scheme as a sequence of convex sub-problems, our approach leverages stochastic gradient descent (SGD) to efficiently solve each minimisation problem. We study the semi-discrete case, where one measure (the source one) is seen as a discrete over the samples. In this scenario, we establish the convergence of the SGD iterates and provide error estimates. Numerical experiments illustrate the potential of our method in learning complex data distributions.
+
+
+%%%% INCLUDE CO-AUTHORS NAMES HERE IF APPROPRIATE %%%%%
+
+\paragraph{Joint work with:} Thomas Gallouët, Ziad Kobeissi.
+
+%%%% FIGURES %%%%%
+
+%%%% BIBLIOGRAPHY -- MODIFY THIS %%%%%
+\begin{thebibliography}{1}
+	
+	\bibitem{JKO1998}
+	R.~Jordan,~D.~Kinderlehrer~and~F.~Otto.
+	\newblock The Variational Formulation of the Fokker--Planck Equation.
+	\newblock {\em SIAM Journal on Mathematical Analysis}, 10.1137/S0036141096303359, 1998
+	
+\end{thebibliography}
+
+
+
+\end{document}
