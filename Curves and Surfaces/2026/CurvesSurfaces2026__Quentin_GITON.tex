@@ -4,6 +4,9 @@
 %%%%%%%% DO NOT MODIFY THIS PART %%%%%%%%%%
 \usepackage{url}
 \usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{minted}
 \newcommand{\mytitle}[1]{\title{\textsf{\bf{#1}}}}
 \date{} %
 \pagestyle{empty} %
@@ -11,7 +14,7 @@
 
 
 %%%%%%%% INCLUDE MACRO HERE IF NEEDED %%%%%%%%%%
-\def\e{\varepsilon}
+%\def\e{\varepsilon}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -43,7 +46,25 @@ We propose a novel framework to approximate the gradient flow of the free energy
 
 %%%% FIGURES %%%%%
 
+\begin{figure}[H]
+	\centering
+	\begin{minipage}[b]{0.45\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{figures/forward_8frames.pdf}
+		\caption{Forward: resulting points clouds after JKO steps $0$, $1$, $2$, $4$ (first row), $5$, $7$, $8$ and $10$ (second row). Simulations made with \mintinline{python}{sdot}.}
+		\label{fig:forward}
+	\end{minipage}
+	\hspace{0.05\linewidth}
+	\begin{minipage}[b]{0.45\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{figures/convolution_backward__0_026.pdf}
+		\caption{Backward: resulting points clouds after inverse steps $0$, $1$, $2$, $4$ (first row), $5$, $7$, $8$ and $11$ (second row). Simulations made with \mintinline{python}{sdot}.}
+		\label{fig:backward}
+	\end{minipage}
+\end{figure}
+
 %%%% BIBLIOGRAPHY -- MODIFY THIS %%%%%
+
 \begin{thebibliography}{1}
 	
 	\bibitem{JKO1998}
@@ -51,7 +72,14 @@ We propose a novel framework to approximate the gradient flow of the free energy
 	\newblock The Variational Formulation of the Fokker--Planck Equation.
 	\newblock {\em SIAM Journal on Mathematical Analysis}, 10.1137/S0036141096303359, 1998
 	
+	\bibitem{fx25}
+	F.~Genans,~A.~Goddichon-Baggioni,~F.-X.~Vialard~and~O.~Wintenberger.
+	\newblock Stochastic Optimization in Semi-Discrete Optimal Transport: Convergence Analysis and Minimax Rate.
+	\newblock {\em NeurIPS}, 10.48550/arXiv.2510.25287, 2025
+	
 \end{thebibliography}
+
+
 
 
 
