@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.9)  2 FEB 2026 17:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.9)  3 FEB 2026 17:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -307,35 +307,14 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 File: figures/forward_8frames.pdf Graphic file (type pdf)
 <use figures/forward_8frames.pdf>
 Package pdftex.def Info: figures/forward_8frames.pdf  used on input line 53.
-(pdftex.def)             Requested size: 217.66211pt x 108.82819pt.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 54.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 54.
-\pydata@fh@0=\write4
-\openout4 = `_29BD487E76832656332CC1D36B197C24.data.minted'.
-
-runsystem(latexminted config  --timestamp 20260202170035 29BD487E76832656332CC1
-D36B197C24)...executed safely (allowed).
-
-
-(./_29BD487E76832656332CC1D36B197C24.config.minted)
-runsystem(latexminted cleanconfig  --timestamp 20260202170035 29BD487E768326563
-32CC1D36B197C24)...executed safely (allowed).
-
-
-(./_minted/default.style.minted)
-(./_minted/9B4D736D5A86FFDFB42CD898A37179DD.highlight.minted)
-(./_minted/9B4D736D5A86FFDFB42CD898A37179DD.highlight.minted)
+(pdftex.def)             Requested size: 222.5038pt x 111.2454pt.
 <figures/convolution_backward__0_026.pdf, id=2, 1156.32pt x 578.16pt>
 File: figures/convolution_backward__0_026.pdf Graphic file (type pdf)
 <use figures/convolution_backward__0_026.pdf>
 Package pdftex.def Info: figures/convolution_backward__0_026.pdf  used on input
  line 60.
-(pdftex.def)             Requested size: 217.66211pt x 108.82819pt.
+(pdftex.def)             Requested size: 222.5038pt x 111.2454pt.
 
-(./_minted/9B4D736D5A86FFDFB42CD898A37179DD.highlight.minted)
-(./_minted/9B4D736D5A86FFDFB42CD898A37179DD.highlight.minted)
 Underfull \hbox (badness 2042) in paragraph at lines 76--79
 []\OT1/cmr/m/n/10 F. Genans, A. Goddichon-Baggioni, F.-X. Vialard and O. Win-te
 n-berger.  Stochas-tic Op-ti-miza-
@@ -353,6 +332,10 @@ y-sis and Min-i-max Rate.  \OT1/cmr/m/it/10 NeurIPS\OT1/cmr/m/n/10 ,
 
 {c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./figures/forwa
 rd_8frames.pdf> <./figures/convolution_backward__0_026.pdf>]
+runsystem(latexminted cleantemp  --timestamp 20260203172704 29BD487E76832656332
+CC1D36B197C24)...executed safely (allowed).
+
+
 (./CurvesSurfaces2026__Quentin_GITON.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
@@ -360,25 +343,24 @@ L3 programming layer <2025-08-13>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 7862 strings out of 467800
- 179578 string characters out of 5436062
- 694490 words of memory out of 5000000
- 36416 multiletter control sequences out of 15000+600000
- 632069 words of font info for 58 fonts, out of 8000000 for 9000
+ 7581 strings out of 467800
+ 173312 string characters out of 5436062
+ 694478 words of memory out of 5000000
+ 36154 multiletter control sequences out of 15000+600000
+ 631901 words of font info for 57 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 85i,13n,93p,705b,711s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 85i,13n,93p,949b,450s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/tex
 live/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2025
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2025/texmf-dis
 t/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2025/texmf-dist/fonts/ty
 pe1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmtt10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmtt12.pfb>
-Output written on CurvesSurfaces2026__Quentin_GITON.pdf (1 page, 993517 bytes).
+c/amsfonts/cm/cmtt12.pfb>
+Output written on CurvesSurfaces2026__Quentin_GITON.pdf (1 page, 983996 bytes).
 
 PDF statistics:
- 100 PDF objects out of 1000 (max. 8388607)
- 35 compressed objects within 1 object stream
+ 95 PDF objects out of 1000 (max. 8388607)
+ 32 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
