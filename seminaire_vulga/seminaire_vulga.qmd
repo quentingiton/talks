@@ -1,0 +1,46 @@
+---
+title: "Wasserstein Gradient Flows"
+author: "Quentin Giton"
+format: 
+    revealjs: 
+        theme: [default, theme.scss]
+        highlight-style: github 
+        css: styles.css
+        slide-number: true
+        incremental: false
+        auto-play-media: false
+        embed-resources: false
+        center: false
+        auto-stretch: false
+toc: false
+number-sections: false
+theorems: true
+---
+
+## $L^2$ vs $W_2$ distances{.layout-tc}
+
+::: {.center-v}
+::: {.columns}
+::: {.column width="50%"}
+![](out_wgf/1_l2_gaussians--20_loop-count.gif)
+:::
+
+::: {.column width="50%"}
+![](out_wgf/3_w2_gaussians--20_loop-count.gif)
+:::
+:::
+:::
+
+---
+
+::: {.center-v}
+::: {.columns}
+::: {.column width="50%"}
+![](out_wgf/2_l2_images--20_loop-count.gif)
+:::
+
+::: {.column width="50%"}
+![](out_wgf/4_w2_images--20_loop-count.gif)
+:::
+:::
+:::
