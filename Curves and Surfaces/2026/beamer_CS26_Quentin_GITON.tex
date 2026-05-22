@@ -1,0 +1,219 @@
+\documentclass[aspectratio=169]{beamer} % 16:9 aspect ratio to match modern screens
+
+% --- Packages ---
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins, theorems}
+\usepackage{multimedia} % Included for video support
+\usepackage{fontawesome5}
+\usepackage[normalem]{ulem} % The normalem option keeps your \emph{} styling normal
+\usepackage{amsmath}
+
+% --- Bibliography ---
+\usepackage[
+	backend=bibtex,
+	giveninits=true,
+	style=numeric,
+	maxbibnames=99,
+	mincitenames=1,
+	maxcitenames=4
+]{biblatex}
+\addbibresource{bibi.bib}
+\setbeamerfont{footnote}{size=\tiny}
+\setbeamercolor{footnote mark}{fg=brandAccent}
+
+% --- Color Definitions (from theme.scss) ---
+\definecolor{brandAccent}{HTML}{D77E62}
+\definecolor{brandAccentDark}{HTML}{B7654B}
+% Approximating the transparent #e6a08a4a background
+\colorlet{brandAccentLight}{brandAccent!15!white} 
+
+% --- Beamer Color & Font Settings ---
+\setbeamercolor{title}{fg=brandAccent}
+\setbeamercolor{frametitle}{fg=brandAccent}
+\setbeamercolor{structure}{fg=brandAccent} % Colors bullets and standard structural elements
+\setbeamercolor{author}{fg=black}
+\setbeamercolor{date}{fg=black}
+
+% --- Link & Reference Styling ---
+\renewcommand{\eqref}[1]{\hyperref[#1]{\color{brandAccent}(\ref*{#1})}}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=brandAccent,
+	urlcolor=brandAccent,
+	citecolor=brandAccent
+}
+
+% Clean up the presentation (removes navigation symbols)
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[page number]
+
+% --- Custom Theorem Block (Replicating the CSS Bubble Style) ---
+\newtcbtheorem{mytheorem}{Theorem}{
+	enhanced,
+	colback=brandAccentLight,
+	colframe=brandAccent,
+	boxrule=1pt,
+	arc=4mm,          % 14px border radius
+	auto outer arc,
+	coltitle=white,
+	colbacktitle=brandAccent,
+	fonttitle=\bfseries,
+	% Pill-shaped floating title
+	title style={borderline={0pt}{0pt}{brandAccent}, rounded corners, arc=2mm},
+	attach boxed title to top left={xshift=4mm, yshift=-3mm},
+	boxed title style={size=small}
+}{thm}
+
+% --- Maths ---
+\def\argmin#1{{\underset{#1}{\mathrm{arg}\,\mathrm{min}\ }}}
+\def\argmax#1{{\underset{#1}{\mathrm{arg}\,\mathrm{max}\ }}}
+
+% --- Title Information ---
+\title{
+	\only<1>{Approximating the Score Function using Optimal Transport}
+	\only<2->{\textcolor{brandAccent}{\faHourglassHalf\ (Badly and Slowly)} Approximating the Score Function using Optimal Transport}
+}
+\subtitle{Curves and Surfaces 2026}
+\author{Quentin Giton}
+\institute{Laboratoire de Mathématiques d'Orsay}
+\date{June 11th} % Leave empty if no date is desired
+
+\begin{document}
+	\begin{frame}
+		\titlepage
+	\end{frame}
+	
+	
+	
+	\begin{frame}{What is a generative model?}
+		\pause
+		\begin{itemize}[<+->]
+			\item Given $x_1,\dots,x_N\sim\mu\in\mathcal{P}(\mathbb{R}^d)$ \textbf{i.i.d.}
+			\item $\mu$ is unknown
+			\item ``Learn'' $\mu$ so that we can sample from it
+		\end{itemize}
+		\vspace{1em}
+		\onslide<+->{The main approaches are based on the continuity equation
+		\begin{equation}
+			\partial_t\rho_t + \mathrm{div}(\rho_t v_t) = 0 \label{eq:continuity}
+		\end{equation}
+		
+		\textbf{GOAL:} Given $\mu$ (unknown) and $\gamma$ (easy to sample from), \textbf{build/find} $v_t$ such that the corresponding $\rho_t$ evolve from $\mu$ to $\gamma$ according to \eqref{eq:continuity}.}
+	\end{frame}
+	
+	
+	
+	\begin{frame}{Score-based diffusion models}
+		Let $v_t = -\nabla(\ln{\rho_t}+V)$ be fixed. The \textbf{score} at time $t$ is $\nabla\ln{\rho_t}$. The continuity equation becomes
+		\begin{equation}\label{eq:FPE}
+			\partial_t\rho_t = \Delta\rho_t + \mathrm{div}(\rho_t\nabla V).
+		\end{equation}
+		\pause
+		\vspace{1em}
+		\textbf{Main ways of learning the score}
+		\begin{itemize}[<+->]
+			\item Assume that the data have been noised according to $x_t=\alpha_t x_0+\sigma_t\varepsilon$, $\varepsilon\sim\mathcal{N}(0,I_d)$. Then:
+			\item train a neural network that tries to directly approximate the score;
+			\item or train a neural network $x_{0,\theta}$ that tries to denoise the data, then the score is given by the Tweedie formula:
+			\begin{equation*}
+				\nabla\ln{\rho_t(x_t)}\approx\frac{\alpha_t x_{0,\theta}(x_t,t)-x_t}{\sigma_t^2}.
+			\end{equation*}
+		\end{itemize}
+	\end{frame}
+	
+	
+	
+	\begin{frame}{Using OT to learn the score}
+		Consider $v_t = -\nabla(\ln{\rho_t}+V)$ where $V(x)=\frac{\|x\|^2}{2}$. Then, the Fokker-Planck equation
+		\begin{equation*}
+			\partial_t\rho_t = \Delta\rho_t + \mathrm{div}(\rho_t\nabla V).
+		\end{equation*}
+		\pause
+		\begin{itemize}
+			\item transports any initial condition $\rho_0\in\mathcal{P}(\mathbb{R^d})$ towards the standard Gaussian $\gamma=\mathcal{N}(0,Id)$ and
+			\item can be seen as the Wasserstein gradient flow of the energy \footfullcite{jordan_variational_1998}
+			\begin{equation*}
+				\mathcal{F}(\rho):=\int V\rho+\int\rho\ln{\rho}
+			\end{equation*}
+		\end{itemize}
+	\end{frame}
+	
+	
+	
+	\begin{frame}{Using OT to learn the score}
+		We can discretize in time the gradient flow using implicit Euler scheme (or \textbf{JKO scheme}):
+		\begin{equation}\label{eq:JKO}
+			\rho_{n+1}^\tau := \argmin{\rho\in\mathcal{P}_2(\mathbb{R}^d)} \left\{ \mathcal{F}(\rho)+\frac{1}{2\tau}W_2(\rho,\rho_n^\tau)^2 \right\}
+		\end{equation}
+		\pause
+		As explained by Santambrogio in his book \footfullcite{santambrogio_optimal_2015}, we have
+		\begin{equation*}
+			\nabla\psi_n^{c_\tau} = v_{n\tau} = -\nabla(\ln{\rho_{n+1}^\tau}+V),
+		\end{equation*}
+		where $\psi_n^{c_\tau}$ is a Kantorovich potential related to the transport from $\rho_n^\tau$ to $\rho_{n+1}^\tau$. Therefore approximating the score amounts to approximating $\nabla\psi_n^{c_\tau}$.
+	\end{frame}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	% --- Theorem Slide (Replicating Slide 9) ---
+	\begin{frame}{Stochastic Gradient Descent}
+		\begin{mytheorem}{}{}
+			If $\alpha_k=\frac{R}{B\sqrt{k}}$, then
+			\[
+			\forall T\geq 1,\quad \mathbb{E}\left[ G_{n}^{\tau}(\bar{\theta}_{T}^n)-G_{n}^{\tau}(\theta^{\tau}_{n}) \right]\leq BR\left(\frac{2}{T}+\frac{1}{\sqrt{T}}\right),
+			\]
+		\end{mytheorem}
+		\vspace{1em}
+		where $\bar{\theta}_{T}^n$ denotes the arithmetic mean of the family $(\theta^{(k)})_{k=1}^{T}$ and $B$ depends only on $R$ and $\sup_x \|\phi(x)\|$.
+	\end{frame}
+	
+	% --- Video Implementation Example ---
+	\begin{frame}{Some animations}
+		\begin{center}
+			% Usage: \movie[options]{poster text or image}{video_file.mp4}
+			% Note: You need a compatible PDF viewer (like pdfpc or Okular) to play this.
+			\movie[width=0.6\textwidth, height=0.4\textwidth, poster, showcontrols]
+			{\color{brandAccent} Click here to play video}{medias/forward.mp4}
+		\end{center}
+	\end{frame}
+	
+	% --- Final Slide (Centered) ---
+	\begin{frame}[c]
+		\begin{center}
+			\usebeamercolor[fg]{title}\Large\bfseries Thank you for your attention!
+		\end{center}
+	\end{frame}
+	
+\end{document}

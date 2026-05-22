@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.9)  3 FEB 2026 17:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.3)  3 FEB 2026 20:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -332,7 +332,7 @@ y-sis and Min-i-max Rate.  \OT1/cmr/m/it/10 NeurIPS\OT1/cmr/m/n/10 ,
 
 {c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./figures/forwa
 rd_8frames.pdf> <./figures/convolution_backward__0_026.pdf>]
-runsystem(latexminted cleantemp  --timestamp 20260203172704 29BD487E76832656332
+runsystem(latexminted cleantemp  --timestamp 20260203202747 29BD487E76832656332
 CC1D36B197C24)...executed safely (allowed).
 
 
