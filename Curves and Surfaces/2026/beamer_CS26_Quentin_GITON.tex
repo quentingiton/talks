@@ -9,7 +9,11 @@
 \usepackage{multimedia} % Included for video support
 \usepackage{fontawesome5}
 \usepackage[normalem]{ulem} % The normalem option keeps your \emph{} styling normal
+\usepackage{cancel}
 \usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{amssymb}
+\usetikzlibrary{arrows.meta, positioning, calc}
 
 % --- Bibliography ---
 \usepackage[
@@ -26,9 +30,12 @@
 
 % --- Color Definitions (from theme.scss) ---
 \definecolor{brandAccent}{HTML}{D77E62}
+\definecolor{brandPurple}{HTML}{7201A8}
 \definecolor{brandAccentDark}{HTML}{B7654B}
 % Approximating the transparent #e6a08a4a background
-\colorlet{brandAccentLight}{brandAccent!15!white} 
+\colorlet{brandAccentLight}{brandAccent!15!white}
+
+\colorlet{brandRed}{brandAccent!20!red}
 
 % --- Beamer Color & Font Settings ---
 \setbeamercolor{title}{fg=brandAccent}
@@ -74,7 +81,7 @@
 % --- Title Information ---
 \title{
 	\only<1>{Approximating the Score Function using Optimal Transport}
-	\only<2->{\textcolor{brandAccent}{\faHourglassHalf\ (Badly and Slowly)} Approximating the Score Function using Optimal Transport}
+	\only<2->{\textcolor{brandRed}{\faHourglassHalf\ (Badly and Slowly)} Approximating the Score Function using Optimal Transport}
 }
 \subtitle{Curves and Surfaces 2026}
 \author{Quentin Giton}
@@ -85,42 +92,202 @@
 	\begin{frame}
 		\titlepage
 	\end{frame}
-	
-	
-	
-	\begin{frame}{What is a generative model?}
-		\pause
-		\begin{itemize}[<+->]
-			\item Given $x_1,\dots,x_N\sim\mu\in\mathcal{P}(\mathbb{R}^d)$ \textbf{i.i.d.}
-			\item $\mu$ is unknown
-			\item ``Learn'' $\mu$ so that we can sample from it
-		\end{itemize}
-		\vspace{1em}
-		\onslide<+->{The main approaches are based on the continuity equation
-		\begin{equation}
-			\partial_t\rho_t + \mathrm{div}(\rho_t v_t) = 0 \label{eq:continuity}
-		\end{equation}
+
+	\begin{frame}[t]{Quick reminders on Optimal Transport 1/2}
+		\begin{center}
+			\resizebox{0.8\linewidth}{!}{
+				\begin{tikzpicture}[>=Stealth, scale=1.3]
+					\draw[->, thick] (-0.5, 0) -- (10.0, 0) node[right] {$\mathbb{R}$};
+					
+					\begin{scope}
+						% Filled region for A
+						\begin{scope}
+							\clip (0,0) 
+							.. controls (0.8, 0.1) and (1.2, 2.2) .. (2.0, 2.2)
+							.. controls (2.8, 2.2) and (3.2, 0.1) .. (4.0, 0) -- (4.0,0) -- (0,0) -- cycle;
+							\fill[brandAccent!30] (1.3, 0) rectangle (2.1, 2.5);
+						\end{scope}
+						
+						\draw[thick, brandAccent] (0,0) 
+						.. controls (0.8, 0.1) and (1.2, 2.2) .. (2.0, 2.2)
+						.. controls (2.8, 2.2) and (3.2, 0.1) .. (4.0, 0)
+						node[above=2pt] {$\mu$};
+						
+						\draw[brandAccent, thick, dashed] (1.3, 0) -- (1.3, 1.65);
+						\draw[brandAccent, thick, dashed] (2.1, 0) -- (2.1, 2.15);
+						\node[brandAccent!90!black] at (1.7, 0.8) {$\mu(A)$};
+						
+						\draw[brandAccent, line width=3pt] (1.3, 0) -- (2.1, 0);
+						\draw[brandAccent, thick] (1.3, -0.1) -- (1.3, 0.1); 
+						\draw[brandAccent, thick] (2.1, -0.1) -- (2.1, 0.1); 
+						\node[brandAccent!90!black, below=4pt] at (3.125, 0) {$A=\{x\in\mathbb{R}: T(x)\in B\}$};
+					\end{scope}
+					
+					\begin{scope}[xshift=5cm]
+						% Filled region for B
+						\begin{scope}
+							\clip (0,0) 
+							.. controls (1.0, 0.1) and (1.5, 1.4) .. (2.5, 1.4)
+							.. controls (3.5, 1.4) and (3.8, 0.1) .. (4.2, 0) -- (4.2,0) -- (0,0) -- cycle;
+							\fill[brandPurple!30] (1.6, 0) rectangle (3.2, 2.5);
+						\end{scope}
+						
+						\draw[thick, brandPurple] (0,0) 
+						.. controls (1.0, 0.1) and (1.5, 1.4) .. (2.5, 1.4)
+						.. controls (3.5, 1.4) and (3.8, 0.1) .. (4.2, 0)
+						node[above=2pt] {$\nu$};
+						
+						\draw[brandPurple, thick, dashed] (1.6, 0) -- (1.6, 1.025);
+						\draw[brandPurple, thick, dashed] (3.2, 0) -- (3.2, 1.15);
+						\node[brandPurple!90!black] at (2.4, 0.5) {$\nu(B)$};
+						
+						\draw[brandPurple, line width=3pt] (1.6, 0) -- (3.2, 0);
+						\draw[brandPurple, thick] (1.6, -0.1) -- (1.6, 0.1); 
+						\draw[brandPurple, thick] (3.2, -0.1) -- (3.2, 0.1); 
+						\node[brandPurple!90!black, below=4pt] at (2.4, 0) {$B$};
+					\end{scope}
+					
+					% DYNAMIC MAPPING ARROW
+					% Slide 1: Solid Monge Arrow
+					\only<1>{
+						\draw[->, thick, black] (3.25, 1.5) to[bend left=30] node[above, text=black] {$T$} (6.25, 1.5);
+					}
+					% Slide 2: Dashed Kantorovich Arrow
+					\only<2->{
+						\draw[<->, thick, black, dashed] (3.25, 1.5) to[bend left=30] node[above, text=black] {$\pi$} (6.25, 1.5);
+					}
+				\end{tikzpicture}
+			}
+		\end{center}
 		
-		\textbf{GOAL:} Given $\mu$ (unknown) and $\gamma$ (easy to sample from), \textbf{build/find} $v_t$ such that the corresponding $\rho_t$ evolve from $\mu$ to $\gamma$ according to \eqref{eq:continuity}.}
+		% DYNAMIC TEXT BLOCK
+		\begin{itemize}
+			\item Given ground cost $c(x,y)$
+			
+			\item 
+			% Slide 1: The Monge Constraint
+			\only<1>{Among all maps $T$ satisfying $\forall\textcolor{brandPurple}{B},\ \textcolor{brandPurple}{\nu(B)} = \textcolor{brandAccent}{\mu(}T^{-1}(\textcolor{brandPurple}{B})\textcolor{brandAccent}{)}$}
+			% Slide 2: The Scratched Monge + The Kantorovich Constraint
+			\only<2->{
+				\textcolor{gray}{\sout{Among all maps $T$ satisfying $\forall B, \nu(B) = \mu(T^{-1}(B))$}} \\
+				\vspace{4pt}
+				Among all \textbf{transport plans} $\pi$ with marginals $\textcolor{brandAccent}{\mu}$ and $\textcolor{brandPurple}{\nu}$
+			}
+			
+			\item 
+			% Slide 1: The Monge Integral
+			\only<1>{
+				Find the one minimising the average transport cost
+				\begin{equation*}
+					\int_{\mathbb{R}^d} c(\textcolor{brandAccent}{x},T(\textcolor{brandAccent}{x}))\textcolor{brandAccent}{\mu(}\mathrm{d}\textcolor{brandAccent}{x)}
+				\end{equation*}
+			}
+			% Slide 2: Scratched Monge Integral -> Kantorovich Integral
+			\only<2->{
+				\textcolor{gray}{\sout{Find the one minimising the average transport cost}}
+				\begin{equation*}
+					% \xcancel draws the line through the math
+					\textcolor{gray}{\xcancel{\int_{\mathbb{R}^d} c(x,T(x))\mu(\mathrm{d}x)}} 
+					\quad \longrightarrow \quad
+					\int_{\mathbb{R}^d \times \mathbb{R}^d} c(\textcolor{brandAccent}{x},\textcolor{brandPurple}{y}) \, \pi(\mathrm{d}\textcolor{brandAccent}{x},\mathrm{d}\textcolor{brandPurple}{y})
+				\end{equation*}
+			}
+		\end{itemize}
 	\end{frame}
 	
-	
-	
-	\begin{frame}{Score-based diffusion models}
-		Let $v_t = -\nabla(\ln{\rho_t}+V)$ be fixed. The \textbf{score} at time $t$ is $\nabla\ln{\rho_t}$. The continuity equation becomes
-		\begin{equation}\label{eq:FPE}
-			\partial_t\rho_t = \Delta\rho_t + \mathrm{div}(\rho_t\nabla V).
-		\end{equation}
-		\pause
-		\vspace{1em}
-		\textbf{Main ways of learning the score}
+	\begin{frame}[t]{Quick reminders on Optimal Transport 2/2}
+		\begin{center}
+			\resizebox{0.8\linewidth}{!}{
+				\begin{tikzpicture}[>=Stealth, scale=1.3]
+					\draw[->, thick] (-0.5, 0) -- (10.0, 0) node[right] {$\mathbb{R}$};
+					
+					\begin{scope}
+						% Filled region for A
+						\begin{scope}
+							\clip (0,0) 
+							.. controls (0.8, 0.1) and (1.2, 2.2) .. (2.0, 2.2)
+							.. controls (2.8, 2.2) and (3.2, 0.1) .. (4.0, 0) -- (4.0,0) -- (0,0) -- cycle;
+							\fill[brandAccent!30] (1.3, 0) rectangle (2.1, 2.5);
+						\end{scope}
+						
+						\draw[thick, brandAccent] (0,0) 
+						.. controls (0.8, 0.1) and (1.2, 2.2) .. (2.0, 2.2)
+						.. controls (2.8, 2.2) and (3.2, 0.1) .. (4.0, 0)
+						node[above=2pt] {$\mu$};
+						
+						\draw[brandAccent, thick, dashed] (1.3, 0) -- (1.3, 1.65);
+						\draw[brandAccent, thick, dashed] (2.1, 0) -- (2.1, 2.15);
+						\node[brandAccent!90!black] at (1.7, 0.8) {$\mu(A)$};
+						
+						\draw[brandAccent, line width=3pt] (1.3, 0) -- (2.1, 0);
+						\draw[brandAccent, thick] (1.3, -0.1) -- (1.3, 0.1); 
+						\draw[brandAccent, thick] (2.1, -0.1) -- (2.1, 0.1); 
+						\node[brandAccent!90!black, below=4pt] at (3.125, 0) {$A=\{x\in\mathbb{R}: T(x)\in B\}$};
+					\end{scope}
+					
+					\begin{scope}[xshift=5cm]
+						% Filled region for B
+						\begin{scope}
+							\clip (0,0) 
+							.. controls (1.0, 0.1) and (1.5, 1.4) .. (2.5, 1.4)
+							.. controls (3.5, 1.4) and (3.8, 0.1) .. (4.2, 0) -- (4.2,0) -- (0,0) -- cycle;
+							\fill[brandPurple!30] (1.6, 0) rectangle (3.2, 2.5);
+						\end{scope}
+						
+						\draw[thick, brandPurple] (0,0) 
+						.. controls (1.0, 0.1) and (1.5, 1.4) .. (2.5, 1.4)
+						.. controls (3.5, 1.4) and (3.8, 0.1) .. (4.2, 0)
+						node[above=2pt] {$\nu$};
+						
+						\draw[brandPurple, thick, dashed] (1.6, 0) -- (1.6, 1.025);
+						\draw[brandPurple, thick, dashed] (3.2, 0) -- (3.2, 1.15);
+						\node[brandPurple!90!black] at (2.4, 0.5) {$\nu(B)$};
+						
+						\draw[brandPurple, line width=3pt] (1.6, 0) -- (3.2, 0);
+						\draw[brandPurple, thick] (1.6, -0.1) -- (1.6, 0.1); 
+						\draw[brandPurple, thick] (3.2, -0.1) -- (3.2, 0.1); 
+						\node[brandPurple!90!black, below=4pt] at (2.4, 0) {$B$};
+					\end{scope}
+					
+					\draw[<->, thick, black, dashed] (3.25, 1.5) to[bend left=30] node[above, text=black] {$\pi$} (6.25, 1.5);
+				\end{tikzpicture}
+			}
+		\end{center}
+		
+		% DYNAMIC TEXT BLOCK
 		\begin{itemize}[<+->]
-			\item Assume that the data have been noised according to $x_t=\alpha_t x_0+\sigma_t\varepsilon$, $\varepsilon\sim\mathcal{N}(0,I_d)$. Then:
-			\item train a neural network that tries to directly approximate the score;
-			\item or train a neural network $x_{0,\theta}$ that tries to denoise the data, then the score is given by the Tweedie formula:
+			\item $p$-Wasserstein distance:
 			\begin{equation*}
-				\nabla\ln{\rho_t(x_t)}\approx\frac{\alpha_t x_{0,\theta}(x_t,t)-x_t}{\sigma_t^2}.
+				W_p(\mu,\nu)^p = \inf_{\pi\in\Pi(\mu,\nu)} \int d(x,y)^p \gamma(\mathrm{d}x,\mathrm{d}y)
 			\end{equation*}
+			\item Kantorovich duality
+			\begin{equation*}
+				\inf_{\pi\in\Pi(\mu,\nu)} \int c(x,y) \gamma(\mathrm{d}x,\mathrm{d}y) = \sup_{\phi} \int \phi(x)\mu(\mathrm{d}x)+\int\phi^c(y)\nu(\mathrm{d}y),
+			\end{equation*}
+			where $\phi^c(y) := \inf_x c(x,y)-\phi(x)$.
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{What is the score function?}
+		\begin{itemize}[<+->]
+			\item \textbf{Forward Process (Heat Dissipation):} 
+			Running the SDE forward diffuses our data into pure noise. The density follows a Fokker-Planck equation (akin to the heat equation):
+			\begin{equation*}
+				\mathrm{d}x_t = f(x_t, t) \, \mathrm{d}t + g(t) \, \mathrm{d}w_t
+			\end{equation*}
+			
+			\item \textbf{Reverse Process (Reversing Entropy):} 
+			To reverse this natural dissipation, we must inject a highly specific, restoring drift back into the system:
+			\begin{equation*}
+				\mathrm{d}x_t = \Big[ f(x_t, t) - g(t)^2 \underbrace{\textcolor{brandRed}{\nabla \log p_t(x_t)}}_{\text{\textbf{The Score Function}}} \Big] \mathrm{d}t + g(t) \, \mathrm{d}\bar{w}_t
+			\end{equation*}
+			
+			\item \textbf{The Physical Intuition:}
+			\begin{itemize}
+				\item We can view the system through a potential energy landscape: $E_t(x) = -\log p_t(x)$.
+				\item The score is simply the negative gradient of this energy: $\textcolor{brandRed}{\nabla \log p_t(x)} = -\nabla E_t(x)$.
+				\item \textbf{Conclusion:} The score acts as the exact thermodynamic \textbf{force} required to fight the heat equation and push the dispersed particles back into their highly-structured original states.
+			\end{itemize}
 		\end{itemize}
 	\end{frame}
 	
