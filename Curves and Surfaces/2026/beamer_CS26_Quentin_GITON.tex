@@ -83,6 +83,8 @@
 \newcommand{\cev}[1]{\reflectbox{$\vec{\reflectbox{$#1$}}$}}
 \newcommand{\rust}[1]{\textcolor{brandAccent}{#1}}
 \newcommand{\purp}[1]{\textcolor{brandPurple}{#1}}
+\renewcommand{\exp}[1]{\mathrm{exp}\left(#1\right)}
+\renewcommand{\ln}[1]{\mathrm{ln}\left(#1\right)}
 
 % --- Title Information ---
 \title{
@@ -370,29 +372,55 @@
 	
 	
 	
-	\begin{frame}{Using OT to learn the score}
+	\begin{frame}{Using OT to learn the score 1/2}
 		\begin{itemize}[<+->]
 			\item The Fokker--Planck equation is the $2$-Wasserstein Gradient Flow (WGF) of the relative entropy $\mathcal{H}(\rho\vert\gamma):=\int V\rho+\int\rho\ln{\rho}$. That is:
 			\begin{equation*}
 				\partial_t\rho_t(x) = \Delta\rho_t(x) + \mathrm{div}(\rho_t(x)x) = -\nabla\cdot\left( \rho_t(x)v_t(x) \right),
 			\end{equation*}
 			where $v_t(x) = -x-\nabla\ln{\rho_t(x)}$.
+			
+			\vspace{\baselineskip}
+			
+			\item Given a time-step $\tau>0$, such a gradient flow can be discretized in time using the \textbf{JKO scheme}
+			\begin{equation*}
+				\left\{ 
+					\begin{array}{l}
+						\rho_0 = \mu \\
+						\rho_{n+1}^\tau := \argmin{} \mathcal{H}(\rho\vert\gamma)+\frac{1}{2\tau}W_2(\rho_n^\tau,\rho)^2
+					\end{array}
+				 \right.
+			\end{equation*} 
 		\end{itemize}
 	\end{frame}
 	
 	
 	
-	\begin{frame}{Using OT to learn the score}
-		We can discretize in time the gradient flow using implicit Euler scheme (or \textbf{JKO scheme}):
-		\begin{equation}\label{eq:JKO}
-			\rho_{n+1}^\tau := \argmin{\rho\in\mathcal{P}_2(\mathbb{R}^d)} \left\{ \mathcal{F}(\rho)+\frac{1}{2\tau}W_2(\rho,\rho_n^\tau)^2 \right\}
-		\end{equation}
-		\pause
-		As explained by Santambrogio in his book \footfullcite{santambrogio_optimal_2015}, we have
-		\begin{equation*}
-			\nabla\psi_n^{c_\tau} = v_{n\tau} = -\nabla(\ln{\rho_{n+1}^\tau}+V),
-		\end{equation*}
-		where $\psi_n^{c_\tau}$ is a Kantorovich potential related to the transport from $\rho_n^\tau$ to $\rho_{n+1}^\tau$. Therefore approximating the score amounts to approximating $\nabla\psi_n^{c_\tau}$.
+	\begin{frame}{Using OT to learn the score 2/2}
+		\begin{itemize}[<+->]
+			\item Solving
+			\begin{equation*}
+				\inf_\rho \mathcal{H}(\rho\vert\gamma)+\frac{1}{2\tau}W_2(\rho_n^\tau,\rho)^2
+			\end{equation*}
+			amounts to finding the optimal transport map between
+			\begin{equation*}
+				\rust{\rho_n^\tau}\qquad \text{and}\qquad \purp{\rho_{n+1}^\tau}\propto\exp{-\phi^{c/2\tau}}\d\gamma,
+			\end{equation*}
+			where $\phi$ solves
+			\begin{equation*}
+				\inf_\phi \int e^{-\phi^{c/2\tau}}\d\gamma - \int\phi\d\rust{\rho_n^\tau}.
+			\end{equation*}
+			
+			\item The optimal potential $\phi^\star$ satisfies
+			\begin{equation*}
+				-\nabla\phi^\star(\rust{x}) = \nabla(\phi^\star)^{c/2\tau}(\purp{y}) = \purp{y}-\rust{x}.
+			\end{equation*}
+			
+			\item The displacement of the particle $\rust{x}$ being $v_t(\rust{x})$, we obtain
+			\begin{equation*}
+				-\nabla\phi^\star(\rust{x}) = v_t(\rust{x}) = -x-\nabla\ln{\rho_{n+1}^\tau(\rust{x})} \iff \boxed{\nabla\ln{\rho_{n+1}^\tau(\rust{x})} = \rust{x}+\nabla\phi^\star(\rust{x})}.
+			\end{equation*}
+		\end{itemize}
 	\end{frame}
 	
 	
@@ -426,33 +454,33 @@
 	
 	
 	
-	% --- Theorem Slide (Replicating Slide 9) ---
-	\begin{frame}{Stochastic Gradient Descent}
-		\begin{mytheorem}{}{}
-			If $\alpha_k=\frac{R}{B\sqrt{k}}$, then
-			\[
-			\forall T\geq 1,\quad \mathbb{E}\left[ G_{n}^{\tau}(\bar{\theta}_{T}^n)-G_{n}^{\tau}(\theta^{\tau}_{n}) \right]\leq BR\left(\frac{2}{T}+\frac{1}{\sqrt{T}}\right),
-			\]
-		\end{mytheorem}
-		\vspace{1em}
-		where $\bar{\theta}_{T}^n$ denotes the arithmetic mean of the family $(\theta^{(k)})_{k=1}^{T}$ and $B$ depends only on $R$ and $\sup_x \|\phi(x)\|$.
-	\end{frame}
-	
-	% --- Video Implementation Example ---
-	\begin{frame}{Some animations}
-		\begin{center}
-			% Usage: \movie[options]{poster text or image}{video_file.mp4}
-			% Note: You need a compatible PDF viewer (like pdfpc or Okular) to play this.
-			\movie[width=0.6\textwidth, height=0.4\textwidth, poster, showcontrols]
-			{\color{brandAccent} Click here to play video}{medias/forward.mp4}
-		\end{center}
-	\end{frame}
-	
-	% --- Final Slide (Centered) ---
-	\begin{frame}[c]
-		\begin{center}
-			\usebeamercolor[fg]{title}\Large\bfseries Thank you for your attention!
-		\end{center}
-	\end{frame}
+%	% --- Theorem Slide (Replicating Slide 9) ---
+%	\begin{frame}{Stochastic Gradient Descent}
+%		\begin{mytheorem}{}{}
+%			If $\alpha_k=\frac{R}{B\sqrt{k}}$, then
+%			\[
+%			\forall T\geq 1,\quad \mathbb{E}\left[ G_{n}^{\tau}(\bar{\theta}_{T}^n)-G_{n}^{\tau}(\theta^{\tau}_{n}) \right]\leq BR\left(\frac{2}{T}+\frac{1}{\sqrt{T}}\right),
+%			\]
+%		\end{mytheorem}
+%		\vspace{1em}
+%		where $\bar{\theta}_{T}^n$ denotes the arithmetic mean of the family $(\theta^{(k)})_{k=1}^{T}$ and $B$ depends only on $R$ and $\sup_x \|\phi(x)\|$.
+%	\end{frame}
+%	
+%	% --- Video Implementation Example ---
+%	\begin{frame}{Some animations}
+%		\begin{center}
+%			% Usage: \movie[options]{poster text or image}{video_file.mp4}
+%			% Note: You need a compatible PDF viewer (like pdfpc or Okular) to play this.
+%			\movie[width=0.6\textwidth, height=0.4\textwidth, poster, showcontrols]
+%			{\color{brandAccent} Click here to play video}{medias/forward.mp4}
+%		\end{center}
+%	\end{frame}
+%	
+%	% --- Final Slide (Centered) ---
+%	\begin{frame}[c]
+%		\begin{center}
+%			\usebeamercolor[fg]{title}\Large\bfseries Thank you for your attention!
+%		\end{center}
+%	\end{frame}
 	
 \end{document}
