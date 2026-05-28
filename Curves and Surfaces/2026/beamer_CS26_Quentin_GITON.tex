@@ -1,8 +1,12 @@
 \documentclass[aspectratio=169]{beamer} % 16:9 aspect ratio to match modern screens
+\usefonttheme{serif}
 
 % --- Packages ---
+\usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
+
 \usepackage{lmodern}
+
 \usepackage{xcolor}
 \usepackage{tcolorbox}
 \tcbuselibrary{skins, theorems}
@@ -35,7 +39,7 @@
 \definecolor{brandPurple}{HTML}{7201A8}
 \definecolor{brandAccentDark}{HTML}{B7654B}
 % Approximating the transparent #e6a08a4a background
-\colorlet{brandAccentLight}{brandAccent!15!white}
+\colorlet{brandAccentLight}{brandAccent!5!white}
 
 \colorlet{brandRed}{brandAccent!20!red}
 
@@ -60,7 +64,7 @@
 \setbeamertemplate{footline}[page number]
 
 % --- Custom Theorem Block (Replicating the CSS Bubble Style) ---
-\newtcbtheorem{mytheorem}{Theorem}{
+\newtcbtheorem{mythm}{Theorem}{
 	enhanced,
 	colback=brandAccentLight,
 	colframe=brandAccent,
@@ -69,12 +73,45 @@
 	auto outer arc,
 	coltitle=white,
 	colbacktitle=brandAccent,
-	fonttitle=\bfseries,
+	fonttitle=\bfseries\small,
+	top=5mm,  % <--- INCREASES VERTICAL SPACE BETWEEN BUBBLE AND TEXT
+	bottom=2mm, % Optional: gives a little breathing room at the bottom too
+	% Pill-shaped floating title
+	separator sign={},
+	title style={borderline={0pt}{0pt}{brandAccent}, rounded corners, arc=2mm},
+	attach boxed title to top left={xshift=4mm, yshift=-3mm},
+	boxed title style={
+		size=small,
+		top=-0.5mm,    % <--- Shrink top padding
+		bottom=-0.5mm, % <--- Shrink bottom padding
+		left=1mm,     % <--- Shrink left padding
+		right=1mm     % <--- Shrink right padding
+	}
+}{thm}
+\newtcbtheorem{myprop}{Proposition}{
+	enhanced,
+	colback=brandAccentLight,
+	colframe=brandAccent,
+	boxrule=1pt,
+	arc=4mm,          % 14px border radius
+	auto outer arc,
+	coltitle=white,
+	colbacktitle=brandAccent,
+	fonttitle=\bfseries\small,
+	top=3mm,
+	bottom=2mm,
+	separator sign={},
 	% Pill-shaped floating title
 	title style={borderline={0pt}{0pt}{brandAccent}, rounded corners, arc=2mm},
 	attach boxed title to top left={xshift=4mm, yshift=-3mm},
-	boxed title style={size=small}
-}{thm}
+	boxed title style={
+		size=small,
+		top=-0.5mm,    % <--- Shrink top padding
+		bottom=-0.5mm, % <--- Shrink bottom padding
+		left=1mm,     % <--- Shrink left padding
+		right=1mm     % <--- Shrink right padding
+	}
+}{prop}
 
 % --- Maths ---
 \def\argmin#1{{\underset{#1}{\mathrm{arg}\,\mathrm{min}\ }}}
@@ -85,6 +122,9 @@
 \newcommand{\purp}[1]{\textcolor{brandPurple}{#1}}
 \renewcommand{\exp}[1]{\mathrm{exp}\left(#1\right)}
 \renewcommand{\ln}[1]{\mathrm{ln}\left(#1\right)}
+\newcommand{\myatop}[2]{%  % a macro with LaTeX-style syntax
+	\fontdimen10\textfont2=\fontdimen9\textfont2% using wipet's suggestion
+	{\begingroup#1\endgroup\atop#2}}
 
 % --- Title Information ---
 \title{
@@ -382,7 +422,7 @@
 			
 			\vspace{\baselineskip}
 			
-			\item Given a time-step $\tau>0$, such a gradient flow can be discretized in time using the \textbf{JKO scheme}
+			\item Given a time-step $\tau>0$, such a gradient flow can be discretised in time using the \textbf{JKO scheme}
 			\begin{equation*}
 				\left\{ 
 					\begin{array}{l}
@@ -404,28 +444,61 @@
 			\end{equation*}
 			amounts to finding the optimal transport map between
 			\begin{equation*}
-				\rust{\rho_n^\tau}\qquad \text{and}\qquad \purp{\rho_{n+1}^\tau}\propto\exp{-\phi^{c/2\tau}}\d\gamma,
+				\rust{\rho_n^\tau}\qquad \text{and}\qquad \purp{\rho_{n+1}^\tau}\propto\exp{-\phi^{c/2\tau}}\d\purp{\gamma},
 			\end{equation*}
 			where $\phi$ solves
 			\begin{equation*}
-				\inf_\phi \int e^{-\phi^{c/2\tau}}\d\gamma - \int\phi\d\rust{\rho_n^\tau}.
+				\inf_\phi \tilde J(\phi) := \ln{\int e^{-\phi^{c/2\tau}}\d\purp{\gamma}} - \int\phi\d\rust{\rho_n^\tau}.
 			\end{equation*}
 			
 			\item The optimal potential $\phi^\star$ satisfies
 			\begin{equation*}
-				-\nabla\phi^\star(\rust{x}) = \nabla(\phi^\star)^{c/2\tau}(\purp{y}) = \purp{y}-\rust{x}.
+				-\nabla\phi^\star(\rust{x}) = \nabla(\phi^\star)^{c/2\tau}(\purp{y}) = \frac{\purp{y}-\rust{x}}{\tau}.
 			\end{equation*}
 			
 			\item The displacement of the particle $\rust{x}$ being $v_t(\rust{x})$, we obtain
 			\begin{equation*}
-				-\nabla\phi^\star(\rust{x}) = v_t(\rust{x}) = -x-\nabla\ln{\rho_{n+1}^\tau(\rust{x})} \iff \boxed{\nabla\ln{\rho_{n+1}^\tau(\rust{x})} = \rust{x}+\nabla\phi^\star(\rust{x})}.
+				-\nabla\phi^\star(\rust{x}) = v_t(\rust{x}) = -\rust{x}-\nabla\ln{\rho_{n+1}^\tau(\rust{x})} \iff \boxed{\nabla\ln{\rho_{n+1}^\tau(\rust{x})} = \nabla\phi^\star(\rust{x})-\rust{x}}.
 			\end{equation*}
 		\end{itemize}
 	\end{frame}
 	
 	
 	
+	\begin{frame}[t]{General contributions}
+		\begin{myprop*}{\itshape (G.)}
+			The functional $\tilde J(\phi):=\ln{\int e^{-\phi^{c/2\tau}}\d\purp{\gamma}}-\int\phi\d\rust{\rho_n^\tau}$ is convex.
+		\end{myprop*}
+		\pause
+		\vspace{\baselineskip}
+		\begin{mythm*}{\itshape (G.)}
+			Let
+			\begin{equation*}
+				J(\phi) := \int e^{-\phi^{c/2\tau}}\d\purp{\gamma}-\int\phi\d\rust{\rho_n^\tau}.
+			\end{equation*}
+			Then,
+			\begin{equation*}
+				\argmin{\phi}J(\phi) \subseteq \argmin{\phi}
+				\tilde{J}(\phi) \quad \text{and}\quad \argmin{\int e^{-\phi^{c/2\tau}}\d\purp{\gamma}=1}\tilde J(\phi) = \argmin{\phi}
+				J(\psi).
+			\end{equation*}
+		\end{mythm*}
+	\end{frame}
 	
+	
+	
+	\begin{frame}[t]{Stochastic gradient descent}
+		\begin{itemize}[<+->]
+			\item $\displaystyle J(\phi) = \mathbb{E}_{\purp{y}\sim\purp{\gamma}}\left[ \exp{-\phi^{c/2\tau}(\purp{y})}-\int\phi(\rust{x})\rust{\rho_n^\tau(}\d\rust{x)} \right]$
+			
+			\item Choice of parametrisation: semi-discrete optimal transport using
+			\begin{equation*}
+				\rust{\hat\rho_n^\tau} = \frac{1}{N}\sum_{i=1}^N \delta_{\rust{\hat x_i^{(n)}}}
+			\end{equation*}
+			
+			\item $\displaystyle G(\theta) = \mathbb{E}_{\purp{y}\sim\purp{\gamma}}\left[ \max_{1\leq i\leq N}\left\{\exp{\theta_i - \frac{c(\rust{\hat x_i^{(n)}},\purp{y})}{2\tau}}\right\}-\frac{1}{N}\sum_{i=1}^N\theta_i \right]$
+		\end{itemize}
+	\end{frame}
 	
 	
 	
