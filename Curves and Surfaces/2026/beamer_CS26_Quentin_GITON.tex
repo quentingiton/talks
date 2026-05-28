@@ -7,6 +7,7 @@
 
 \usepackage{lmodern}
 
+\usepackage{dsfont}
 \usepackage{xcolor}
 \usepackage{tcolorbox}
 \tcbuselibrary{skins, theorems}
@@ -487,7 +488,7 @@
 	
 	
 	
-	\begin{frame}[t]{Stochastic gradient descent}
+	\begin{frame}[t]{Stochastic gradient descent 1/2}
 		\begin{itemize}[<+->]
 			\item $\displaystyle J(\phi) = \mathbb{E}_{\purp{y}\sim\purp{\gamma}}\left[ \exp{-\phi^{c/2\tau}(\purp{y})}-\int\phi(\rust{x})\rust{\rho_n^\tau(}\d\rust{x)} \right]$
 			
@@ -497,12 +498,35 @@
 			\end{equation*}
 			
 			\item $\displaystyle G(\theta) = \mathbb{E}_{\purp{y}\sim\purp{\gamma}}\left[ \max_{1\leq i\leq N}\left\{\exp{\theta_i - \frac{c(\rust{\hat x_i^{(n)}},\purp{y})}{2\tau}}\right\}-\frac{1}{N}\sum_{i=1}^N\theta_i \right]$
+			
+			\item Projected SGD algorithm $\big(c_\tau(\rust{x},\purp{y}):=\frac{c(\rust{x},\purp{y})}{2\tau}\big)$
+			\begin{equation*}
+				\left\{
+				\begin{array}{l}
+					\text{pick } \purp{y}\sim \purp{\gamma} \\
+					\text{let } i :=\mathrm{arg}\,\mathrm{min}_j\  c_\tau(\rust{\hat x_j^{(n)}},\purp{y})-\theta_j \\
+					\text{define } e_i \text{ as the $i$-th canonical basis vector of $\mathbb{R}^N$} \\
+					\theta^{(k+1)} := \mathrm{proj}_{B(0,R_\mathrm{proj})}\left( \theta^{(k)} -  \alpha_ke^{\theta_i^{(k)}-c_\tau(\rust{\hat x_j^{(n)}},\purp{y})}e_i+ \frac{\alpha_k}{N}\mathds{1} \right)
+				\end{array}
+				\right.
+			\end{equation*}
 		\end{itemize}
 	\end{frame}
 	
 	
 	
-	
+	\begin{frame}[t]{Stochastic gradient descent 2/2}
+		\begin{mythm*}{\itshape (G.)}
+			Let $(\theta^{(k)})_{k=0}^K$ be the iterates obtained with step-sizes $\alpha_k = \frac{R_\mathrm{proj}}{B\sqrt{k}}$ starting from some initial $\theta^{(0)}\in B(0,R_\mathrm{proj})$. Define $\bar\theta_K$ to be the arithmetic mean of all iterates up to time $K$. Then, it holds that
+			\begin{equation*}
+				0\leq \mathbb E [G(\bar\theta_K)] - G(\theta^\star) \leq BR_\mathrm{proj}\left( \frac{2}{K}+\frac{1}{\sqrt{K}} \right)=\mathcal O(K^{-\frac{1}{2}}),
+			\end{equation*}
+			where $\theta^\star$ denotes the unique minimiser of $G$.
+		\end{mythm*}
+		\begin{itemize}[<+->]
+			\item Recall that
+		\end{itemize}
+	\end{frame}
 	
 	
 	
