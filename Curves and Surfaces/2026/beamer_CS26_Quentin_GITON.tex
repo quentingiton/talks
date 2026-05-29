@@ -428,7 +428,7 @@
 				\left\{ 
 					\begin{array}{l}
 						\rho_0 = \mu \\
-						\rho_{n+1}^\tau := \argmin{} \mathcal{H}(\rho\vert\gamma)+\frac{1}{2\tau}W_2(\rho_n^\tau,\rho)^2
+						\displaystyle \rho_{n+1}^\tau := \argmin{} \mathcal{H}(\rho\vert\gamma)+\frac{1}{2\tau}W_2(\rho_n^\tau,\rho)^2
 					\end{array}
 				 \right.
 			\end{equation*} 
@@ -515,7 +515,7 @@
 	
 	
 	
-	\begin{frame}[t]{Stochastic gradient descent 2/2}
+	\begin{frame}{Stochastic gradient descent 2/2}
 		\begin{mythm*}{\itshape (G.)}
 			Let $(\theta^{(k)})_{k=0}^K$ be the iterates obtained with step-sizes $\alpha_k = \frac{R_\mathrm{proj}}{B\sqrt{k}}$ starting from some initial $\theta^{(0)}\in B(0,R_\mathrm{proj})$. Define $\bar\theta_K$ to be the arithmetic mean of all iterates up to time $K$. Then, it holds that
 			\begin{equation*}
@@ -523,16 +523,31 @@
 			\end{equation*}
 			where $\theta^\star$ denotes the unique minimiser of $G$.
 		\end{mythm*}
-		\pause
-		\begin{itemize}[<+->]
-			\item Recall that 
-		\end{itemize}
 	\end{frame}
 	
 	
 	
 	
-	
+	\begin{frame}[t]{Approximating the next JKO iterate}
+		\begin{itemize}[<+->]
+			\item Recall that the next measure is
+			\begin{equation*}
+				\purp{\rho_{n+1}^\tau(}\d \purp{y)}\propto \max_i e^{\theta_i -c_\tau(\rust{\hat x_i^{(n)}},y)}\purp{\gamma(}\d\purp{y)}
+			\end{equation*}
+			
+			\item It is approximated by
+			\begin{equation*}
+				\purp{\rho_{n+1}^\tau(}\d \purp{y)}\propto \max_i e^{[\bar\theta_K]_i -c_\tau(\rust{\hat x_i^{(n)}},y)}\purp{\gamma(}\d\purp{y)}
+			\end{equation*}
+			
+			\item We discretise it by
+			\begin{equation*}
+				\begin{array}{c}
+					\rust{\hat x_i^{(n+1)}} := 
+				\end{array}
+			\end{equation*}
+		\end{itemize}
+	\end{frame}
 	
 	
 	

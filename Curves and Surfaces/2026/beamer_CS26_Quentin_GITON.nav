@@ -18,8 +18,10 @@
 \headcommand {\beamer@framepages {18}{21}}
 \headcommand {\slideentry {0}{0}{10}{22/22}{}{0}}
 \headcommand {\beamer@framepages {22}{22}}
-\headcommand {\beamer@partpages {1}{22}}
-\headcommand {\beamer@subsectionpages {1}{22}}
-\headcommand {\beamer@sectionpages {1}{22}}
-\headcommand {\beamer@documentpages {22}}
-\headcommand {\gdef \inserttotalframenumber {10}}
+\headcommand {\slideentry {0}{0}{11}{23/25}{}{0}}
+\headcommand {\beamer@framepages {23}{25}}
+\headcommand {\beamer@partpages {1}{25}}
+\headcommand {\beamer@subsectionpages {1}{25}}
+\headcommand {\beamer@sectionpages {1}{25}}
+\headcommand {\beamer@documentpages {25}}
+\headcommand {\gdef \inserttotalframenumber {11}}
