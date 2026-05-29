@@ -16,11 +16,23 @@
 \usepackage[normalem]{ulem} % The normalem option keeps your \emph{} styling normal
 \usepackage{cancel}
 \usepackage{amsmath}
+\usepackage{circuitikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{pgfplotstable}
+\usetikzlibrary{arrows.meta}
+\usepackage{tkz-tab}
 \usepackage{tikz}
+\usepackage{tikz-cd}
+\tikzstyle{lien}
+=[->,>=stealth,rounded
+corners=5pt,thick]
 \usepackage{amssymb}
 \usetikzlibrary{arrows.meta, positioning, calc}
 \usepackage{esvect}
 \usepackage{graphicx}
+
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
 
 % --- Bibliography ---
 \usepackage[
@@ -517,9 +529,9 @@
 	
 	\begin{frame}{Stochastic gradient descent 2/2}
 		\begin{mythm*}{\itshape (G.)}
-			Let $(\theta^{(k)})_{k=0}^K$ be the iterates obtained with step-sizes $\alpha_k = \frac{R_\mathrm{proj}}{B\sqrt{k}}$ starting from some initial $\theta^{(0)}\in B(0,R_\mathrm{proj})$. Define $\bar\theta_K$ to be the arithmetic mean of all iterates up to time $K$. Then, it holds that
+			Let $(\theta^{(k)})_{k=0}^K$ be the iterates obtained with step-sizes $\alpha_k = \frac{R_\mathrm{proj}}{B\sqrt{k}}$ starting from some initial $\theta^{(0)}\in B(0,R_\mathrm{proj})$. Define $\hat\theta_K$ to be the arithmetic mean of all iterates up to time $K$. Then, it holds that
 			\begin{equation*}
-				0\leq \mathbb E [G(\bar\theta_K)] - G(\theta^\star) \leq BR_\mathrm{proj}\left( \frac{2}{K}+\frac{1}{\sqrt{K}} \right)=\mathcal O(K^{-\frac{1}{2}}),
+				0\leq \mathbb E [G(\hat\theta_K)] - G(\theta^\star) \leq BR_\mathrm{proj}\left( \frac{2}{K}+\frac{1}{\sqrt{K}} \right)=\mathcal O(K^{-\frac{1}{2}}),
 			\end{equation*}
 			where $\theta^\star$ denotes the unique minimiser of $G$.
 		\end{mythm*}
@@ -537,22 +549,33 @@
 			
 			\item It is approximated by
 			\begin{equation*}
-				\purp{\rho_{n+1}^\tau(}\d \purp{y)}\propto \max_i e^{[\bar\theta_K]_i -c_\tau(\rust{\hat x_i^{(n)}},y)}\purp{\gamma(}\d\purp{y)}
+				\purp{\tilde\rho_K(}\d \purp{y)}\propto \max_i e^{[\hat\theta_K]_i -c_\tau(\rust{\hat x_i^{(n)}},y)}\purp{\gamma(}\d\purp{y)}
 			\end{equation*}
 			
 			\item We discretise it by
 			\begin{equation*}
-				\begin{array}{c}
-					\rust{\hat x_i^{(n+1)}} := 
-				\end{array}
+					\rust{\hat x_i^{(n+1)}} := N\int_{\mathrm{Lag}_i(\rust{\hat x_i^{(n)}},\hat\theta_K)} y\purp{\tilde\rho_K(}\d\purp{y)}
+			\end{equation*}
+			and finally consider
+			\begin{equation*}
+				\purp{\hat\rho_{n+1}} := \frac{1}{N}\sum_{i=1}^N \delta_{\purp{\hat x_i^{(n+1)}}}.
 			\end{equation*}
 		\end{itemize}
 	\end{frame}
 	
 	
 	
+	\begin{frame}{A drawing is worth 1000 words}
+		\begin{figure}[h]
+			\includegraphics[scale=0.55]{figures/diagramm.jpg}
+		\end{figure}
+	\end{frame}
 	
 	
+	
+	\begin{frame}{Some animations}
+		
+	\end{frame}
 	
 	
 	

@@ -1,0 +1,15 @@
+\frametitle{A drawing is worth 1000 words}
+\begin{center}
+			\resizebox{0.8\linewidth}{!}{
+%				\begin{tikzpicture}[>=Stealth, scale=1.3]
+%					
+%				\end{tikzpicture}
+				\begin{tikzcd}[>=Stealth, scale=1.3]
+					\hat\rho_0 \arrow[r, "\mathrm{JKO}_\tau"] \arrow[rd, "\mathpzc{T}"'] & \rho_1^\tau \arrow[r, "\mathrm{JKO}_\tau"]                           & \rho_2^\tau \arrow[r, "\mathrm{JKO}_\tau"]                           & \cdots \arrow[r, "\mathrm{JKO}_\tau"]                            & \rho_n^\tau       \\
+					& \hat\rho_1 \arrow[rd, "\mathpzc{T}"'] \arrow[r, "\mathrm{JKO}_\tau"] & \tilde\rho_2^\tau                                               &                                                             &                   \\
+					&                                                                 & \hat\rho_2 \arrow[rd, "\mathpzc{T}"'] \arrow[r, "\mathrm{JKO}_\tau"] & \cdots                                                      &                   \\
+					&                                                                 &                                                                 & \cdots \arrow[rd, "\mathpzc{T}"'] \arrow[r, "\mathrm{JKO}_\tau"] & \tilde\rho_n^\tau \\
+					&                                                                 &                                                                 &                                                             & \hat\rho_n
+				\end{tikzcd}
+			}
+		\end{center}
