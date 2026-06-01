@@ -1,16 +1,16 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.28)  29 MAY 2026 14:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.9)  1 JUN 2026 14:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **beamer_CS26_Quentin_GITON.tex
 (./beamer_CS26_Quentin_GITON.tex
 LaTeX2e <2025-06-01> patch level 1
-L3 programming layer <2025-10-24>
+L3 programming layer <2025-08-13>
 (c:/texlive/2025/texmf-dist/tex/latex/beamer/beamer.cls
 Document Class: beamer 2025/08/13 v3.76 A class for typesetting presentations
 (c:/texlive/2025/texmf-dist/tex/latex/beamer/beamerbasemodes.sty
 (c:/texlive/2025/texmf-dist/tex/latex/etoolbox/etoolbox.sty
-Package: etoolbox 2025/10/02 v2.5m e-TeX tools for LaTeX (JAW)
+Package: etoolbox 2025/02/11 v2.5l e-TeX tools for LaTeX (JAW)
 \etb@tempcnta=\count275
 )
 \beamer@tempbox=\box53
@@ -184,7 +184,7 @@ File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 Package graphics Info: Driver file: pdftex.def on input line 106.
 
 (c:/texlive/2025/texmf-dist/tex/latex/graphics-def/pdftex.def
-File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
+File: pdftex.def 2024/04/13 v1.2c Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen183
 \Gin@req@width=\dimen184
@@ -490,14 +490,14 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 Package: sansmathaccent 2020/01/31
 
 (c:/texlive/2025/texmf-dist/tex/latex/koma-script/scrlfile.sty
-Package: scrlfile 2025/09/09 v3.48 KOMA-Script package (file load hooks)
+Package: scrlfile 2025/08/28 v3.47 KOMA-Script package (file load hooks)
 
 (c:/texlive/2025/texmf-dist/tex/latex/koma-script/scrlfile-hook.sty
-Package: scrlfile-hook 2025/09/09 v3.48 KOMA-Script package (using LaTeX hooks)
+Package: scrlfile-hook 2025/08/28 v3.47 KOMA-Script package (using LaTeX hooks)
 
 
 (c:/texlive/2025/texmf-dist/tex/latex/koma-script/scrlogo.sty
-Package: scrlogo 2025/09/09 v3.48 KOMA-Script package (logo)
+Package: scrlogo 2025/08/28 v3.47 KOMA-Script package (logo)
 )))))
 (c:/texlive/2025/texmf-dist/tex/latex/beamer/beamerbasetranslator.sty
 (c:/texlive/2025/texmf-dist/tex/latex/translator/translator.sty
@@ -725,7 +725,7 @@ LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 Package: dsfont 1995/08/01 v0.1 Double stroke roman fonts
 )
 (c:/texlive/2025/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
-Package: tcolorbox 2025/09/09 version 6.8.0 text color boxes
+Package: tcolorbox 2025/07/08 version 6.7.1 text color boxes
 
 (c:/texlive/2025/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
 (c:/texlive/2025/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
@@ -820,7 +820,7 @@ Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 \tcb@temp=\box91
 )
 (c:/texlive/2025/texmf-dist/tex/latex/tcolorbox/tcbskins.code.tex
-Library (tcolorbox): 'tcbskins.code.tex' version '6.8.0'
+Library (tcolorbox): 'tcbskins.code.tex' version '6.7.1'
 (c:/texlive/2025/texmf-dist/tex/latex/tikzfill/tikzfill.image.sty
 Package: tikzfill.image 2023/08/08 v1.0.1 Image filling library for TikZ
 
@@ -831,9 +831,9 @@ Package: tikzfill-common 2023/08/08 v1.0.1 Auxiliary code for tikzfill
 File: tikzlibraryfill.image.code.tex 2023/08/08 v1.0.1 Image filling library
 \l__tikzfill_img_box=\box92
 )) (c:/texlive/2025/texmf-dist/tex/latex/tcolorbox/tcbskinsjigsaw.code.tex
-Library (tcolorbox): 'tcbskinsjigsaw.code.tex' version '6.8.0'
+Library (tcolorbox): 'tcbskinsjigsaw.code.tex' version '6.7.1'
 )) (c:/texlive/2025/texmf-dist/tex/latex/tcolorbox/tcbtheorems.code.tex
-Library (tcolorbox): 'tcbtheorems.code.tex' version '6.8.0'
+Library (tcolorbox): 'tcbtheorems.code.tex' version '6.7.1'
 ) (c:/texlive/2025/texmf-dist/tex/latex/beamer/multimedia.sty
 Package: multimedia 2012/05/02 ver 0.02
 
@@ -844,19 +844,19 @@ Package: ifpdf 2019/10/25 v3.4 ifpdf legacy package. Use iftex instead.
 )
 (c:/texlive/2025/texmf-dist/tex/latex/fontawesome5/fontawesome5.sty
 (c:/texlive/2025/texmf-dist/tex/latex/l3kernel/expl3.sty
-Package: expl3 2025-10-24 L3 programming layer (loader) 
+Package: expl3 2025-08-13 L3 programming layer (loader) 
 
 (c:/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
+File: l3backend-pdftex.def 2025-06-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count371
 ))
 Package: fontawesome5 2022/05/02 v5.15.4 Font Awesome 5
 
 (c:/texlive/2025/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
-Package: l3keys2e 2025-10-09 LaTeX2e option processing using LaTeX3 keys
+Package: l3keys2e 2024-08-16 LaTeX2e option processing using LaTeX3 keys
 )
 (c:/texlive/2025/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
-Package: xparse 2025-10-09 L3 Experimental document command parser
+Package: xparse 2024-08-16 L3 Experimental document command parser
 )
 (c:/texlive/2025/texmf-dist/tex/latex/fontawesome5/fontawesome5-generic-helper.
 sty
@@ -1377,7 +1377,7 @@ File: biblatex.cfg
 Package biblatex Info: Input encoding 'utf8' detected.
 Package biblatex Info: Document encoding is UTF8 ....
 Package biblatex Info: ... and expl3
-(biblatex)             2025-10-24 L3 programming layer (loader) 
+(biblatex)             2025-08-13 L3 programming layer (loader) 
 (biblatex)             is new enough (at least 2020/04/06),
 (biblatex)             setting 'casechanger=expl3'.
 
@@ -1611,15 +1611,23 @@ nc}]
 [4
 
 ]
+Overfull \vbox (2.00446pt too high) detected at line 331
+ []
+
+
 
 [5
 
 ]
+Overfull \vbox (2.00446pt too high) detected at line 331
+ []
+
+
 
 [6
 
 ]
-Overfull \vbox (7.6421pt too high) detected at line 404
+Overfull \vbox (2.00446pt too high) detected at line 331
  []
 
 
@@ -1627,10 +1635,6 @@ Overfull \vbox (7.6421pt too high) detected at line 404
 [7
 
 ]
-Overfull \vbox (7.6421pt too high) detected at line 404
- []
-
-
 
 [8
 
@@ -1655,14 +1659,53 @@ Overfull \vbox (7.6421pt too high) detected at line 404
 [13
 
 ]
+Overfull \hbox (14.04353pt too wide) detected at line 482
+\OMS/lmsy/m/n/10.95 ^^@\OML/lmm/m/it/10.95 ^^\\OMS/lmsy/m/n/10.95 r\OML/lmm/m/i
+t/10.95 ^^^[]\OT1/lmr/m/n/10.95 ([][]) = \OML/lmm/m/it/10.95 ^^\v[]\OT1/lmr/m/n
+/10.95 ([][]) = \OMS/lmsy/m/n/10.95 ^^@\OML/lmm/m/it/10.95 ^^\\OT1/lmr/m/n/10.9
+5 ([][] + \OMS/lmsy/m/n/10.95 r[] []\OT1/lmr/m/n/10.95 )  \OMS/lmsy/m/n/10.95 (
+[])  []\OML/lmm/m/it/10.95 :
+ []
+
+
+Overfull \vbox (4.64561pt too high) detected at line 482
+ []
+
+
 
 [14
 
 ]
+Overfull \hbox (14.04353pt too wide) detected at line 482
+\OMS/lmsy/m/n/10.95 ^^@\OML/lmm/m/it/10.95 ^^\\OMS/lmsy/m/n/10.95 r\OML/lmm/m/i
+t/10.95 ^^^[]\OT1/lmr/m/n/10.95 ([][]) = \OML/lmm/m/it/10.95 ^^\v[]\OT1/lmr/m/n
+/10.95 ([][]) = \OMS/lmsy/m/n/10.95 ^^@\OML/lmm/m/it/10.95 ^^\\OT1/lmr/m/n/10.9
+5 ([][] + \OMS/lmsy/m/n/10.95 r[] []\OT1/lmr/m/n/10.95 )  \OMS/lmsy/m/n/10.95 (
+[])  []\OML/lmm/m/it/10.95 :
+ []
+
+
+Overfull \vbox (4.64561pt too high) detected at line 482
+ []
+
+
 
 [15
 
 ]
+Overfull \hbox (14.04353pt too wide) detected at line 482
+\OMS/lmsy/m/n/10.95 ^^@\OML/lmm/m/it/10.95 ^^\\OMS/lmsy/m/n/10.95 r\OML/lmm/m/i
+t/10.95 ^^^[]\OT1/lmr/m/n/10.95 ([][]) = \OML/lmm/m/it/10.95 ^^\v[]\OT1/lmr/m/n
+/10.95 ([][]) = \OMS/lmsy/m/n/10.95 ^^@\OML/lmm/m/it/10.95 ^^\\OT1/lmr/m/n/10.9
+5 ([][] + \OMS/lmsy/m/n/10.95 r[] []\OT1/lmr/m/n/10.95 )  \OMS/lmsy/m/n/10.95 (
+[])  []\OML/lmm/m/it/10.95 :
+ []
+
+
+Overfull \vbox (4.64561pt too high) detected at line 482
+ []
+
+
 
 [16
 
@@ -1671,15 +1714,15 @@ Overfull \vbox (7.6421pt too high) detected at line 404
 [17
 
 ]
-LaTeX Font Info:    Trying to load font information for U+dsrom on input line 5
-26.
- (c:/texlive/2025/texmf-dist/tex/latex/doublestroke/Udsrom.fd
-File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
-)
 
 [18
 
 ]
+LaTeX Font Info:    Trying to load font information for U+dsrom on input line 5
+31.
+ (c:/texlive/2025/texmf-dist/tex/latex/doublestroke/Udsrom.fd
+File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
+)
 
 [19
 
@@ -1708,22 +1751,65 @@ File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
 [25
 
 ]
-<figures/diagramm.jpg, id=167, 488.42474pt x 407.72325pt>
+
+[26
+
+]
+<figures/diagramm.jpg, id=172, 488.42474pt x 407.72325pt>
 File: figures/diagramm.jpg Graphic file (type jpg)
 <use figures/diagramm.jpg>
-Package pdftex.def Info: figures/diagramm.jpg  used on input line 572.
+Package pdftex.def Info: figures/diagramm.jpg  used on input line 577.
 (pdftex.def)             Requested size: 268.63443pt x 224.24847pt.
 
-Overfull \vbox (12.84712pt too high) detected at line 572
+Overfull \vbox (12.84712pt too high) detected at line 577
  []
 
 
 
-[26
+[27
 
  <./figures/diagramm.jpg>]
+<figures/forward_8frames.pdf, id=178, 1156.32pt x 578.16pt>
+File: figures/forward_8frames.pdf Graphic file (type pdf)
+<use figures/forward_8frames.pdf>
+Package pdftex.def Info: figures/forward_8frames.pdf  used on input line 585.
+(pdftex.def)             Requested size: 404.71806pt x 202.35902pt.
 
-[27
+Overfull \hbox (6.37947pt too wide) in paragraph at lines 585--585
+ [] 
+ []
+
+
+Overfull \vbox (4.55768pt too high) detected at line 585
+ []
+
+
+
+[28
+
+ <./figures/forward_8frames.pdf>]
+
+[29
+
+]
+
+[30
+
+]
+
+[31
+
+]
+
+[32
+
+]
+
+[33
+
+]
+
+[34
 
 ]
 \tf@nav=\write7
@@ -1738,7 +1824,7 @@ Overfull \vbox (12.84712pt too high) detected at line 572
  (./beamer_CS26_Quentin_GITON.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
-L3 programming layer <2025-10-24>
+L3 programming layer <2025-08-13>
  ***********
 Package rerunfilecheck Info: File `beamer_CS26_Quentin_GITON.out' has not chang
 ed.
@@ -1748,33 +1834,34 @@ Package logreq Info: Writing requests to 'beamer_CS26_Quentin_GITON.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 69247 strings out of 467747
- 1751778 string characters out of 5431120
- 2907005 words of memory out of 5000000
- 96969 multiletter control sequences out of 15000+600000
- 677682 words of font info for 84 fonts, out of 8000000 for 9000
+ 69255 strings out of 467800
+ 1751702 string characters out of 5436062
+ 2905895 words of memory out of 5000000
+ 96908 multiletter control sequences out of 15000+600000
+ 682799 words of font info for 86 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,15n,123p,1896b,1458s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2025/texmf-dist/fonts/type1/public/fontawesome5/FontAwesome5Free-
 Solid.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/doublestroke/dsrom10.p
 fb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/latxfont/line10.pfb>
 <c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/texlive/2025/t
-exmf-dist/fonts/type1/public/lm/lmbx8.pfb><c:/texlive/2025/texmf-dist/fonts/typ
-e1/public/lm/lmbxi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmex
-10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/texlive
-/2025/texmf-dist/fonts/type1/public/lm/lmmi6.pfb><c:/texlive/2025/texmf-dist/fo
-nts/type1/public/lm/lmmi8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm
-/lmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/texl
-ive/2025/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/texlive/2025/texmf-dist/
-fonts/type1/public/lm/lmr8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/l
-m/lmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy6.pfb><c:/te
-xlive/2025/texmf-dist/fonts/type1/public/lm/lmsy8.pfb><c:/texlive/2025/texmf-di
-st/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/texlive/2025/texmf-dist/f
-onts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on beamer_CS26_Quentin_GITON.pdf (27 pages, 377410 bytes).
+exmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2025/texmf-dist/fonts/ty
+pe1/public/lm/lmbx8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbxi
+10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/texlive
+/2025/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/texlive/2025/texmf-dist/f
+onts/type1/public/lm/lmmi6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/l
+m/lmmi8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/tex
+live/2025/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/texlive/2025/texmf-dis
+t/fonts/type1/public/lm/lmr6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public
+/lm/lmr8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/t
+exlive/2025/texmf-dist/fonts/type1/public/lm/lmsy6.pfb><c:/texlive/2025/texmf-d
+ist/fonts/type1/public/lm/lmsy8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/pub
+lic/amsfonts/symbols/msam10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/
+amsfonts/symbols/msbm10.pfb>
+Output written on beamer_CS26_Quentin_GITON.pdf (34 pages, 425196 bytes).
 PDF statistics:
- 284 PDF objects out of 1000 (max. 8388607)
- 203 compressed objects within 3 object streams
- 55 named destinations out of 1000 (max. 500000)
- 52 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 355 PDF objects out of 1000 (max. 8388607)
+ 242 compressed objects within 3 object streams
+ 69 named destinations out of 1000 (max. 500000)
+ 57 words of extra memory for PDF output out of 10000 (max. 10000000)
 

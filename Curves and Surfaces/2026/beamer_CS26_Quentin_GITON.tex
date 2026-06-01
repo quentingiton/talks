@@ -321,9 +321,10 @@ corners=5pt,thick]
 			\begin{equation*}
 				W_p(\rust{\mu},\purp{\nu})^p = \inf_{\pi\in\Pi(\rust{\mu},\purp{\nu})} \int d(\rust{x},\purp{y})^p \gamma(\mathrm{d}\rust{x},\mathrm{d}\purp{y})
 			\end{equation*}
+			\item From now on, $p=2$
 			\item Kantorovich duality
 			\begin{equation*}
-				\inf_{\pi\in\Pi(\rust{\mu},\purp{\nu})} \int c(\rust{x},\purp{y}) \gamma(\mathrm{d}\rust{x},\mathrm{d}\purp{y}) = \sup_{\phi} \int \phi(\rust{x})\rust{\mu(}\mathrm{d}\rust{x)}+\int\phi^c(\purp{y})\purp{\nu(}\mathrm{d}\purp{y)},
+				\inf_{\pi\in\Pi(\rust{\mu},\purp{\nu})} \int \|\rust{x}-\purp{y}\|^2 \gamma(\mathrm{d}\rust{x},\mathrm{d}\purp{y}) = \sup_{\phi} \int \phi(\rust{x})\rust{\mu(}\mathrm{d}\rust{x)}+\int\phi^c(\purp{y})\purp{\nu(}\mathrm{d}\purp{y)},
 			\end{equation*}
 			where $\phi^c(\purp{y}) := \inf_{\rust{x}} c(\rust{x},\purp{y})-\phi(\rust{x})$.
 		\end{itemize}
@@ -393,13 +394,17 @@ corners=5pt,thick]
 		\begin{itemize}[<+->]
 			\item Kantorovich duality
 			\begin{equation*}
-				\inf_{T\::\: T_\#\textcolor{brandAccent}{\mu}=\textcolor{brandPurple}{\nu}} \int_{\mathbb{R}^d} c(\textcolor{brandAccent}{x},T(\textcolor{brandAccent}{x}))\textcolor{brandAccent}{\mu(}\mathrm{d}\textcolor{brandAccent}{x)} = \sup_{\phi} \int \phi(\rust{x})\rust{\mu(}\mathrm{d}\rust{x)}+\int\phi^c(\purp{y})\purp{\nu(}\mathrm{d}\purp{y)}
+				\inf_{T\::\: T_\#\textcolor{brandAccent}{\mu}=\textcolor{brandPurple}{\nu}} \int_{\mathbb{R}^d} \|\rust{x}-\purp{y}\|^2\textcolor{brandAccent}{\mu(}\mathrm{d}\textcolor{brandAccent}{x)} = \sup_{\phi} \int \phi(\rust{x})\rust{\mu(}\mathrm{d}\rust{x)}+\int\phi^c(\purp{y})\purp{\nu(}\mathrm{d}\purp{y)}
 			\end{equation*}
-			\item If an optimal transport map $T^\star$ exists, there also exists an optimal Kantorovich potential $\phi^\star$ and
+			\item Assume $c(\rust{x},\purp{y})=\alpha \|\rust{x}-\purp{y}\|^2$, then
 			\begin{equation*}
-				\purp{y}=T^\star(\rust{x}) = \nabla\left( \frac{\|\cdot\|^2}{2}-\phi^\star \right)(\rust{x})=\rust{x}-\nabla\phi^\star(\rust{x}),
+				\nabla_x c(\rust{x},T^\star(\rust{x}))=\nabla\phi^\star(\rust{x}) \iff T^\star(\rust{x}) - \rust{x} = \underset{\textbf{Displacement}}{\boxed{\purp{y}-\rust{x} = -\frac{1}{2\alpha}\nabla\phi^\star(\rust{x})}}
 			\end{equation*}
-			hence $-\nabla\phi^\star(\rust{x})=T^\star(\rust{x})-\rust{x}=\purp{y}-\rust{x}$ is the \textbf{displacement} of the particle $\rust{x}$.
+%			\item If an optimal transport map $T^\star$ exists, there also exists an optimal Kantorovich potential $\phi^\star$ and
+%			\begin{equation*}
+%				\purp{y}=T^\star(\rust{x}) = \nabla\left( \frac{\|\cdot\|^2}{2}-\phi^\star \right)(\rust{x})=\rust{x}-\nabla\phi^\star(\rust{x}),
+%			\end{equation*}
+%			hence $-\nabla\phi^\star(\rust{x})=T^\star(\rust{x})-\rust{x}=\purp{y}-\rust{x}$ is the \textbf{displacement} of the particle $\rust{x}$.
 		\end{itemize}
 	\end{frame}
 	
@@ -464,14 +469,14 @@ corners=5pt,thick]
 				\inf_\phi \tilde J(\phi) := \ln{\int e^{-\phi^{c/2\tau}}\d\purp{\gamma}} - \int\phi\d\rust{\rho_n^\tau}.
 			\end{equation*}
 			
-			\item The optimal potential $\phi^\star$ satisfies
+			\item The optimal potential $\phi^\star$ satisfies ($\alpha=\frac{1}{2\tau}$ here)
 			\begin{equation*}
-				-\nabla\phi^\star(\rust{x}) = \nabla(\phi^\star)^{c/2\tau}(\purp{y}) = \frac{\purp{y}-\rust{x}}{\tau}.
+				\underset{\textbf{Displacement}}{\boxed{-\tau\nabla\phi^\star(\rust{x}) = \purp{y}-\rust{x}}}
 			\end{equation*}
 			
-			\item The displacement of the particle $\rust{x}$ being $v_t(\rust{x})$, we obtain
+			\item The displacement of the particle $\rust{x}$ being $\tau v_t(\rust{x})$, we obtain
 			\begin{equation*}
-				-\nabla\phi^\star(\rust{x}) = v_t(\rust{x}) = -\rust{x}-\nabla\ln{\rho_{n+1}^\tau(\rust{x})} \iff \boxed{\nabla\ln{\rho_{n+1}^\tau(\rust{x})} = \nabla\phi^\star(\rust{x})-\rust{x}}.
+				-\tau\nabla\phi^\star(\rust{x}) = \tau v_t(\rust{x}) = -\tau (\rust{x}+\nabla\ln{\rho_{n+1}^\tau(\rust{x})}) \iff \boxed{\nabla\ln{\rho_{n+1}^\tau(\rust{x})} = \nabla\phi^\star(\rust{x})-\rust{x}}.
 			\end{equation*}
 		\end{itemize}
 	\end{frame}
@@ -573,13 +578,27 @@ corners=5pt,thick]
 	
 	
 	
-	\begin{frame}{Some animations}
-		
+	\begin{frame}{Some ``animations''}
+		\begin{figure}
+			\includegraphics[scale=0.35]{figures/forward_8frames.pdf}
+		\end{figure}
 	\end{frame}
 	
 	
 	
-	
+	\begin{frame}[t]{What comes next?}
+		\begin{itemize}[<+->]
+			\item Change the parametrisation: $\phi_\theta := \theta^\top\phi$
+			\item Choose a good class of functions $\phi$
+			\item Find a good way to reverse the learned flow
+			\item (Do more advanced simulations?)
+		\end{itemize}
+		\pause
+		\vspace{3\baselineskip}
+		\begin{center}
+			\LARGE\rust{\textbf{Thank you for your attention!}}
+		\end{center}
+	\end{frame}
 	
 	
 	
