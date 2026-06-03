@@ -16,6 +16,7 @@
 \usepackage[normalem]{ulem} % The normalem option keeps your \emph{} styling normal
 \usepackage{cancel}
 \usepackage{amsmath}
+\usepackage{mathtools}
 \usepackage{circuitikz}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
@@ -27,6 +28,13 @@
 \tikzstyle{lien}
 =[->,>=stealth,rounded
 corners=5pt,thick]
+\tikzset{
+	invisible/.style={opacity=0, text opacity=0},
+	visible on/.style={alt={#1{}{invisible}}},
+	alt/.code args={<#1>#2#3}{%
+		\alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}}%
+	},
+}
 \usepackage{amssymb}
 \usetikzlibrary{arrows.meta, positioning, calc}
 \usepackage{esvect}
@@ -141,8 +149,7 @@ corners=5pt,thick]
 
 % --- Title Information ---
 \title{
-	\only<1>{Approximating the Score Function using Optimal Transport}
-	\only<2->{\textcolor{brandRed}{\faHourglassHalf\ (Badly and Slowly)} Approximating the Score Function using Optimal Transport}
+	Approximating the Score Function using Semi-Discrete Optimal Transport
 }
 \subtitle{Curves and Surfaces 2026}
 \author{Quentin Giton}
@@ -154,7 +161,7 @@ corners=5pt,thick]
 		\titlepage
 	\end{frame}
 
-	\begin{frame}[t]{Quick reminders on Optimal Transport 1/3}
+	\begin{frame}[t]{Quick reminders on Optimal Transport 1/2}
 		\begin{center}
 			\resizebox{0.8\linewidth}{!}{
 				\begin{tikzpicture}[>=Stealth, scale=1.3]
@@ -208,55 +215,25 @@ corners=5pt,thick]
 						\node[brandPurple!90!black, below=4pt] at (2.4, 0) {$B$};
 					\end{scope}
 					
-					% DYNAMIC MAPPING ARROW
-					% Slide 1: Solid Monge Arrow
-					\only<1>{
-						\draw[->, thick, black] (3.25, 1.5) to[bend left=30] node[above, text=black] {$T$} (6.25, 1.5);
-					}
-					% Slide 2: Dashed Kantorovich Arrow
-					\only<2->{
-						\draw[<->, thick, black, dashed] (3.25, 1.5) to[bend left=30] node[above, text=black] {$\pi$} (6.25, 1.5);
-					}
+					\draw[->, thick, black] (3.25, 1.5) to[bend left=30] node[above, text=black] {$T$} (6.25, 1.5);
 				\end{tikzpicture}
 			}
 		\end{center}
 		
 		% DYNAMIC TEXT BLOCK
-		\begin{itemize}
-			\item Given ground cost $c(\rust{x},\purp{y})$
+		\begin{itemize}%[<+->]
+			\item Given ground cost $c(\rust{x},\purp{y}) = \|\rust{x}-\purp{y}\|^2$
 			
-			\item 
-			% Slide 1: The Monge Constraint
-			\only<1>{Among all maps $T$ satisfying $\forall\textcolor{brandPurple}{B},\ \textcolor{brandPurple}{\nu(B)} = \textcolor{brandAccent}{\mu(}T^{-1}(\textcolor{brandPurple}{B})\textcolor{brandAccent}{)}$}
-			% Slide 2: The Scratched Monge + The Kantorovich Constraint
-			\only<2->{
-				\textcolor{gray}{\sout{Among all maps $T$ satisfying $\forall B, \nu(B) = \mu(T^{-1}(B))$}} \\
-				\vspace{4pt}
-				Among all \textbf{transport plans} $\pi$ with marginals $\textcolor{brandAccent}{\mu}$ and $\textcolor{brandPurple}{\nu}$
-			}
+			\item Among all maps $T$ satisfying $\forall\textcolor{brandPurple}{B},\ \textcolor{brandPurple}{\nu(B)} = \textcolor{brandAccent}{\mu(}T^{-1}(\textcolor{brandPurple}{B})\textcolor{brandAccent}{)}$
 			
-			\item 
-			% Slide 1: The Monge Integral
-			\only<1>{
-				Find the one minimising the average transport cost
+			\item Find the one minimising the average transport cost
 				\begin{equation*}
-					\int_{\mathbb{R}^d} c(\textcolor{brandAccent}{x},T(\textcolor{brandAccent}{x}))\textcolor{brandAccent}{\mu(}\mathrm{d}\textcolor{brandAccent}{x)}
+					W_2(\rust{\mu},\purp{\nu})^2 := \int_{\mathbb{R}^d} \|\rust{x}-T(\rust{x})\|^2\textcolor{brandAccent}{\mu(}\mathrm{d}\textcolor{brandAccent}{x)}
 				\end{equation*}
-			}
-			% Slide 2: Scratched Monge Integral -> Kantorovich Integral
-			\only<2->{
-				\textcolor{gray}{\sout{Find the one minimising the average transport cost}}
-				\begin{equation*}
-					% \xcancel draws the line through the math
-					\textcolor{gray}{\xcancel{\int_{\mathbb{R}^d} c(x,T(x))\mu(\mathrm{d}x)}} 
-					\quad \longrightarrow \quad
-					\int_{\mathbb{R}^d \times \mathbb{R}^d} c(\textcolor{brandAccent}{x},\textcolor{brandPurple}{y}) \, \pi(\mathrm{d}\textcolor{brandAccent}{x},\mathrm{d}\textcolor{brandPurple}{y})
-				\end{equation*}
-			}
 		\end{itemize}
 	\end{frame}
 	
-	\begin{frame}[t]{Quick reminders on Optimal Transport 2/3}
+	\begin{frame}[t]{Quick reminders on Optimal Transport 2/2}
 		\begin{center}
 			\resizebox{0.8\linewidth}{!}{
 				\begin{tikzpicture}[>=Stealth, scale=1.3]
@@ -310,82 +287,7 @@ corners=5pt,thick]
 						\node[brandPurple!90!black, below=4pt] at (2.4, 0) {$B$};
 					\end{scope}
 					
-					\draw[<->, thick, black, dashed] (3.25, 1.5) to[bend left=30] node[above, text=black] {$\pi$} (6.25, 1.5);
-				\end{tikzpicture}
-			}
-		\end{center}
-		
-		% DYNAMIC TEXT BLOCK
-		\begin{itemize}[<+->]
-			\item $p$-Wasserstein distance:
-			\begin{equation*}
-				W_p(\rust{\mu},\purp{\nu})^p = \inf_{\pi\in\Pi(\rust{\mu},\purp{\nu})} \int d(\rust{x},\purp{y})^p \gamma(\mathrm{d}\rust{x},\mathrm{d}\purp{y})
-			\end{equation*}
-			\item From now on, $p=2$
-			\item Kantorovich duality
-			\begin{equation*}
-				\inf_{\pi\in\Pi(\rust{\mu},\purp{\nu})} \int \|\rust{x}-\purp{y}\|^2 \gamma(\mathrm{d}\rust{x},\mathrm{d}\purp{y}) = \sup_{\phi} \int \phi(\rust{x})\rust{\mu(}\mathrm{d}\rust{x)}+\int\phi^c(\purp{y})\purp{\nu(}\mathrm{d}\purp{y)},
-			\end{equation*}
-			where $\phi^c(\purp{y}) := \inf_{\rust{x}} c(\rust{x},\purp{y})-\phi(\rust{x})$.
-		\end{itemize}
-	\end{frame}
-	
-	
-	\begin{frame}[t]{Quick reminders on Optimal Transport 3/3}
-		\begin{center}
-			\resizebox{0.8\linewidth}{!}{
-				\begin{tikzpicture}[>=Stealth, scale=1.3]
-					\draw[->, thick] (-0.5, 0) -- (10.0, 0) node[right] {$\mathbb{R}$};
-					
-					\begin{scope}
-						% Filled region for A
-						\begin{scope}
-							\clip (0,0) 
-							.. controls (0.8, 0.1) and (1.2, 2.2) .. (2.0, 2.2)
-							.. controls (2.8, 2.2) and (3.2, 0.1) .. (4.0, 0) -- (4.0,0) -- (0,0) -- cycle;
-							\fill[brandAccent!30] (1.3, 0) rectangle (2.1, 2.5);
-						\end{scope}
-						
-						\draw[thick, brandAccent] (0,0) 
-						.. controls (0.8, 0.1) and (1.2, 2.2) .. (2.0, 2.2)
-						.. controls (2.8, 2.2) and (3.2, 0.1) .. (4.0, 0)
-						node[above=2pt] {$\mu$};
-						
-						\draw[brandAccent, thick, dashed] (1.3, 0) -- (1.3, 1.65);
-						\draw[brandAccent, thick, dashed] (2.1, 0) -- (2.1, 2.15);
-						\node[brandAccent!90!black] at (1.7, 0.8) {$\mu(A)$};
-						
-						\draw[brandAccent, line width=3pt] (1.3, 0) -- (2.1, 0);
-						\draw[brandAccent, thick] (1.3, -0.1) -- (1.3, 0.1); 
-						\draw[brandAccent, thick] (2.1, -0.1) -- (2.1, 0.1); 
-						\node[brandAccent!90!black, below=4pt] at (3.125, 0) {$A=\{x\in\mathbb{R}: T(x)\in B\}$};
-					\end{scope}
-					
-					\begin{scope}[xshift=5cm]
-						% Filled region for B
-						\begin{scope}
-							\clip (0,0) 
-							.. controls (1.0, 0.1) and (1.5, 1.4) .. (2.5, 1.4)
-							.. controls (3.5, 1.4) and (3.8, 0.1) .. (4.2, 0) -- (4.2,0) -- (0,0) -- cycle;
-							\fill[brandPurple!30] (1.6, 0) rectangle (3.2, 2.5);
-						\end{scope}
-						
-						\draw[thick, brandPurple] (0,0) 
-						.. controls (1.0, 0.1) and (1.5, 1.4) .. (2.5, 1.4)
-						.. controls (3.5, 1.4) and (3.8, 0.1) .. (4.2, 0)
-						node[above=2pt] {$\nu$};
-						
-						\draw[brandPurple, thick, dashed] (1.6, 0) -- (1.6, 1.025);
-						\draw[brandPurple, thick, dashed] (3.2, 0) -- (3.2, 1.15);
-						\node[brandPurple!90!black] at (2.4, 0.5) {$\nu(B)$};
-						
-						\draw[brandPurple, line width=3pt] (1.6, 0) -- (3.2, 0);
-						\draw[brandPurple, thick] (1.6, -0.1) -- (1.6, 0.1); 
-						\draw[brandPurple, thick] (3.2, -0.1) -- (3.2, 0.1); 
-						\node[brandPurple!90!black, below=4pt] at (2.4, 0) {$B$};
-					\end{scope}
-					
-					\draw[<->, thick, black, dashed] (3.25, 1.5) to[bend left=30] node[above, text=black] {$\pi$} (6.25, 1.5);
+					\draw[->, thick, black] (3.25, 1.5) to[bend left=30] node[above, text=black] {$T$} (6.25, 1.5);
 				\end{tikzpicture}
 			}
 		\end{center}
@@ -394,53 +296,43 @@ corners=5pt,thick]
 		\begin{itemize}[<+->]
 			\item Kantorovich duality
 			\begin{equation*}
-				\inf_{T\::\: T_\#\textcolor{brandAccent}{\mu}=\textcolor{brandPurple}{\nu}} \int_{\mathbb{R}^d} \|\rust{x}-\purp{y}\|^2\textcolor{brandAccent}{\mu(}\mathrm{d}\textcolor{brandAccent}{x)} = \sup_{\phi} \int \phi(\rust{x})\rust{\mu(}\mathrm{d}\rust{x)}+\int\phi^c(\purp{y})\purp{\nu(}\mathrm{d}\purp{y)}
+				\inf_{T\::\: T_\#\textcolor{brandAccent}{\mu}=\textcolor{brandPurple}{\nu}} \int_{\mathbb{R}^d} \|\rust{x}-\purp{y}\|^2\textcolor{brandAccent}{\mu(}\mathrm{d}\textcolor{brandAccent}{x)} = \sup_{\phi} \int \phi(\rust{x})\rust{\mu(}\mathrm{d}\rust{x)}+\int\phi^c(\purp{y})\purp{\nu(}\mathrm{d}\purp{y)},
 			\end{equation*}
-			\item Assume $c(\rust{x},\purp{y})=\alpha \|\rust{x}-\purp{y}\|^2$, then
+			where $\phi^c(\purp{y}):=\inf_{\rust{x}} c(\rust{x},\purp{y})-\phi(\rust{x})$.
+			
+			\item If $T^\star$ exists, then also does $\phi^\star$ and they are linked through
 			\begin{equation*}
 				\nabla_x c(\rust{x},T^\star(\rust{x}))=\nabla\phi^\star(\rust{x}) \iff T^\star(\rust{x}) - \rust{x} = \underset{\textbf{Displacement}}{\boxed{\purp{y}-\rust{x} = -\frac{1}{2\alpha}\nabla\phi^\star(\rust{x})}}
 			\end{equation*}
-%			\item If an optimal transport map $T^\star$ exists, there also exists an optimal Kantorovich potential $\phi^\star$ and
-%			\begin{equation*}
-%				\purp{y}=T^\star(\rust{x}) = \nabla\left( \frac{\|\cdot\|^2}{2}-\phi^\star \right)(\rust{x})=\rust{x}-\nabla\phi^\star(\rust{x}),
-%			\end{equation*}
-%			hence $-\nabla\phi^\star(\rust{x})=T^\star(\rust{x})-\rust{x}=\purp{y}-\rust{x}$ is the \textbf{displacement} of the particle $\rust{x}$.
 		\end{itemize}
 	\end{frame}
 	
 	
-	\begin{frame}{What is the score function?}
+	\begin{frame}[t]{What is the score function?}
 		\begin{itemize}[<+->]
 			\item\textbf{Forward process:} Ornstein--Uhlenbeck (OU) process:
 			\begin{equation*}
 				\d \vec{X}_t = -\vec X_t\d t+\sqrt{2}\d\omega_t,\quad \vec X_0 \sim \mu,\quad t\in[0,T].
 			\end{equation*}
 			Let $\vec\rho_t :=\mathrm{Law}(\vec X_t)$ and $\gamma\propto e^{-\|\cdot\|^2/2}$. Then $\vec\rho_t$ solves the Fokker--Planck equation
-			\begin{equation*}
-				\partial_t\vec\rho_t(x) = \Delta\vec\rho_t(x) + \mathrm{div}(\vec\rho_t(x)x).
-			\end{equation*}
-			whose stationary solution is $\gamma$. The process $(\vec X_t)_t$ is a \textbf{diffusive} process.
+			\begin{equation}\label{eq:FPE}
+				\partial_t\vec\rho_t(x) = \Delta\vec\rho_t(x) + \mathrm{div}(\vec\rho_t(x)x).\tag*{\rust{($\star$)}}
+			\end{equation}
+			whose stationary solution is $\gamma$.
 			
-			\item \textbf{Backward process:} $\cev{X}_s := \vec X_{T-s}$ for $s\in[0,T]$. If $(\vec X_t)_{t\in[0,T]}$ is an OU process, then its time reversal $(\cev X_s)_{s\in[0,T]}$ solves
+			\item \textbf{Macroscopic POV:} Equation \ref{eq:FPE} is the $2$-Wasserstein Gradient Flow of the relative entropy $\mathcal{H}(\rho\vert\gamma):=\int \frac{\|x\|^2}{2}\rho+\int\rho\ln{\rho}$. It means \ref{eq:FPE} can be written as
 			\begin{equation*}
-				\d\cev X_s = \Big[\cev X_s+2\underbrace{\nabla\ln{\vec\rho_{T-s}(\cev X_s)}}_{\textbf{The score function}}\Big]\d s + \sqrt{2}\d\omega_s,\quad \cev X_0 \sim \vec\rho_T.
+				\partial_t\rho_t(x) = -\nabla\cdot\left( \rho_t(x)v_t(x) \right),
 			\end{equation*}
+			where $v_t(x) = -x-\nabla\ln{\rho_t(x)}$.
 		\end{itemize}
 	\end{frame}
 	
 	
 	
-	\begin{frame}{Using OT to learn the score 1/2}
+	\begin{frame}[t]{Using OT to learn the score 1/2}
 		\begin{itemize}[<+->]
-			\item The Fokker--Planck equation is the $2$-Wasserstein Gradient Flow (WGF) of the relative entropy $\mathcal{H}(\rho\vert\gamma):=\int V\rho+\int\rho\ln{\rho}$. That is:
-			\begin{equation*}
-				\partial_t\rho_t(x) = \Delta\rho_t(x) + \mathrm{div}(\rho_t(x)x) = -\nabla\cdot\left( \rho_t(x)v_t(x) \right),
-			\end{equation*}
-			where $v_t(x) = -x-\nabla\ln{\rho_t(x)}$.
-			
-			\vspace{\baselineskip}
-			
-			\item Given a time-step $\tau>0$, such a gradient flow can be discretised in time using the \textbf{JKO scheme}
+			\item Given a time-step $\tau>0$, such a gradient flow can be discretised in time using the \textbf{JKO scheme} (or Implicit Euler scheme, or Proximal step)
 			\begin{equation*}
 				\left\{ 
 					\begin{array}{l}
@@ -449,26 +341,26 @@ corners=5pt,thick]
 					\end{array}
 				 \right.
 			\end{equation*} 
+			
+			\item \textbf{At step $n$:} We show that
+			\begin{equation*}
+				\purp{\rho_{n+1}^\tau}\propto\exp{-\phi^{c/2\tau}}\d\purp{\gamma}
+			\end{equation*}
+			where $\phi$ is such that
+			\begin{equation*}
+				\inf_\phi \tilde J(\phi) := \ln{\int e^{-\phi^{c/2\tau}}\d\purp{\gamma}} - \int\phi\d\rust{\rho_n^\tau}.
+			\end{equation*}
 		\end{itemize}
 	\end{frame}
 	
 	
 	
-	\begin{frame}{Using OT to learn the score 2/2}
+	\begin{frame}[t]{Using OT to learn the score 2/2}
+		Recall that:
+		\begin{equation*}
+			\purp{\rho_{n+1}^\tau}\propto\exp{-(\phi^\star)^{c/2\tau}}\d\purp{\gamma} \quad \text{where}\quad \phi^\star\in\argmin{\phi} \tilde J(\phi) := \ln{\int e^{-\phi^{c/2\tau}}\d\purp{\gamma}} - \int\phi\d\rust{\rho_n^\tau}
+		\end{equation*}
 		\begin{itemize}[<+->]
-			\item Solving
-			\begin{equation*}
-				\inf_\rho \mathcal{H}(\rho\vert\gamma)+\frac{1}{2\tau}W_2(\rho_n^\tau,\rho)^2
-			\end{equation*}
-			amounts to finding the optimal transport map between
-			\begin{equation*}
-				\rust{\rho_n^\tau}\qquad \text{and}\qquad \purp{\rho_{n+1}^\tau}\propto\exp{-\phi^{c/2\tau}}\d\purp{\gamma},
-			\end{equation*}
-			where $\phi$ solves
-			\begin{equation*}
-				\inf_\phi \tilde J(\phi) := \ln{\int e^{-\phi^{c/2\tau}}\d\purp{\gamma}} - \int\phi\d\rust{\rho_n^\tau}.
-			\end{equation*}
-			
 			\item The optimal potential $\phi^\star$ satisfies ($\alpha=\frac{1}{2\tau}$ here)
 			\begin{equation*}
 				\underset{\textbf{Displacement}}{\boxed{-\tau\nabla\phi^\star(\rust{x}) = \purp{y}-\rust{x}}}
@@ -498,7 +390,7 @@ corners=5pt,thick]
 			\begin{equation*}
 				\argmin{\phi}J(\phi) \subseteq \argmin{\phi}
 				\tilde{J}(\phi) \quad \text{and}\quad \argmin{\int e^{-\phi^{c/2\tau}}\d\purp{\gamma}=1}\tilde J(\phi) = \argmin{\phi}
-				J(\psi).
+				J(\phi).
 			\end{equation*}
 		\end{mythm*}
 	\end{frame}
@@ -508,35 +400,44 @@ corners=5pt,thick]
 	\begin{frame}[t]{Stochastic gradient descent 1/2}
 		\begin{itemize}[<+->]
 			\item $\displaystyle J(\phi) = \mathbb{E}_{\purp{y}\sim\purp{\gamma}}\left[ \exp{-\phi^{c/2\tau}(\purp{y})}-\int\phi(\rust{x})\rust{\rho_n^\tau(}\d\rust{x)} \right]$
-			
+			\vspace{\baselineskip}
 			\item Choice of parametrisation: semi-discrete optimal transport using
 			\begin{equation*}
-				\rust{\hat\rho_n^\tau} = \frac{1}{N}\sum_{i=1}^N \delta_{\rust{\hat x_i^{(n)}}}
+				\rust{\hat\rho_n^\tau} = \frac{1}{N}\sum_{i=1}^N \delta_{\rust{\hat x_i^{(n)}}} \leadsto 
+				\left\{ 
+					\begin{array}{l}
+						\phi(x;\theta) = \theta^\top\Phi(x) \\
+						\Phi(x) = (\Phi_1(x),\dots, \Phi_N(x)) \\
+						\Phi_i(x) = \mathds{1}_{\{x = \hat x_i^{(n)}\}}
+					\end{array}\right.
 			\end{equation*}
-			
+			\vspace{\baselineskip}
 			\item $\displaystyle G(\theta) = \mathbb{E}_{\purp{y}\sim\purp{\gamma}}\left[ \max_{1\leq i\leq N}\left\{\exp{\theta_i - \frac{c(\rust{\hat x_i^{(n)}},\purp{y})}{2\tau}}\right\}-\frac{1}{N}\sum_{i=1}^N\theta_i \right]$
-			
-			\item Projected SGD algorithm $\big(c_\tau(\rust{x},\purp{y}):=\frac{c(\rust{x},\purp{y})}{2\tau}\big)$
-			\begin{equation*}
-				\left\{
-				\begin{array}{l}
-					\text{pick } \purp{y}\sim \purp{\gamma} \\
-					\text{let } i :=\mathrm{arg}\,\mathrm{min}_j\  c_\tau(\rust{\hat x_j^{(n)}},\purp{y})-\theta_j \\
-					\text{define } e_i \text{ as the $i$-th canonical basis vector of $\mathbb{R}^N$} \\
-					\theta^{(k+1)} := \mathrm{proj}_{B(0,R_\mathrm{proj})}\left( \theta^{(k)} -  \alpha_ke^{\theta_i^{(k)}-c_\tau(\rust{\hat x_j^{(n)}},\purp{y})}e_i+ \frac{\alpha_k}{N}\mathds{1} \right)
-				\end{array}
-				\right.
-			\end{equation*}
 		\end{itemize}
 	\end{frame}
 	
 	
 	
-	\begin{frame}{Stochastic gradient descent 2/2}
+	\begin{frame}[t]{Stochastic gradient descent 2/2}
+		Projected SGD algorithm $\big(c_\tau(\rust{x},\purp{y}):=\frac{c(\rust{x},\purp{y})}{2\tau}\big)$
+		\begin{equation*}
+			\left\{
+			\begin{array}{l}
+				\text{pick } \purp{y}\sim \purp{\gamma} \\
+				\text{let } i :=\mathrm{arg}\,\mathrm{min}_j\  c_\tau(\rust{\hat x_j^{(n)}},\purp{y})-\theta_j \\
+				\text{define } e_i \text{ as the $i$-th canonical basis vector of $\mathbb{R}^N$} \\
+				\theta^{(k+1)} := \mathrm{proj}_{B(0,R_\mathrm{proj})}\left( \theta^{(k)} -  \alpha_ke^{\theta_i^{(k)}-c_\tau(\rust{\hat x_j^{(n)}},\purp{y})}e_i+ \frac{\alpha_k}{N}\mathds{1} \right)
+			\end{array}
+			\right.
+		\end{equation*}
+		
 		\begin{mythm*}{\itshape (G.)}
-			Let $(\theta^{(k)})_{k=0}^K$ be the iterates obtained with step-sizes $\alpha_k = \frac{R_\mathrm{proj}}{B\sqrt{k}}$ starting from some initial $\theta^{(0)}\in B(0,R_\mathrm{proj})$. Define $\hat\theta_K$ to be the arithmetic mean of all iterates up to time $K$. Then, it holds that
+			\begin{itemize}
+				\item $\alpha_k = \frac{C}{\sqrt{k}},\quad \hat\theta_K := \frac{1}{K}\sum_{k=0}^K \theta^{(k)}$
+			\end{itemize}
+			Then, it holds that
 			\begin{equation*}
-				0\leq \mathbb E [G(\hat\theta_K)] - G(\theta^\star) \leq BR_\mathrm{proj}\left( \frac{2}{K}+\frac{1}{\sqrt{K}} \right)=\mathcal O(K^{-\frac{1}{2}}),
+				0\leq \mathbb E [G(\hat\theta_K)] - G(\theta^\star) \leq \frac{2R^2_\mathrm{proj}}{CK}+\frac{B^2 C}{\sqrt{K}}=\mathcal O(K^{-\frac{1}{2}}),
 			\end{equation*}
 			where $\theta^\star$ denotes the unique minimiser of $G$.
 		\end{mythm*}
@@ -544,38 +445,201 @@ corners=5pt,thick]
 	
 	
 	
+	\begin{frame}{Approximating the next JKO iterate}
+		\begin{center}
+			\begin{tikzcd}[
+					row sep=large, 
+					column sep=large, 
+					ampersand replacement=\&,
+					column 2/.style={anchor=base west}
+					]
+				
+				\& |[visible on=<2->]| \purp{\tilde\rho_{n+1}^\tau(}\d \purp{y)}\propto \max_i e^{\theta_i -c_\tau(\rust{\hat x_i^{(n)}},y)}\purp{\gamma(}\d\purp{y)} \arrow[d, phantom, "\rotatebox{90}{$\approx$}", visible on=<3->] \\
+				
+				\rust{\hat\rho_n}=\frac{1}{N}\sum_{i=1}^N \delta_{\rust{\hat x_i^{(n)}}} \arrow[ru, bend left, "\mathrm{JKO}_\tau", visible on=<2->, start anchor=north east, end anchor=west] \arrow[r, "\mathrm{pSGD}", visible on=<3->, start anchor=east, end anchor=west] \arrow[rd, dashed, "\mathpzc{T}"', visible on=<5->, start anchor=south east, end anchor=west] \& |[visible on=<3->]| \purp{\tilde\rho_K(}\d \purp{y)}\propto \max_i e^{[\hat\theta_K]_i -c_\tau(\rust{\hat x_i^{(n)}},y)}\purp{\gamma(}\d\purp{y)} \arrow[d, "\textrm{Barycentric map}", visible on=<4->] \\
+				
+				\& |[visible on=<4->]| \only<4-5>{\purp{\hat\rho_{n+1}} := \frac{1}{N}\sum_{i=1}^N \delta_{\purp{\hat x_i^{(n+1)}}}}
+			\end{tikzcd}
+		\end{center}
+	\end{frame}
 	
-	\begin{frame}[t]{Approximating the next JKO iterate}
+	
+	\begin{frame}[t]{More on the barycentric map}
 		\begin{itemize}[<+->]
-			\item Recall that the next measure is
-			\begin{equation*}
-				\purp{\rho_{n+1}^\tau(}\d \purp{y)}\propto \max_i e^{\theta_i -c_\tau(\rust{\hat x_i^{(n)}},y)}\purp{\gamma(}\d\purp{y)}
-			\end{equation*}
+			\item $\purp{\tilde\rho_K(}\d \purp{y)}\propto \max_i e^{[\hat\theta_K]_i -c_\tau(\rust{\hat x_i^{(n)}},y)}\purp{\gamma(}\d\purp{y)}$ is \textbf{piecewise log-quadratic}
 			
-			\item It is approximated by
-			\begin{equation*}
-				\purp{\tilde\rho_K(}\d \purp{y)}\propto \max_i e^{[\hat\theta_K]_i -c_\tau(\rust{\hat x_i^{(n)}},y)}\purp{\gamma(}\d\purp{y)}
-			\end{equation*}
-			
-			\item We discretise it by
-			\begin{equation*}
-					\rust{\hat x_i^{(n+1)}} := N\int_{\mathrm{Lag}_i(\rust{\hat x_i^{(n)}},\hat\theta_K)} y\purp{\tilde\rho_K(}\d\purp{y)}
-			\end{equation*}
-			and finally consider
-			\begin{equation*}
-				\purp{\hat\rho_{n+1}} := \frac{1}{N}\sum_{i=1}^N \delta_{\purp{\hat x_i^{(n+1)}}}.
-			\end{equation*}
+			\item \textbf{Laguerre cells:} $L_i(\theta) := \left\{ \purp{y}\in\mathbb{R}^d\::\: \forall 1\leq i\leq N,\: c_\tau(\rust{\hat x_i^{(n)}},\purp{y})+\theta_i \leq c_\tau(\rust{\hat x_j^{(n)}},\purp{y})+\theta_j \right\}$
 		\end{itemize}
+		
+		\begin{center}
+			\begin{tikzpicture}
+				\begin{axis}[
+					width=0.9\linewidth,
+					height=5.5cm,
+					axis x line=middle, 
+					axis y line=none, 
+					ymin=-0.4, ymax=2.2, % Increased ymax to fit the optimal peak!
+					xmin=-3.5, xmax=3.0,
+					ytick=\empty,
+					xtick=\empty,
+					axis line style={thick, black},
+					clip=false
+					]
+					
+					% ==========================================
+					% SLIDE 1: THETA = (0, 0, 0)
+					% ==========================================
+					\only<1>{
+						\addplot[fill=brandPurple!20!white, draw=none, domain=-3.5:-0.75, samples=50] {exp(-(x+1.5)^2)} \closedcycle;
+						\addplot[fill=brandPurple!20!white, draw=none, domain=-0.75:0.5, samples=50] {exp(-x^2)} \closedcycle;
+						\addplot[fill=brandPurple!20!white, draw=none, domain=0.5:3.0, samples=50] {exp(-(x-1)^2)} \closedcycle;
+						
+						\draw[brandPurple, thick, dashed] (axis cs:-0.75, 0) -- (axis cs:-0.75, {exp(-0.5625)});
+						\draw[brandPurple, thick, dashed] (axis cs:0.5, 0) -- (axis cs:0.5, {exp(-0.25)});
+						
+						\addplot[brandPurple, very thick, domain=-3.5:-0.75, samples=50] {exp(-(x+1.5)^2)};
+						\addplot[brandPurple, very thick, domain=-0.75:0.5, samples=50] {exp(-x^2)};
+						\addplot[brandPurple, very thick, domain=0.5:3.0, samples=50] {exp(-(x-1)^2)};
+						
+						\node[brandAccent, below=4pt] at (axis cs:-1.6, 0) {$\hat{x}_1^{(n+1)}$};
+						\fill[brandAccent] (axis cs:-1.6, 0) circle (2.5pt);
+						\node[brandAccent, below=4pt] at (axis cs:-0.1, 0) {$\hat{x}_2^{(n+1)}$};
+						\fill[brandAccent] (axis cs:-0.1, 0) circle (2.5pt);
+						\node[brandAccent, below=4pt] at (axis cs:1.3, 0) {$\hat{x}_3^{(n+1)}$};
+						\fill[brandAccent] (axis cs:1.3, 0) circle (2.5pt);
+						
+						\node[brandPurple, above] at (axis cs:0, 1.05) {$\tilde{\rho}_K$};
+						
+						\node at (axis cs:2, 2) {$\theta_1 = 0, \theta_2 = 0, \theta_3 = 0$};
+						
+%						\node[brandPurple, above] at (axis cs:0, 2.0) {$\tilde{\rho}_K \quad (\theta_1=0,\: \theta_2=0,\: \theta_3=0)$};
+					}
+					
+					% ==========================================
+					% SLIDE 2: ARBITRARY THETA = (-1.2, 0, -0.5)
+					% ==========================================
+					\only<2>{
+						\addplot[fill=brandPurple!20!white, draw=none, domain=-3.5:-1.15, samples=50] {exp(-1.2 - (x+1.5)^2)} \closedcycle;
+						\addplot[fill=brandPurple!20!white, draw=none, domain=-1.15:0.75, samples=50] {exp(-x^2)} \closedcycle;
+						\addplot[fill=brandPurple!20!white, draw=none, domain=0.75:3.0, samples=50] {exp(-0.5 - (x-1)^2)} \closedcycle;
+						
+						\draw[brandPurple, thick, dashed] (axis cs:-1.15, 0) -- (axis cs:-1.15, {exp(-1.3225)});
+						\draw[brandPurple, thick, dashed] (axis cs:0.75, 0) -- (axis cs:0.75, {exp(-0.5625)});
+						
+						\addplot[brandPurple, very thick, domain=-3.5:-1.15, samples=50] {exp(-1.2 - (x+1.5)^2)};
+						\addplot[brandPurple, very thick, domain=-1.15:0.75, samples=50] {exp(-x^2)};
+						\addplot[brandPurple, very thick, domain=0.75:3.0, samples=50] {exp(-0.5 - (x-1)^2)};
+						
+						\node[brandAccent, below=4pt] at (axis cs:-1.7, 0) {$\hat{x}_1^{(n+1)}$};
+						\fill[brandAccent] (axis cs:-1.7, 0) circle (2.5pt);
+						\node[brandAccent, below=4pt] at (axis cs:-0.15, 0) {$\hat{x}_2^{(n+1)}$};
+						\fill[brandAccent] (axis cs:-0.15, 0) circle (2.5pt);
+						\node[brandAccent, below=4pt] at (axis cs:1.25, 0) {$\hat{x}_3^{(n+1)}$};
+						\fill[brandAccent] (axis cs:1.25, 0) circle (2.5pt);
+						
+						\node[brandPurple, above] at (axis cs:0, 1.05) {$\tilde{\rho}_K$};
+						
+%						\node[brandPurple, above] at (axis cs:0, 2.0) {$\tilde{\rho}_K \quad (\theta_1=-1.2,\: \theta_2=0,\: \theta_3=-0.5)$};
+					}
+					
+					% ==========================================
+					% SLIDE 3: OPTIMAL THETA = (0, 0.6, 0.2)
+					% ==========================================
+					\only<3>{
+						\addplot[fill=brandPurple!20!white, draw=none, domain=-3.5:-0.95, samples=50] {exp(-(x+1.5)^2)} \closedcycle;
+						\addplot[fill=brandPurple!20!white, draw=none, domain=-0.95:0.7, samples=50] {exp(0.6 - x^2)} \closedcycle;
+						\addplot[fill=brandPurple!20!white, draw=none, domain=0.7:3.0, samples=50] {exp(0.2 - (x-1)^2)} \closedcycle;
+						
+						\draw[brandPurple, thick, dashed] (axis cs:-0.95, 0) -- (axis cs:-0.95, {exp(-0.3025)});
+						\draw[brandPurple, thick, dashed] (axis cs:0.7, 0) -- (axis cs:0.7, {exp(0.11)});
+						
+						\addplot[brandPurple, very thick, domain=-3.5:-0.95, samples=50] {exp(-(x+1.5)^2)};
+						\addplot[brandPurple, very thick, domain=-0.95:0.7, samples=50] {exp(0.6 - x^2)};
+						\addplot[brandPurple, very thick, domain=0.7:3.0, samples=50] {exp(0.2 - (x-1)^2)};
+						
+						\node[brandAccent, below=4pt] at (axis cs:-1.65, 0) {$\hat{x}_1^{(n+1)}$};
+						\fill[brandAccent] (axis cs:-1.65, 0) circle (2.5pt);
+						\node[brandAccent, below=4pt] at (axis cs:-0.1, 0) {$\hat{x}_2^{(n+1)}$};
+						\fill[brandAccent] (axis cs:-0.1, 0) circle (2.5pt);
+						\node[brandAccent, below=4pt] at (axis cs:1.2, 0) {$\hat{x}_3^{(n+1)}$};
+						\fill[brandAccent] (axis cs:1.2, 0) circle (2.5pt);
+						
+						\node[brandPurple, above] at (axis cs:0, 1.05) {$\tilde{\rho}_K$};
+						
+%						\node[brandPurple, above] at (axis cs:0, 2.0) {$\tilde{\rho}_K \quad (\theta_1=0,\: \theta_2=0.6,\: \theta_3=0.2)$};
+					}
+					
+					\begin{scope}[shift={(axis cs:-0.2, 1)}]
+						% Background box
+						\fill[white, rounded corners, fill opacity=0.8] (-0.2, -0.4) rectangle (1.7, 1.0);
+						\draw[gray!50, rounded corners] (-0.2, -0.4) rectangle (1.7, 1.0);
+						
+						\node[above, font=\scriptsize, text=brandPurple!90!black] at (0.75, 0.65) {Cell Mass};
+						
+						% The Target Mass Line (1/N)
+						\draw[brandAccent, dashed, thick] (0, 0.4) -- (1.5, 0.4) node[right, font=\tiny] {$1/N$};
+						
+						% Baseline & Labels
+						\draw[gray, thick] (0,0) -- (1.5,0);
+						\node[below, font=\tiny] at (0.25, 0) {1};
+						\node[below, font=\tiny] at (0.75, 0) {2};
+						\node[below, font=\tiny] at (1.25, 0) {3};
+						
+						% Slide 1 Bars (Imbalanced)
+						\only<1>{
+							\fill[brandPurple!60] (0.1, 0) rectangle (0.4, 0.7);
+							\fill[brandPurple!60] (0.6, 0) rectangle (0.9, 0.35);
+							\fill[brandPurple!60] (1.1, 0) rectangle (1.4, 0.15);
+						}
+						% Slide 2 Bars (Imbalanced)
+						\only<2>{
+							\fill[brandPurple!60] (0.1, 0) rectangle (0.4, 0.15);
+							\fill[brandPurple!60] (0.6, 0) rectangle (0.9, 0.85);
+							\fill[brandPurple!60] (1.1, 0) rectangle (1.4, 0.2);
+						}
+						% Slide 3 Bars (Perfectly balanced!)
+						\only<3>{
+							\fill[brandAccent] (0.1, 0) rectangle (0.4, 0.4);
+							\fill[brandAccent] (0.6, 0) rectangle (0.9, 0.4);
+							\fill[brandAccent] (1.1, 0) rectangle (1.4, 0.4);
+						}
+					\end{scope}
+					
+				\end{axis}
+			\end{tikzpicture}
+		\end{center}
 	\end{frame}
 	
 	
-	
-	\begin{frame}{A drawing is worth 1000 words}
-		\begin{figure}[h]
-			\includegraphics[scale=0.55]{figures/diagramm.jpg}
-		\end{figure}
+	\begin{frame}{Approximating the next JKO iterate}
+		\begin{center}
+			\begin{tikzcd}[
+				row sep=large, 
+				column sep=large, 
+				ampersand replacement=\&,
+				column 2/.style={anchor=base west}
+				]
+				
+				\& \purp{\tilde\rho_{n+1}^\tau(}\d \purp{y)}\propto \max_i e^{\theta_i -c_\tau(\rust{\hat x_i^{(n)}},y)}\purp{\gamma(}\d\purp{y)} \arrow[d, phantom, "\rotatebox{90}{$\approx$}"] \\
+				
+				\rust{\hat\rho_n}=\frac{1}{N}\sum_{i=1}^N \delta_{\rust{\hat x_i^{(n)}}} \arrow[ru, bend left, "\mathrm{JKO}_\tau",start anchor=north east, end anchor=west] \arrow[r, "\mathrm{pSGD}", start anchor=east, end anchor=west] \arrow[rd, dashed, "\mathpzc{T}"', start anchor=south east, end anchor=west] \& \purp{\tilde\rho_K(}\d \purp{y)}\propto \max_i e^{[\hat\theta_K]_i -c_\tau(\rust{\hat x_i^{(n)}},y)}\purp{\gamma(}\d\purp{y)} \arrow[d, "\textrm{Barycentric map}"] \\
+				
+				\& \rust{\hat\rho_{n+1}} := \frac{1}{N}\sum_{i=1}^N \delta_{\rust{\hat x_i^{(n+1)}}}
+			\end{tikzcd}
+		\end{center}
 	\end{frame}
 	
+	\begin{frame}{Iterating the whole procedure}
+		\begin{center}
+			\begin{tikzcd}[row sep=large, column sep=large, ampersand replacement=\&]
+				\hat\rho_0 \arrow[r, "\mathrm{JKO}_\tau"] \arrow[rd, "\mathpzc{T}"'] \& \rho_1^\tau \arrow[r, "\mathrm{JKO}_\tau"]                           \& \rho_2^\tau \arrow[r, "\mathrm{JKO}_\tau"]                           \& \cdots \arrow[r, "\mathrm{JKO}_\tau"]                            \& \rho_n^\tau       \\
+				\& \hat\rho_1 \arrow[rd, "\mathpzc{T}"'] \arrow[r, "\mathrm{JKO}_\tau"] \& \tilde\rho_2^\tau                                               \&                                                             \&                   \\
+				\&                                                                 \& \hat\rho_2 \arrow[rd, "\mathpzc{T}"'] \arrow[r, "\mathrm{JKO}_\tau"] \& \cdots                                                      \&                   \\
+				\&                                                                 \&                                                                 \& \cdots \arrow[rd, "\mathpzc{T}"'] \arrow[r, "\mathrm{JKO}_\tau"] \& \tilde\rho_n^\tau \\
+				\&                                                                 \&                                                                 \&                                                             \& \hat\rho_n       
+			\end{tikzcd}
+		\end{center}
+	\end{frame}
 	
 	
 	\begin{frame}{Some ``animations''}
