@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.9)  4 JUN 2026 16:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.9)  4 JUN 2026 16:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1859,10 +1859,6 @@ Overfull \vbox (4.4913pt too high) detected at line 589
 [38
 
 ]
-
-[39
-
-]
 \tf@nav=\write7
 \openout7 = `beamer_CS26_Quentin_GITON.nav'.
 
@@ -1885,8 +1881,8 @@ Package logreq Info: Writing requests to 'beamer_CS26_Quentin_GITON.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 70563 strings out of 467800
- 1778868 string characters out of 5436062
+ 70561 strings out of 467800
+ 1778849 string characters out of 5436062
  2926208 words of memory out of 5000000
  98193 multiletter control sequences out of 15000+600000
  684898 words of font info for 89 fonts, out of 8000000 for 9000
@@ -1908,10 +1904,10 @@ onts/type1/public/lm/lmsy8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/a
 msfonts/symbols/msam10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfo
 nts/symbols/msbm10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/zapfchan/uzc
 mi8a.pfb>
-Output written on beamer_CS26_Quentin_GITON.pdf (39 pages, 495127 bytes).
+Output written on beamer_CS26_Quentin_GITON.pdf (38 pages, 494176 bytes).
 PDF statistics:
- 392 PDF objects out of 1000 (max. 8388607)
- 271 compressed objects within 3 object streams
- 80 named destinations out of 1000 (max. 500000)
+ 386 PDF objects out of 1000 (max. 8388607)
+ 266 compressed objects within 3 object streams
+ 78 named destinations out of 1000 (max. 500000)
  67 words of extra memory for PDF output out of 10000 (max. 10000000)
 
