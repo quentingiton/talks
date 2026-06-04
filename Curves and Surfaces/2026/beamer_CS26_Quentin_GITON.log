@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.9)  3 JUN 2026 17:02
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.9)  4 JUN 2026 16:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1420,8 +1420,8 @@ Package hyperref Info: Option `colorlinks' set `true' on input line 81.
 \c@tcb@cnt@myprop=\count528
 \@quotelevel=\count529
 \@quotereset=\count530
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 15
-9.
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 16
+1.
 
 (c:/texlive/2025/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
@@ -1429,24 +1429,24 @@ File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 (./beamer_CS26_Quentin_GITON.aux)
 \openout1 = `beamer_CS26_Quentin_GITON.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 159.
-LaTeX Font Info:    ... okay on input line 159.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 159.
-LaTeX Font Info:    ... okay on input line 159.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 159.
-LaTeX Font Info:    ... okay on input line 159.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 159.
-LaTeX Font Info:    ... okay on input line 159.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 159.
-LaTeX Font Info:    ... okay on input line 159.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 159.
-LaTeX Font Info:    ... okay on input line 159.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 159.
-LaTeX Font Info:    ... okay on input line 159.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 159.
-LaTeX Font Info:    ... okay on input line 159.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 159.
-LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 161.
+LaTeX Font Info:    ... okay on input line 161.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 161.
+LaTeX Font Info:    ... okay on input line 161.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 161.
+LaTeX Font Info:    ... okay on input line 161.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 161.
+LaTeX Font Info:    ... okay on input line 161.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 161.
+LaTeX Font Info:    ... okay on input line 161.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 161.
+LaTeX Font Info:    ... okay on input line 161.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 161.
+LaTeX Font Info:    ... okay on input line 161.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 161.
+LaTeX Font Info:    ... okay on input line 161.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 161.
+LaTeX Font Info:    ... okay on input line 161.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1504,7 +1504,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package hyperref Info: Link coloring ON on input line 159.
+Package hyperref Info: Link coloring ON on input line 161.
 
 (./beamer_CS26_Quentin_GITON.out) (./beamer_CS26_Quentin_GITON.out)
 \@outlinefile=\write6
@@ -1555,8 +1555,8 @@ Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'beamer_CS26_Quentin_GITON.bbl' found.
 
 (./beamer_CS26_Quentin_GITON.bbl)
-Package biblatex Info: Reference section=0 on input line 159.
-Package biblatex Info: Reference segment=0 on input line 159.
+Package biblatex Info: Reference section=0 on input line 161.
+Package biblatex Info: Reference segment=0 on input line 161.
  (./beamer_CS26_Quentin_GITON.nav)
 
 [1
@@ -1618,7 +1618,7 @@ File: uesvect.fd
 exmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/texlive/2025/texmf-dist/fonts/enc/dv
 ips/lm/lm-mathsy.enc}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathex.e
 nc}]
-Overfull \vbox (7.79193pt too high) detected at line 308
+Overfull \vbox (15.20026pt too high) detected at line 306
  []
 
 
@@ -1626,7 +1626,7 @@ Overfull \vbox (7.79193pt too high) detected at line 308
 [3
 
 ]
-Overfull \vbox (7.79193pt too high) detected at line 308
+Overfull \vbox (15.20026pt too high) detected at line 306
  []
 
 
@@ -1650,7 +1650,7 @@ Overfull \vbox (7.79193pt too high) detected at line 308
 [8
 
 ]
-Overfull \hbox (9.38194pt too wide) detected at line 374
+Overfull \hbox (9.38194pt too wide) detected at line 372
 [][] \OMS/lmsy/m/n/10.95 / [] [] \OT1/lmr/m/n/10.95 d[][] [] \OML/lmm/m/it/10.9
 5 ^^^[] \OMS/lmsy/m/n/10.95 2 [][]\OT1/lmr/m/n/10.95 (\OML/lmm/m/it/10.95 ^^^\O
 T1/lmr/m/n/10.95 ) := [] [] \OMS/lmsy/m/n/10.95 ^^@ [] \OML/lmm/m/it/10.95 ^^^\
@@ -1658,7 +1658,7 @@ OT1/lmr/m/n/10.95 d[][]
  []
 
 
-Overfull \hbox (14.04353pt too wide) detected at line 374
+Overfull \hbox (14.04353pt too wide) detected at line 372
 \OMS/lmsy/m/n/10.95 ^^@\OML/lmm/m/it/10.95 ^^\\OMS/lmsy/m/n/10.95 r\OML/lmm/m/i
 t/10.95 ^^^[]\OT1/lmr/m/n/10.95 ([][]) = \OML/lmm/m/it/10.95 ^^\v[]\OT1/lmr/m/n
 /10.95 ([][]) = \OMS/lmsy/m/n/10.95 ^^@\OML/lmm/m/it/10.95 ^^\\OT1/lmr/m/n/10.9
@@ -1671,7 +1671,7 @@ t/10.95 ^^^[]\OT1/lmr/m/n/10.95 ([][]) = \OML/lmm/m/it/10.95 ^^\v[]\OT1/lmr/m/n
 [9
 
 ]
-Overfull \hbox (9.38194pt too wide) detected at line 374
+Overfull \hbox (9.38194pt too wide) detected at line 372
 [][] \OMS/lmsy/m/n/10.95 / [] [] \OT1/lmr/m/n/10.95 d[][] [] \OML/lmm/m/it/10.9
 5 ^^^[] \OMS/lmsy/m/n/10.95 2 [][]\OT1/lmr/m/n/10.95 (\OML/lmm/m/it/10.95 ^^^\O
 T1/lmr/m/n/10.95 ) := [] [] \OMS/lmsy/m/n/10.95 ^^@ [] \OML/lmm/m/it/10.95 ^^^\
@@ -1679,7 +1679,7 @@ OT1/lmr/m/n/10.95 d[][]
  []
 
 
-Overfull \hbox (14.04353pt too wide) detected at line 374
+Overfull \hbox (14.04353pt too wide) detected at line 372
 \OMS/lmsy/m/n/10.95 ^^@\OML/lmm/m/it/10.95 ^^\\OMS/lmsy/m/n/10.95 r\OML/lmm/m/i
 t/10.95 ^^^[]\OT1/lmr/m/n/10.95 ([][]) = \OML/lmm/m/it/10.95 ^^\v[]\OT1/lmr/m/n
 /10.95 ([][]) = \OMS/lmsy/m/n/10.95 ^^@\OML/lmm/m/it/10.95 ^^\\OT1/lmr/m/n/10.9
@@ -1701,7 +1701,7 @@ t/10.95 ^^^[]\OT1/lmr/m/n/10.95 ([][]) = \OML/lmm/m/it/10.95 ^^\v[]\OT1/lmr/m/n
 
 ]
 LaTeX Font Info:    Trying to load font information for U+dsrom on input line 4
-17.
+15.
  (c:/texlive/2025/texmf-dist/tex/latex/doublestroke/Udsrom.fd
 File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
 )
@@ -1717,7 +1717,7 @@ File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
 [15
 
 ]
-Overfull \vbox (13.59695pt too high) detected at line 444
+Overfull \vbox (13.59695pt too high) detected at line 442
  []
 
 
@@ -1726,7 +1726,7 @@ Overfull \vbox (13.59695pt too high) detected at line 444
 
 ]
 LaTeX Font Info:    Trying to load font information for OT1+pzc on input line 4
-64.
+62.
  (c:/texlive/2025/texmf-dist/tex/latex/psnfss/ot1pzc.fd
 File: ot1pzc.fd 2020/03/25 font definitions for OT1/pzc.
 )
@@ -1750,68 +1750,71 @@ File: ot1pzc.fd 2020/03/25 font definitions for OT1/pzc.
 [21
 
 ]
-Overfull \hbox (23.83046pt too wide) in paragraph at lines 611--611
- [] 
- []
-
-
 
 [22
 
 ]
-Overfull \hbox (23.83046pt too wide) in paragraph at lines 611--611
- [] 
- []
-
-
 
 [23
 
 ]
-Overfull \hbox (23.83046pt too wide) in paragraph at lines 611--611
- [] 
- []
-
+<figures/voronoi.png, id=159, 1213.53375pt x 609.77812pt>
+File: figures/voronoi.png Graphic file (type png)
+<use figures/voronoi.png>
+Package pdftex.def Info: figures/voronoi.png  used on input line 479.
+(pdftex.def)             Requested size: 303.38269pt x 152.44415pt.
 
 
 [24
 
-]
+ <./figures/voronoi.png>]
+<figures/lag1.png, id=168, 1212.78094pt x 610.53094pt>
+File: figures/lag1.png Graphic file (type png)
+<use figures/lag1.png>
+Package pdftex.def Info: figures/lag1.png  used on input line 479.
+(pdftex.def)             Requested size: 303.19449pt x 152.63235pt.
+
 
 [25
 
-]
+ <./figures/lag1.png>]
+<figures/lagOpt.png, id=176, 1212.78094pt x 610.53094pt>
+File: figures/lagOpt.png Graphic file (type png)
+<use figures/lagOpt.png>
+Package pdftex.def Info: figures/lagOpt.png  used on input line 479.
+(pdftex.def)             Requested size: 303.19449pt x 152.63235pt.
+
 
 [26
 
-]
-<figures/forward_8frames.pdf, id=176, 1156.32pt x 578.16pt>
-File: figures/forward_8frames.pdf Graphic file (type pdf)
-<use figures/forward_8frames.pdf>
-Package pdftex.def Info: figures/forward_8frames.pdf  used on input line 649.
-(pdftex.def)             Requested size: 404.71806pt x 202.35902pt.
-
-Overfull \hbox (6.37947pt too wide) in paragraph at lines 649--649
- [] 
- []
-
-
-Overfull \vbox (4.55768pt too high) detected at line 649
- []
-
-
+ <./figures/lagOpt.png>]
 
 [27
 
- <./figures/forward_8frames.pdf>]
+]
 
 [28
 
 ]
+<figures/forward_8frames.pdf, id=193, 1156.32pt x 578.16pt>
+File: figures/forward_8frames.pdf Graphic file (type pdf)
+<use figures/forward_8frames.pdf>
+Package pdftex.def Info: figures/forward_8frames.pdf  used on input line 517.
+(pdftex.def)             Requested size: 404.71806pt x 202.35902pt.
+
+Overfull \hbox (6.37947pt too wide) in paragraph at lines 517--517
+ [] 
+ []
+
+
+Overfull \vbox (4.55768pt too high) detected at line 517
+ []
+
+
 
 [29
 
-]
+ <./figures/forward_8frames.pdf>]
 
 [30
 
@@ -1824,8 +1827,40 @@ Overfull \vbox (4.55768pt too high) detected at line 649
 [32
 
 ]
+Overfull \vbox (4.4913pt too high) detected at line 589
+ []
+
+
 
 [33
+
+]
+Overfull \vbox (4.4913pt too high) detected at line 589
+ []
+
+
+
+[34
+
+]
+
+[35
+
+]
+
+[36
+
+]
+
+[37
+
+]
+
+[38
+
+]
+
+[39
 
 ]
 \tf@nav=\write7
@@ -1850,13 +1885,13 @@ Package logreq Info: Writing requests to 'beamer_CS26_Quentin_GITON.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 70862 strings out of 467800
- 1788806 string characters out of 5436062
- 2926230 words of memory out of 5000000
- 98504 multiletter control sequences out of 15000+600000
- 685414 words of font info for 90 fonts, out of 8000000 for 9000
+ 70563 strings out of 467800
+ 1778868 string characters out of 5436062
+ 2926208 words of memory out of 5000000
+ 98193 multiletter control sequences out of 15000+600000
+ 684898 words of font info for 89 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 128i,17n,123p,1896b,2342s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 128i,17n,123p,1896b,1469s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2025/texmf-dist/fonts/type1/public/doublestroke/dsrom10.pfb><c:/t
 exlive/2025/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/texlive/2025/texmf-
 dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/p
@@ -1873,10 +1908,10 @@ onts/type1/public/lm/lmsy8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/a
 msfonts/symbols/msam10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfo
 nts/symbols/msbm10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/zapfchan/uzc
 mi8a.pfb>
-Output written on beamer_CS26_Quentin_GITON.pdf (33 pages, 356481 bytes).
+Output written on beamer_CS26_Quentin_GITON.pdf (39 pages, 495127 bytes).
 PDF statistics:
- 349 PDF objects out of 1000 (max. 8388607)
- 240 compressed objects within 3 object streams
- 68 named destinations out of 1000 (max. 500000)
- 52 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 392 PDF objects out of 1000 (max. 8388607)
+ 271 compressed objects within 3 object streams
+ 80 named destinations out of 1000 (max. 500000)
+ 67 words of extra memory for PDF output out of 10000 (max. 10000000)
 

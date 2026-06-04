@@ -156,6 +156,8 @@ corners=5pt,thick]
 \institute{Laboratoire de Mathématiques d'Orsay}
 \date{June 11th} % Leave empty if no date is desired
 
+\setbeamertemplate{page number in head/foot}{\insertframenumber{} / \inserttotalframenumber}
+
 \begin{document}
 	\begin{frame}
 		\titlepage
@@ -168,7 +170,6 @@ corners=5pt,thick]
 					\draw[->, thick] (-0.5, 0) -- (10.0, 0) node[right] {$\mathbb{R}$};
 					
 					\begin{scope}
-						% Filled region for A
 						\begin{scope}
 							\clip (0,0) 
 							.. controls (0.8, 0.1) and (1.2, 2.2) .. (2.0, 2.2)
@@ -192,7 +193,6 @@ corners=5pt,thick]
 					\end{scope}
 					
 					\begin{scope}[xshift=5cm]
-						% Filled region for B
 						\begin{scope}
 							\clip (0,0) 
 							.. controls (1.0, 0.1) and (1.5, 1.4) .. (2.5, 1.4)
@@ -228,7 +228,7 @@ corners=5pt,thick]
 			
 			\item Find the one minimising the average transport cost
 				\begin{equation*}
-					W_2(\rust{\mu},\purp{\nu})^2 := \int_{\mathbb{R}^d} \|\rust{x}-T(\rust{x})\|^2\textcolor{brandAccent}{\mu(}\mathrm{d}\textcolor{brandAccent}{x)}
+					W_2(\rust{\mu},\purp{\nu})^2 := \inf_{T\::\: T_\# \rust{\mu}=\purp{\nu}} \int_{\mathbb{R}^d} \|\rust{x}-T(\rust{x})\|^2\textcolor{brandAccent}{\mu(}\mathrm{d}\textcolor{brandAccent}{x)}
 				\end{equation*}
 		\end{itemize}
 	\end{frame}
@@ -240,7 +240,6 @@ corners=5pt,thick]
 					\draw[->, thick] (-0.5, 0) -- (10.0, 0) node[right] {$\mathbb{R}$};
 					
 					\begin{scope}
-						% Filled region for A
 						\begin{scope}
 							\clip (0,0) 
 							.. controls (0.8, 0.1) and (1.2, 2.2) .. (2.0, 2.2)
@@ -264,7 +263,6 @@ corners=5pt,thick]
 					\end{scope}
 					
 					\begin{scope}[xshift=5cm]
-						% Filled region for B
 						\begin{scope}
 							\clip (0,0) 
 							.. controls (1.0, 0.1) and (1.5, 1.4) .. (2.5, 1.4)
@@ -299,8 +297,8 @@ corners=5pt,thick]
 				\inf_{T\::\: T_\#\textcolor{brandAccent}{\mu}=\textcolor{brandPurple}{\nu}} \int_{\mathbb{R}^d} \|\rust{x}-\purp{y}\|^2\textcolor{brandAccent}{\mu(}\mathrm{d}\textcolor{brandAccent}{x)} = \sup_{\phi} \int \phi(\rust{x})\rust{\mu(}\mathrm{d}\rust{x)}+\int\phi^c(\purp{y})\purp{\nu(}\mathrm{d}\purp{y)},
 			\end{equation*}
 			where $\phi^c(\purp{y}):=\inf_{\rust{x}} c(\rust{x},\purp{y})-\phi(\rust{x})$.
-			
-			\item If $T^\star$ exists, then also does $\phi^\star$ and they are linked through
+			\vspace{.5\baselineskip}
+			\item Let $c(\rust{x},\purp{y})=\alpha\|\rust{x}-\purp{y}\|^2$
 			\begin{equation*}
 				\nabla_x c(\rust{x},T^\star(\rust{x}))=\nabla\phi^\star(\rust{x}) \iff T^\star(\rust{x}) - \rust{x} = \underset{\textbf{Displacement}}{\boxed{\purp{y}-\rust{x} = -\frac{1}{2\alpha}\nabla\phi^\star(\rust{x})}}
 			\end{equation*}
@@ -312,11 +310,11 @@ corners=5pt,thick]
 		\begin{itemize}[<+->]
 			\item\textbf{Forward process:} Ornstein--Uhlenbeck (OU) process:
 			\begin{equation*}
-				\d \vec{X}_t = -\vec X_t\d t+\sqrt{2}\d\omega_t,\quad \vec X_0 \sim \mu,\quad t\in[0,T].
+				\d X_t = - X_t\d t+\sqrt{2}\d\omega_t,\quad  X_0 \sim \mu,\quad t\in[0,T].
 			\end{equation*}
-			Let $\vec\rho_t :=\mathrm{Law}(\vec X_t)$ and $\gamma\propto e^{-\|\cdot\|^2/2}$. Then $\vec\rho_t$ solves the Fokker--Planck equation
+			Let $\rho_t :=\mathrm{Law}( X_t)$ and $\gamma\propto e^{-\|\cdot\|^2/2}$. Then $\rho_t$ solves the Fokker--Planck equation
 			\begin{equation}\label{eq:FPE}
-				\partial_t\vec\rho_t(x) = \Delta\vec\rho_t(x) + \mathrm{div}(\vec\rho_t(x)x).\tag*{\rust{($\star$)}}
+				\partial_t\rho_t(x) = \Delta\rho_t(x) + \mathrm{div}(\rho_t(x)x).\tag*{\rust{($\star$)}}
 			\end{equation}
 			whose stationary solution is $\gamma$.
 			
@@ -412,7 +410,7 @@ corners=5pt,thick]
 					\end{array}\right.
 			\end{equation*}
 			\vspace{\baselineskip}
-			\item $\displaystyle G(\theta) = \mathbb{E}_{\purp{y}\sim\purp{\gamma}}\left[ \max_{1\leq i\leq N}\left\{\exp{\theta_i - \frac{c(\rust{\hat x_i^{(n)}},\purp{y})}{2\tau}}\right\}-\frac{1}{N}\sum_{i=1}^N\theta_i \right]$
+			\item $\displaystyle G(\theta) = \mathbb{E}_{\purp{y}\sim\purp{\gamma}}\left[ \exp{-\min_{1\leq i\leq N} \left\{ \frac{c(\rust{\hat x_i^{(n)}},\purp{y})}{2\tau}-\theta_i \right\}}-\frac{1}{N}\sum_{i=1}^N\theta_i \right]$
 		\end{itemize}
 	\end{frame}
 	
@@ -472,141 +470,11 @@ corners=5pt,thick]
 		\end{itemize}
 		
 		\begin{center}
-			\begin{tikzpicture}
-				\begin{axis}[
-					width=0.9\linewidth,
-					height=5.5cm,
-					axis x line=middle, 
-					axis y line=none, 
-					ymin=-0.4, ymax=2.2, % Increased ymax to fit the optimal peak!
-					xmin=-3.5, xmax=3.0,
-					ytick=\empty,
-					xtick=\empty,
-					axis line style={thick, black},
-					clip=false
-					]
-					
-					% ==========================================
-					% SLIDE 1: THETA = (0, 0, 0)
-					% ==========================================
-					\only<1>{
-						\addplot[fill=brandPurple!20!white, draw=none, domain=-3.5:-0.75, samples=50] {exp(-(x+1.5)^2)} \closedcycle;
-						\addplot[fill=brandPurple!20!white, draw=none, domain=-0.75:0.5, samples=50] {exp(-x^2)} \closedcycle;
-						\addplot[fill=brandPurple!20!white, draw=none, domain=0.5:3.0, samples=50] {exp(-(x-1)^2)} \closedcycle;
-						
-						\draw[brandPurple, thick, dashed] (axis cs:-0.75, 0) -- (axis cs:-0.75, {exp(-0.5625)});
-						\draw[brandPurple, thick, dashed] (axis cs:0.5, 0) -- (axis cs:0.5, {exp(-0.25)});
-						
-						\addplot[brandPurple, very thick, domain=-3.5:-0.75, samples=50] {exp(-(x+1.5)^2)};
-						\addplot[brandPurple, very thick, domain=-0.75:0.5, samples=50] {exp(-x^2)};
-						\addplot[brandPurple, very thick, domain=0.5:3.0, samples=50] {exp(-(x-1)^2)};
-						
-						\node[brandAccent, below=4pt] at (axis cs:-1.6, 0) {$\hat{x}_1^{(n+1)}$};
-						\fill[brandAccent] (axis cs:-1.6, 0) circle (2.5pt);
-						\node[brandAccent, below=4pt] at (axis cs:-0.1, 0) {$\hat{x}_2^{(n+1)}$};
-						\fill[brandAccent] (axis cs:-0.1, 0) circle (2.5pt);
-						\node[brandAccent, below=4pt] at (axis cs:1.3, 0) {$\hat{x}_3^{(n+1)}$};
-						\fill[brandAccent] (axis cs:1.3, 0) circle (2.5pt);
-						
-						\node[brandPurple, above] at (axis cs:0, 1.05) {$\tilde{\rho}_K$};
-						
-						\node at (axis cs:2, 2) {$\theta_1 = 0, \theta_2 = 0, \theta_3 = 0$};
-						
-%						\node[brandPurple, above] at (axis cs:0, 2.0) {$\tilde{\rho}_K \quad (\theta_1=0,\: \theta_2=0,\: \theta_3=0)$};
-					}
-					
-					% ==========================================
-					% SLIDE 2: ARBITRARY THETA = (-1.2, 0, -0.5)
-					% ==========================================
-					\only<2>{
-						\addplot[fill=brandPurple!20!white, draw=none, domain=-3.5:-1.15, samples=50] {exp(-1.2 - (x+1.5)^2)} \closedcycle;
-						\addplot[fill=brandPurple!20!white, draw=none, domain=-1.15:0.75, samples=50] {exp(-x^2)} \closedcycle;
-						\addplot[fill=brandPurple!20!white, draw=none, domain=0.75:3.0, samples=50] {exp(-0.5 - (x-1)^2)} \closedcycle;
-						
-						\draw[brandPurple, thick, dashed] (axis cs:-1.15, 0) -- (axis cs:-1.15, {exp(-1.3225)});
-						\draw[brandPurple, thick, dashed] (axis cs:0.75, 0) -- (axis cs:0.75, {exp(-0.5625)});
-						
-						\addplot[brandPurple, very thick, domain=-3.5:-1.15, samples=50] {exp(-1.2 - (x+1.5)^2)};
-						\addplot[brandPurple, very thick, domain=-1.15:0.75, samples=50] {exp(-x^2)};
-						\addplot[brandPurple, very thick, domain=0.75:3.0, samples=50] {exp(-0.5 - (x-1)^2)};
-						
-						\node[brandAccent, below=4pt] at (axis cs:-1.7, 0) {$\hat{x}_1^{(n+1)}$};
-						\fill[brandAccent] (axis cs:-1.7, 0) circle (2.5pt);
-						\node[brandAccent, below=4pt] at (axis cs:-0.15, 0) {$\hat{x}_2^{(n+1)}$};
-						\fill[brandAccent] (axis cs:-0.15, 0) circle (2.5pt);
-						\node[brandAccent, below=4pt] at (axis cs:1.25, 0) {$\hat{x}_3^{(n+1)}$};
-						\fill[brandAccent] (axis cs:1.25, 0) circle (2.5pt);
-						
-						\node[brandPurple, above] at (axis cs:0, 1.05) {$\tilde{\rho}_K$};
-						
-%						\node[brandPurple, above] at (axis cs:0, 2.0) {$\tilde{\rho}_K \quad (\theta_1=-1.2,\: \theta_2=0,\: \theta_3=-0.5)$};
-					}
-					
-					% ==========================================
-					% SLIDE 3: OPTIMAL THETA = (0, 0.6, 0.2)
-					% ==========================================
-					\only<3>{
-						\addplot[fill=brandPurple!20!white, draw=none, domain=-3.5:-0.95, samples=50] {exp(-(x+1.5)^2)} \closedcycle;
-						\addplot[fill=brandPurple!20!white, draw=none, domain=-0.95:0.7, samples=50] {exp(0.6 - x^2)} \closedcycle;
-						\addplot[fill=brandPurple!20!white, draw=none, domain=0.7:3.0, samples=50] {exp(0.2 - (x-1)^2)} \closedcycle;
-						
-						\draw[brandPurple, thick, dashed] (axis cs:-0.95, 0) -- (axis cs:-0.95, {exp(-0.3025)});
-						\draw[brandPurple, thick, dashed] (axis cs:0.7, 0) -- (axis cs:0.7, {exp(0.11)});
-						
-						\addplot[brandPurple, very thick, domain=-3.5:-0.95, samples=50] {exp(-(x+1.5)^2)};
-						\addplot[brandPurple, very thick, domain=-0.95:0.7, samples=50] {exp(0.6 - x^2)};
-						\addplot[brandPurple, very thick, domain=0.7:3.0, samples=50] {exp(0.2 - (x-1)^2)};
-						
-						\node[brandAccent, below=4pt] at (axis cs:-1.65, 0) {$\hat{x}_1^{(n+1)}$};
-						\fill[brandAccent] (axis cs:-1.65, 0) circle (2.5pt);
-						\node[brandAccent, below=4pt] at (axis cs:-0.1, 0) {$\hat{x}_2^{(n+1)}$};
-						\fill[brandAccent] (axis cs:-0.1, 0) circle (2.5pt);
-						\node[brandAccent, below=4pt] at (axis cs:1.2, 0) {$\hat{x}_3^{(n+1)}$};
-						\fill[brandAccent] (axis cs:1.2, 0) circle (2.5pt);
-						
-						\node[brandPurple, above] at (axis cs:0, 1.05) {$\tilde{\rho}_K$};
-						
-%						\node[brandPurple, above] at (axis cs:0, 2.0) {$\tilde{\rho}_K \quad (\theta_1=0,\: \theta_2=0.6,\: \theta_3=0.2)$};
-					}
-					
-					\begin{scope}[shift={(axis cs:-0.2, 1)}]
-						% Background box
-						\fill[white, rounded corners, fill opacity=0.8] (-0.2, -0.4) rectangle (1.7, 1.0);
-						\draw[gray!50, rounded corners] (-0.2, -0.4) rectangle (1.7, 1.0);
-						
-						\node[above, font=\scriptsize, text=brandPurple!90!black] at (0.75, 0.65) {Cell Mass};
-						
-						% The Target Mass Line (1/N)
-						\draw[brandAccent, dashed, thick] (0, 0.4) -- (1.5, 0.4) node[right, font=\tiny] {$1/N$};
-						
-						% Baseline & Labels
-						\draw[gray, thick] (0,0) -- (1.5,0);
-						\node[below, font=\tiny] at (0.25, 0) {1};
-						\node[below, font=\tiny] at (0.75, 0) {2};
-						\node[below, font=\tiny] at (1.25, 0) {3};
-						
-						% Slide 1 Bars (Imbalanced)
-						\only<1>{
-							\fill[brandPurple!60] (0.1, 0) rectangle (0.4, 0.7);
-							\fill[brandPurple!60] (0.6, 0) rectangle (0.9, 0.35);
-							\fill[brandPurple!60] (1.1, 0) rectangle (1.4, 0.15);
-						}
-						% Slide 2 Bars (Imbalanced)
-						\only<2>{
-							\fill[brandPurple!60] (0.1, 0) rectangle (0.4, 0.15);
-							\fill[brandPurple!60] (0.6, 0) rectangle (0.9, 0.85);
-							\fill[brandPurple!60] (1.1, 0) rectangle (1.4, 0.2);
-						}
-						% Slide 3 Bars (Perfectly balanced!)
-						\only<3>{
-							\fill[brandAccent] (0.1, 0) rectangle (0.4, 0.4);
-							\fill[brandAccent] (0.6, 0) rectangle (0.9, 0.4);
-							\fill[brandAccent] (1.1, 0) rectangle (1.4, 0.4);
-						}
-					\end{scope}
-					
-				\end{axis}
-			\end{tikzpicture}
+			\begin{figure}[b]
+				\includegraphics<3>[scale=0.25]{figures/voronoi.png}
+				\includegraphics<4>[scale=0.25]{figures/lag1.png}
+				\includegraphics<5->[scale=0.25]{figures/lagOpt.png}
+			\end{figure}
 		\end{center}
 	\end{frame}
 	
@@ -620,9 +488,9 @@ corners=5pt,thick]
 				column 2/.style={anchor=base west}
 				]
 				
-				\& \purp{\tilde\rho_{n+1}^\tau(}\d \purp{y)}\propto \max_i e^{\theta_i -c_\tau(\rust{\hat x_i^{(n)}},y)}\purp{\gamma(}\d\purp{y)} \arrow[d, phantom, "\rotatebox{90}{$\approx$}"] \\
+				\& \tilde\rho_{n+1}^\tau(\d y)\propto \max_i e^{\theta_i -c_\tau(\hat x_i^{(n)},y)}\gamma(\d y) \arrow[d, phantom, "\rotatebox{90}{$\approx$}"] \\
 				
-				\rust{\hat\rho_n}=\frac{1}{N}\sum_{i=1}^N \delta_{\rust{\hat x_i^{(n)}}} \arrow[ru, bend left, "\mathrm{JKO}_\tau",start anchor=north east, end anchor=west] \arrow[r, "\mathrm{pSGD}", start anchor=east, end anchor=west] \arrow[rd, dashed, "\mathpzc{T}"', start anchor=south east, end anchor=west] \& \purp{\tilde\rho_K(}\d \purp{y)}\propto \max_i e^{[\hat\theta_K]_i -c_\tau(\rust{\hat x_i^{(n)}},y)}\purp{\gamma(}\d\purp{y)} \arrow[d, "\textrm{Barycentric map}"] \\
+				\hat\rho_n=\frac{1}{N}\sum_{i=1}^N \delta_{\hat x_i^{(n)}} \arrow[ru, bend left, "\mathrm{JKO}_\tau",start anchor=north east, end anchor=west] \arrow[r, "\mathrm{pSGD}", start anchor=east, end anchor=west] \arrow[rd, dashed, "\mathpzc{T}"', start anchor=south east, end anchor=west] \& \tilde\rho_K(\d y)\propto \max_i e^{[\hat\theta_K]_i -c_\tau(\hat x_i^{(n)},y)}\gamma(\d y) \arrow[d, "\textrm{Barycentric map}"] \\
 				
 				\& \rust{\hat\rho_{n+1}} := \frac{1}{N}\sum_{i=1}^N \delta_{\rust{\hat x_i^{(n+1)}}}
 			\end{tikzcd}
@@ -649,13 +517,84 @@ corners=5pt,thick]
 	\end{frame}
 	
 	
+	\begin{frame}[t]{How to reverse the flow???}
+		\begin{itemize}[<+->]
+			\item The true score is piecewise linear
+			
+			\item So the reverse flow is \textbf{piecewise constant}
+			
+			\item \textbf{No hope} to generate anything, if that's what you had in mind :(
+		\end{itemize}
+		
+		\begin{center}
+			\only<4->{
+			\begin{tikzpicture}[scale=0.8, transform shape]
+				
+				\clip (-4.5, -3.5) rectangle (4.5, 3.8);
+				
+				\coordinate (X1) at (-2.5, -1);
+				\coordinate (X2) at (2.5, -1.5);
+				\coordinate (X3) at (0, 2);
+				
+				\coordinate (V) at (0, -0.2);
+				\coordinate (E1) at (0, -5);
+				\coordinate (E2) at (-6, 3.85);
+				\coordinate (E3) at (6, 3.1);
+				
+				\fill[brandPurple!15] (V) -- (E1) -- (-5, -5) -- (-5, 5) -- (E2) -- cycle;
+				\fill[brandPurple!30] (V) -- (E1) -- (5, -5) -- (5, 5) -- (E3) -- cycle;
+				\fill[brandPurple!10] (V) -- (E2) -- (-5, 5) -- (5, 5) -- (E3) -- cycle;
+				
+				\draw[very thick, dashed, brandPurple!80!black] (V) -- (E1);
+				\draw[very thick, dashed, brandPurple!80!black] (V) -- (E2);
+				\draw[very thick, dashed, brandPurple!80!black] (V) -- (E3);
+				
+				\tikzset{flow/.style={->, thick, brandAccent, shorten >=2pt}}
+				
+				\foreach \pt in {(-3.5, -2), (-2.5, 1.5), (-1, -2.5)} {
+					\fill<4->[gray] \pt circle (1.5pt); 
+					\draw<5->[flow, opacity=0.8] \pt -- (X1); 
+				}
+				
+				\foreach \pt in {(3.5, -2), (2.5, 0.8), (1.5, -2.5)} {
+					\fill<4->[gray] \pt circle (1.5pt); 
+					\draw<5->[flow, opacity=0.8] \pt -- (X2); 
+				}
+				
+				\foreach \pt in {(-2.5, 3), (2.5, 3.2)} {
+					\fill<4->[gray] \pt circle (1.5pt); 
+					\draw<5->[flow, opacity=0.8] \pt -- (X3); 
+				}
+				
+				\fill[brandAccent] (X1) circle (3pt) node[below=4pt, font=\bfseries] {$\hat{x}_1^{(n)}$};
+				\fill[brandAccent] (X2) circle (3pt) node[below=4pt, font=\bfseries] {$\hat{x}_2^{(n)}$};
+				\fill[brandAccent] (X3) circle (3pt) node[right=4pt, font=\bfseries] {$\hat{x}_3^{(n)}$};
+				
+				%\node[brandPurple!90!black, font=\large\bfseries] at (-2, -0.2) {$L_1$};
+				%\node[brandPurple!90!black, font=\large\bfseries] at (2, -0.5) {$L_2$};
+				%\node[brandPurple!90!black, font=\large\bfseries] at (0, 2.8) {$L_3$};
+				
+				%\node[draw, fill=white, rounded corners, right] at (-4.2, -2.5) {
+				%	\footnotesize
+				%	\begin{tabular}{cl}
+				%		\textcolor{gray}{$\bullet$} & Initial Random Noise $Y_0$ \\
+				%		\textcolor{brandAccent}{$\rightarrow$} & Score Flow $\nabla \log \tilde{\rho}_K$ \\
+				%		\textcolor{brandAccent}{\Large $\bullet$} & Memorized Data Point
+				%	\end{tabular}
+				%};
+				
+			\end{tikzpicture}
+		}
+		\end{center}
+	\end{frame}
+	
+	
 	
 	\begin{frame}[t]{What comes next?}
 		\begin{itemize}[<+->]
 			\item Change the parametrisation: $\phi_\theta := \theta^\top\phi$
 			\item Choose a good class of functions $\phi$
-			\item Find a good way to reverse the learned flow
-			\item (Do more advanced simulations?)
+			\item Do simulations in higher dimensions
 		\end{itemize}
 		\pause
 		\vspace{3\baselineskip}
