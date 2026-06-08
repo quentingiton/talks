@@ -39,6 +39,8 @@ corners=5pt,thick]
 \usetikzlibrary{arrows.meta, positioning, calc}
 \usepackage{esvect}
 \usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{qrcode}
 
 \DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
 
@@ -152,7 +154,8 @@ corners=5pt,thick]
 	Approximating the Score Function using Semi-Discrete Optimal Transport
 }
 \subtitle{Curves and Surfaces 2026}
-\author{Quentin Giton}
+\author{Quentin Giton \\
+{\small PhD advisors: Thomas Gallouët (LMO) and Ziad Kobeissi (L2S)}}
 \institute{Laboratoire de Mathématiques d'Orsay}
 \date{June 11th} % Leave empty if no date is desired
 
@@ -312,11 +315,11 @@ corners=5pt,thick]
 			\begin{equation*}
 				\d X_t = - X_t\d t+\sqrt{2}\d\omega_t,\quad  X_0 \sim \mu,\quad t\in[0,T].
 			\end{equation*}
-			Let $\rho_t :=\mathrm{Law}( X_t)$ and $\gamma\propto e^{-\|\cdot\|^2/2}$. Then $\rho_t$ solves the Fokker--Planck equation
+			Let $\rho_t :=\mathrm{Law}( X_t)$. Then $\rho_t$ solves the Fokker--Planck equation
 			\begin{equation}\label{eq:FPE}
 				\partial_t\rho_t(x) = \Delta\rho_t(x) + \mathrm{div}(\rho_t(x)x).\tag*{\rust{($\star$)}}
 			\end{equation}
-			whose stationary solution is $\gamma$.
+			whose stationary solution is $\gamma\propto e^{-\|\cdot\|^2/2}$.
 			
 			\item \textbf{Macroscopic POV:} Equation \ref{eq:FPE} is the $2$-Wasserstein Gradient Flow of the relative entropy $\mathcal{H}(\rho\vert\gamma):=\int \frac{\|x\|^2}{2}\rho+\int\rho\ln{\rho}$. It means \ref{eq:FPE} can be written as
 			\begin{equation*}
@@ -342,11 +345,11 @@ corners=5pt,thick]
 			
 			\item \textbf{At step $n$:} We show that
 			\begin{equation*}
-				\purp{\rho_{n+1}^\tau}\propto\exp{-\phi^{c/2\tau}}\d\purp{\gamma}
+				\purp{\rho_{n+1}^\tau}\propto\exp{-(\phi^\star)^{c/2\tau}}\d\purp{\gamma}
 			\end{equation*}
-			where $\phi$ is such that
+			where $\phi^\star$ is a Kantorovich potential satisfying
 			\begin{equation*}
-				\inf_\phi \tilde J(\phi) := \ln{\int e^{-\phi^{c/2\tau}}\d\purp{\gamma}} - \int\phi\d\rust{\rho_n^\tau}.
+				\phi^\star\in\argmin{\phi} \tilde J(\phi) := \ln{\int e^{-\phi^{c/2\tau}}\d\purp{\gamma}} - \int\phi\d\rust{\rho_n^\tau}.
 			\end{equation*}
 		\end{itemize}
 	\end{frame}
@@ -354,10 +357,10 @@ corners=5pt,thick]
 	
 	
 	\begin{frame}[t]{Using OT to learn the score 2/2}
-		Recall that:
-		\begin{equation*}
-			\purp{\rho_{n+1}^\tau}\propto\exp{-(\phi^\star)^{c/2\tau}}\d\purp{\gamma} \quad \text{where}\quad \phi^\star\in\argmin{\phi} \tilde J(\phi) := \ln{\int e^{-\phi^{c/2\tau}}\d\purp{\gamma}} - \int\phi\d\rust{\rho_n^\tau}
-		\end{equation*}
+%		Recall that:
+%		\begin{equation*}
+%			\purp{\rho_{n+1}^\tau}\propto\exp{-(\phi^\star)^{c/2\tau}}\d\purp{\gamma} \quad \text{where}\quad \phi^\star\in\argmin{\phi} \tilde J(\phi) := \ln{\int e^{-\phi^{c/2\tau}}\d\purp{\gamma}} - \int\phi\d\rust{\rho_n^\tau}
+%		\end{equation*}
 		\begin{itemize}[<+->]
 			\item The optimal potential $\phi^\star$ satisfies ($\alpha=\frac{1}{2\tau}$ here)
 			\begin{equation*}
@@ -367,6 +370,11 @@ corners=5pt,thick]
 			\item The displacement of the particle $\rust{x}$ being $\tau v_t(\rust{x})$, we obtain
 			\begin{equation*}
 				-\tau\nabla\phi^\star(\rust{x}) = \tau v_t(\rust{x}) = -\tau (\rust{x}+\nabla\ln{\rho_{n+1}^\tau(\rust{x})}) \iff \boxed{\nabla\ln{\rho_{n+1}^\tau(\rust{x})} = \nabla\phi^\star(\rust{x})-\rust{x}}.
+			\end{equation*}
+			
+			\item We'll approximate the score by approximating the Kantorovich potential $\phi^\star$, that minimises the functional:
+			\begin{equation*}
+				\tilde J(\phi) = \ln{\int e^{-\phi^{c/2\tau}}}\d\purp{\gamma}-\int\phi\d\rust{\rho_n^\tau}
 			\end{equation*}
 		\end{itemize}
 	\end{frame}
@@ -380,10 +388,7 @@ corners=5pt,thick]
 		\pause
 		\vspace{\baselineskip}
 		\begin{mythm*}{\itshape (G.)}
-			Let
-			\begin{equation*}
-				J(\phi) := \int e^{-\phi^{c/2\tau}}\d\purp{\gamma}-\int\phi\d\rust{\rho_n^\tau}.
-			\end{equation*}
+			Let $J(\phi) := \int e^{-\phi^{c/2\tau}}\d\purp{\gamma}-\int\phi\d\rust{\rho_n^\tau}$.
 			Then,
 			\begin{equation*}
 				\argmin{\phi}J(\phi) \subseteq \argmin{\phi}
@@ -391,11 +396,19 @@ corners=5pt,thick]
 				J(\phi).
 			\end{equation*}
 		\end{mythm*}
+		\begin{columns}[T]
+			\begin{column}{0.48\textwidth}
+				\hspace{0.75em}\textbf{Pro:} $J$ is "SGDisable"
+			\end{column}
+			\begin{column}{0.48\textwidth}
+				\textbf{Con:} one more parameter to estimate (the normalisation constant!)\
+			\end{column}
+		\end{columns}
 	\end{frame}
 	
 	
 	
-	\begin{frame}[t]{Stochastic gradient descent 1/2}
+	\begin{frame}[t]{Stochastic gradient descent 1/3}
 		\begin{itemize}[<+->]
 			\item $\displaystyle J(\phi) = \mathbb{E}_{\purp{y}\sim\purp{\gamma}}\left[ \exp{-\phi^{c/2\tau}(\purp{y})}-\int\phi(\rust{x})\rust{\rho_n^\tau(}\d\rust{x)} \right]$
 			\vspace{\baselineskip}
@@ -410,25 +423,34 @@ corners=5pt,thick]
 					\end{array}\right.
 			\end{equation*}
 			\vspace{\baselineskip}
-			\item $\displaystyle G(\theta) = \mathbb{E}_{\purp{y}\sim\purp{\gamma}}\left[ \exp{-\min_{1\leq i\leq N} \left\{ \frac{c(\rust{\hat x_i^{(n)}},\purp{y})}{2\tau}-\theta_i \right\}}-\frac{1}{N}\sum_{i=1}^N\theta_i \right]$
+			\item $\displaystyle G(\theta) := J(\phi(\cdot;\theta)) = \mathbb{E}_{\purp{y}\sim\purp{\gamma}}\left[ \exp{-\min_{1\leq i\leq N} \left\{ \frac{c(\rust{\hat x_i^{(n)}},\purp{y})}{2\tau}-\theta_i \right\}}-\frac{1}{N}\sum_{i=1}^N\theta_i \right]$
 		\end{itemize}
 	\end{frame}
 	
 	
 	
-	\begin{frame}[t]{Stochastic gradient descent 2/2}
-		Projected SGD algorithm $\big(c_\tau(\rust{x},\purp{y}):=\frac{c(\rust{x},\purp{y})}{2\tau}\big)$
+	\begin{frame}[t]{Stochastic gradient descent 2/3}
+		Projected SGD algorithm $\big(c_\tau(\rust{x},\purp{y}):=\frac{c(\rust{x},\purp{y})}{2\tau}\big)$ for some $R_\mathrm{proj}$:
 		\begin{equation*}
 			\left\{
 			\begin{array}{l}
 				\text{pick } \purp{y}\sim \purp{\gamma} \\
 				\text{let } i :=\mathrm{arg}\,\mathrm{min}_j\  c_\tau(\rust{\hat x_j^{(n)}},\purp{y})-\theta_j \\
 				\text{define } e_i \text{ as the $i$-th canonical basis vector of $\mathbb{R}^N$} \\
-				\theta^{(k+1)} := \mathrm{proj}_{B(0,R_\mathrm{proj})}\left( \theta^{(k)} -  \alpha_ke^{\theta_i^{(k)}-c_\tau(\rust{\hat x_j^{(n)}},\purp{y})}e_i+ \frac{\alpha_k}{N}\mathds{1} \right)
+				\theta^{(k+1)} := \mathrm{proj}_{B(0,R_\mathrm{proj})}\left( \theta^{(k)} -  \alpha_k \smash{\underbrace{e^{\theta_i^{(k)}-c_\tau(\rust{\hat x_j^{(n)}},\purp{y})}}_{\text{A priori \emph{unbounded}!}}}e_i+ \frac{\alpha_k}{N}\mathds{1} \right)
 			\end{array}
 			\right.
 		\end{equation*}
-		
+		\pause
+		\vspace{2\baselineskip}
+		\begin{itemize}
+			\item Gradient bounded by $e^{R_\mathrm{proj}}$
+		\end{itemize}
+	\end{frame}
+	
+	
+	
+	\begin{frame}[t]{Stochastic gradient descent 3/3}
 		\begin{mythm*}{\itshape (G.)}
 			\begin{itemize}
 				\item $\alpha_k = \frac{C}{\sqrt{k}},\quad \hat\theta_K := \frac{1}{K}\sum_{k=0}^K \theta^{(k)}$
@@ -439,6 +461,11 @@ corners=5pt,thick]
 			\end{equation*}
 			where $\theta^\star$ denotes the unique minimiser of $G$.
 		\end{mythm*}
+		\pause
+		\vspace{1.5\baselineskip}
+		\begin{itemize}
+			\item $B \approx e^{R_\mathrm{proj}}$\hspace{2em} \only<3->{{\Huge\textcolor{brandRed}{\frownie{}}}}
+		\end{itemize}
 	\end{frame}
 	
 	
@@ -454,7 +481,7 @@ corners=5pt,thick]
 				
 				\& |[visible on=<2->]| \purp{\tilde\rho_{n+1}^\tau(}\d \purp{y)}\propto \max_i e^{\theta_i -c_\tau(\rust{\hat x_i^{(n)}},y)}\purp{\gamma(}\d\purp{y)} \arrow[d, phantom, "\rotatebox{90}{$\approx$}", visible on=<3->] \\
 				
-				\rust{\hat\rho_n}=\frac{1}{N}\sum_{i=1}^N \delta_{\rust{\hat x_i^{(n)}}} \arrow[ru, bend left, "\mathrm{JKO}_\tau", visible on=<2->, start anchor=north east, end anchor=west] \arrow[r, "\mathrm{pSGD}", visible on=<3->, start anchor=east, end anchor=west] \arrow[rd, dashed, "\mathpzc{T}"', visible on=<5->, start anchor=south east, end anchor=west] \& |[visible on=<3->]| \purp{\tilde\rho_K(}\d \purp{y)}\propto \max_i e^{[\hat\theta_K]_i -c_\tau(\rust{\hat x_i^{(n)}},y)}\purp{\gamma(}\d\purp{y)} \arrow[d, "\textrm{Barycentric map}", visible on=<4->] \\
+				\rust{\hat\rho_n}=\frac{1}{N}\sum_{i=1}^N \delta_{\rust{\hat x_i^{(n)}}} \arrow[ru, dashed, bend left, "\text{Theoretical }\mathrm{JKO}_\tau", visible on=<2->, start anchor=north east, end anchor=west] \arrow[r, "\mathrm{pSGD}", visible on=<3->, start anchor=east, end anchor=west] \arrow[rd, "\mathbf{\mathpzc{T}}"', visible on=<5->, start anchor=south east, end anchor=west, line width=1pt] \& |[visible on=<3->]| \purp{\tilde\rho_K(}\d \purp{y)}\propto \max_i e^{[\hat\theta_K]_i -c_\tau(\rust{\hat x_i^{(n)}},y)}\purp{\gamma(}\d\purp{y)} \arrow[d, "\textrm{Barycentric map}", visible on=<4->] \\
 				
 				\& |[visible on=<4->]| \only<4-5>{\purp{\hat\rho_{n+1}} := \frac{1}{N}\sum_{i=1}^N \delta_{\purp{\hat x_i^{(n+1)}}}}
 			\end{tikzcd}
@@ -476,6 +503,14 @@ corners=5pt,thick]
 				\includegraphics<5->[scale=0.25]{figures/lagOpt.png}
 			\end{figure}
 		\end{center}
+		
+		\begin{tikzpicture}[remember picture, overlay]
+			\node[anchor=south east, inner sep=0pt, visible on=<3->] at ([xshift=-2.8cm, yshift=0.5cm] current page.south east) {
+				\colorbox{white}{
+					\qrcode[height=1.5cm]{https://quentingiton.github.io/scripts/1d-laguerre-cells}
+				}
+			};
+		\end{tikzpicture}
 	\end{frame}
 	
 	
