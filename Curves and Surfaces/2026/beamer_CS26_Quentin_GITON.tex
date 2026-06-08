@@ -297,13 +297,13 @@ corners=5pt,thick]
 		\begin{itemize}[<+->]
 			\item Kantorovich duality
 			\begin{equation*}
-				\inf_{T\::\: T_\#\textcolor{brandAccent}{\mu}=\textcolor{brandPurple}{\nu}} \int_{\mathbb{R}^d} \|\rust{x}-\purp{y}\|^2\textcolor{brandAccent}{\mu(}\mathrm{d}\textcolor{brandAccent}{x)} = \sup_{\phi} \int \phi(\rust{x})\rust{\mu(}\mathrm{d}\rust{x)}+\int\phi^c(\purp{y})\purp{\nu(}\mathrm{d}\purp{y)},
+				\inf_{T\::\: T_\#\textcolor{brandAccent}{\mu}=\textcolor{brandPurple}{\nu}} \int_{\mathbb{R}^d} \|\rust{x}-\purp{y}\|^2\textcolor{brandAccent}{\mu(}\mathrm{d}\textcolor{brandAccent}{x)} = \sup_{\varphi} \int \varphi(\rust{x})\rust{\mu(}\mathrm{d}\rust{x)}+\int\varphi^c(\purp{y})\purp{\nu(}\mathrm{d}\purp{y)},
 			\end{equation*}
-			where $\phi^c(\purp{y}):=\inf_{\rust{x}} c(\rust{x},\purp{y})-\phi(\rust{x})$.
+			where $\varphi^c(\purp{y}):=\inf_{\rust{x}} c(\rust{x},\purp{y})-\varphi(\rust{x})$.
 			\vspace{.5\baselineskip}
 			\item Let $c(\rust{x},\purp{y})=\alpha\|\rust{x}-\purp{y}\|^2$
 			\begin{equation*}
-				\nabla_x c(\rust{x},T^\star(\rust{x}))=\nabla\phi^\star(\rust{x}) \iff T^\star(\rust{x}) - \rust{x} = \underset{\textbf{Displacement}}{\boxed{\purp{y}-\rust{x} = -\frac{1}{2\alpha}\nabla\phi^\star(\rust{x})}}
+				\nabla_x c(\rust{x},T^\star(\rust{x}))=\nabla\varphi^\star(\rust{x}) \iff T^\star(\rust{x}) - \rust{x} = \underset{\textbf{Displacement}}{\boxed{\purp{y}-\rust{x} = -\frac{1}{2\alpha}\nabla\varphi^\star(\rust{x})}}
 			\end{equation*}
 		\end{itemize}
 	\end{frame}
@@ -345,11 +345,11 @@ corners=5pt,thick]
 			
 			\item \textbf{At step $n$:} We show that
 			\begin{equation*}
-				\purp{\rho_{n+1}^\tau}\propto\exp{-(\phi^\star)^{c/2\tau}}\d\purp{\gamma}
+				\purp{\rho_{n+1}^\tau}\propto\exp{-(\varphi^\star)^{c/2\tau}}\d\purp{\gamma}
 			\end{equation*}
-			where $\phi^\star$ is a Kantorovich potential satisfying
+			where $\varphi^\star$ is a Kantorovich potential satisfying
 			\begin{equation*}
-				\phi^\star\in\argmin{\phi} \tilde J(\phi) := \ln{\int e^{-\phi^{c/2\tau}}\d\purp{\gamma}} - \int\phi\d\rust{\rho_n^\tau}.
+				\varphi^\star\in\argmin{\varphi} \tilde J(\varphi) := \ln{\int e^{-\varphi^{c/2\tau}}\d\purp{\gamma}} - \int\varphi\d\rust{\rho_n^\tau}.
 			\end{equation*}
 		\end{itemize}
 	\end{frame}
@@ -359,22 +359,22 @@ corners=5pt,thick]
 	\begin{frame}[t]{Using OT to learn the score 2/2}
 %		Recall that:
 %		\begin{equation*}
-%			\purp{\rho_{n+1}^\tau}\propto\exp{-(\phi^\star)^{c/2\tau}}\d\purp{\gamma} \quad \text{where}\quad \phi^\star\in\argmin{\phi} \tilde J(\phi) := \ln{\int e^{-\phi^{c/2\tau}}\d\purp{\gamma}} - \int\phi\d\rust{\rho_n^\tau}
+%			\purp{\rho_{n+1}^\tau}\propto\exp{-(\varphi^\star)^{c/2\tau}}\d\purp{\gamma} \quad \text{where}\quad \varphi^\star\in\argmin{\varphi} \tilde J(\varphi) := \ln{\int e^{-\varphi^{c/2\tau}}\d\purp{\gamma}} - \int\varphi\d\rust{\rho_n^\tau}
 %		\end{equation*}
 		\begin{itemize}[<+->]
-			\item The optimal potential $\phi^\star$ satisfies ($\alpha=\frac{1}{2\tau}$ here)
+			\item The optimal potential $\varphi^\star$ satisfies ($\alpha=\frac{1}{2\tau}$ here)
 			\begin{equation*}
-				\underset{\textbf{Displacement}}{\boxed{-\tau\nabla\phi^\star(\rust{x}) = \purp{y}-\rust{x}}}
+				\underset{\textbf{Displacement}}{\boxed{-\tau\nabla\varphi^\star(\rust{x}) = \purp{y}-\rust{x}}}
 			\end{equation*}
 			
 			\item The displacement of the particle $\rust{x}$ being $\tau v_t(\rust{x})$, we obtain
 			\begin{equation*}
-				-\tau\nabla\phi^\star(\rust{x}) = \tau v_t(\rust{x}) = -\tau (\rust{x}+\nabla\ln{\rho_{n+1}^\tau(\rust{x})}) \iff \boxed{\nabla\ln{\rho_{n+1}^\tau(\rust{x})} = \nabla\phi^\star(\rust{x})-\rust{x}}.
+				-\tau\nabla\varphi^\star(\rust{x}) = \tau v_t(\rust{x}) = -\tau (\rust{x}+\nabla\ln{\rho_{n+1}^\tau(\rust{x})}) \iff \boxed{\nabla\ln{\rho_{n+1}^\tau(\rust{x})} = \nabla\varphi^\star(\rust{x})-\rust{x}}.
 			\end{equation*}
 			
-			\item We'll approximate the score by approximating the Kantorovich potential $\phi^\star$, that minimises the functional:
+			\item We'll approximate the score by approximating the Kantorovich potential $\varphi^\star$, that minimises the functional:
 			\begin{equation*}
-				\tilde J(\phi) = \ln{\int e^{-\phi^{c/2\tau}}}\d\purp{\gamma}-\int\phi\d\rust{\rho_n^\tau}
+				\tilde J(\varphi) = \ln{\int e^{-\varphi^{c/2\tau}}}\d\purp{\gamma}-\int\varphi\d\rust{\rho_n^\tau}
 			\end{equation*}
 		\end{itemize}
 	\end{frame}
@@ -383,17 +383,17 @@ corners=5pt,thick]
 	
 	\begin{frame}[t]{General contributions}
 		\begin{myprop*}{\itshape (G.)}
-			The functional $\tilde J(\phi):=\ln{\int e^{-\phi^{c/2\tau}}\d\purp{\gamma}}-\int\phi\d\rust{\rho_n^\tau}$ is convex.
+			The functional $\tilde J(\varphi):=\ln{\int e^{-\varphi^{c/2\tau}}\d\purp{\gamma}}-\int\varphi\d\rust{\rho_n^\tau}$ is convex.
 		\end{myprop*}
 		\pause
 		\vspace{\baselineskip}
 		\begin{mythm*}{\itshape (G.)}
-			Let $J(\phi) := \int e^{-\phi^{c/2\tau}}\d\purp{\gamma}-\int\phi\d\rust{\rho_n^\tau}$.
+			Let $J(\varphi) := \int e^{-\varphi^{c/2\tau}}\d\purp{\gamma}-\int\varphi\d\rust{\rho_n^\tau}$.
 			Then,
 			\begin{equation*}
-				\argmin{\phi}J(\phi) \subseteq \argmin{\phi}
-				\tilde{J}(\phi) \quad \text{and}\quad \argmin{\int e^{-\phi^{c/2\tau}}\d\purp{\gamma}=1}\tilde J(\phi) = \argmin{\phi}
-				J(\phi).
+				\argmin{\varphi}J(\varphi) \subseteq \argmin{\varphi}
+				\tilde{J}(\varphi) \quad \text{and}\quad \argmin{\int e^{-\varphi^{c/2\tau}}\d\purp{\gamma}=1}\tilde J(\varphi) = \argmin{\varphi}
+				J(\varphi).
 			\end{equation*}
 		\end{mythm*}
 		\begin{columns}[T]
@@ -410,20 +410,20 @@ corners=5pt,thick]
 	
 	\begin{frame}[t]{Stochastic gradient descent 1/3}
 		\begin{itemize}[<+->]
-			\item $\displaystyle J(\phi) = \mathbb{E}_{\purp{y}\sim\purp{\gamma}}\left[ \exp{-\phi^{c/2\tau}(\purp{y})}-\int\phi(\rust{x})\rust{\rho_n^\tau(}\d\rust{x)} \right]$
+			\item $\displaystyle J(\varphi) = \mathbb{E}_{\purp{y}\sim\purp{\gamma}}\left[ \exp{-\varphi^{c/2\tau}(\purp{y})}-\int\varphi(\rust{x})\rust{\rho_n^\tau(}\d\rust{x)} \right]$
 			\vspace{\baselineskip}
 			\item Choice of parametrisation: semi-discrete optimal transport using
 			\begin{equation*}
 				\rust{\hat\rho_n^\tau} = \frac{1}{N}\sum_{i=1}^N \delta_{\rust{\hat x_i^{(n)}}} \leadsto 
 				\left\{ 
 					\begin{array}{l}
-						\phi(x;\theta) = \theta^\top\Phi(x) \\
-						\Phi(x) = (\Phi_1(x),\dots, \Phi_N(x)) \\
-						\Phi_i(x) = \mathds{1}_{\{x = \hat x_i^{(n)}\}}
+						\varphi(x;\theta) = \theta^\top\varphi(x) \\
+						\varphi(x) = (\varphi_1(x),\dots, \varphi_N(x)) \\
+						\varphi_i(x) = \mathds{1}_{\{x = \hat x_i^{(n)}\}}
 					\end{array}\right.
 			\end{equation*}
 			\vspace{\baselineskip}
-			\item $\displaystyle G(\theta) := J(\phi(\cdot;\theta)) = \mathbb{E}_{\purp{y}\sim\purp{\gamma}}\left[ \exp{-\min_{1\leq i\leq N} \left\{ \frac{c(\rust{\hat x_i^{(n)}},\purp{y})}{2\tau}-\theta_i \right\}}-\frac{1}{N}\sum_{i=1}^N\theta_i \right]$
+			\item $\displaystyle G(\theta) := J(\varphi(\cdot;\theta)) = \mathbb{E}_{\purp{y}\sim\purp{\gamma}}\left[ \exp{-\min_{1\leq i\leq N} \left\{ \frac{c(\rust{\hat x_i^{(n)}},\purp{y})}{2\tau}-\theta_i \right\}}-\frac{1}{N}\sum_{i=1}^N\theta_i \right]$
 		\end{itemize}
 	\end{frame}
 	
@@ -627,8 +627,8 @@ corners=5pt,thick]
 	
 	\begin{frame}[t]{What comes next?}
 		\begin{itemize}[<+->]
-			\item Change the parametrisation: $\phi_\theta := \theta^\top\phi$
-			\item Choose a good class of functions $\phi$
+			\item Change the parametrisation: $\varphi_\theta := \theta^\top\varphi$
+			\item Choose a good class of functions $\varphi$
 			\item Do simulations in higher dimensions
 		\end{itemize}
 		\vspace{3\baselineskip}
@@ -655,7 +655,7 @@ corners=5pt,thick]
 %			\]
 %		\end{mytheorem}
 %		\vspace{1em}
-%		where $\bar{\theta}_{T}^n$ denotes the arithmetic mean of the family $(\theta^{(k)})_{k=1}^{T}$ and $B$ depends only on $R$ and $\sup_x \|\phi(x)\|$.
+%		where $\bar{\theta}_{T}^n$ denotes the arithmetic mean of the family $(\theta^{(k)})_{k=1}^{T}$ and $B$ depends only on $R$ and $\sup_x \|\varphi(x)\|$.
 %	\end{frame}
 %	
 %	% --- Video Implementation Example ---

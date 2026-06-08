@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.28)  8 JUN 2026 11:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.28)  8 JUN 2026 11:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1665,7 +1665,7 @@ File: uwasy.fd 2020/01/19 v2.4 Wasy-2 symbol font definitions
 exmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/texlive/2025/texmf-dist/fonts/enc/dv
 ips/lm/lm-mathsy.enc}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathex.e
 nc}]
-Overfull \vbox (15.20026pt too high) detected at line 309
+Overfull \vbox (13.97804pt too high) detected at line 309
  []
 
 
@@ -1673,7 +1673,7 @@ Overfull \vbox (15.20026pt too high) detected at line 309
 [3
 
 ]
-Overfull \vbox (15.20026pt too high) detected at line 309
+Overfull \vbox (13.97804pt too high) detected at line 309
  []
 
 
@@ -1697,12 +1697,12 @@ Overfull \vbox (15.20026pt too high) detected at line 309
 [8
 
 ]
-Overfull \hbox (14.04353pt too wide) detected at line 380
+Overfull \hbox (15.321pt too wide) detected at line 380
 \OMS/lmsy/m/n/10.95 ^^@\OML/lmm/m/it/10.95 ^^\\OMS/lmsy/m/n/10.95 r\OML/lmm/m/i
-t/10.95 ^^^[]\OT1/lmr/m/n/10.95 ([][]) = \OML/lmm/m/it/10.95 ^^\v[]\OT1/lmr/m/n
-/10.95 ([][]) = \OMS/lmsy/m/n/10.95 ^^@\OML/lmm/m/it/10.95 ^^\\OT1/lmr/m/n/10.9
-5 ([][] + \OMS/lmsy/m/n/10.95 r[] []\OT1/lmr/m/n/10.95 )  \OMS/lmsy/m/n/10.95 (
-[])  []\OML/lmm/m/it/10.95 :
+t/10.95 '[]\OT1/lmr/m/n/10.95 ([][]) = \OML/lmm/m/it/10.95 ^^\v[]\OT1/lmr/m/n/1
+0.95 ([][]) = \OMS/lmsy/m/n/10.95 ^^@\OML/lmm/m/it/10.95 ^^\\OT1/lmr/m/n/10.95 
+([][] + \OMS/lmsy/m/n/10.95 r[] []\OT1/lmr/m/n/10.95 )  \OMS/lmsy/m/n/10.95 ([]
+)  []\OML/lmm/m/it/10.95 :
  []
 
 
@@ -1710,12 +1710,12 @@ t/10.95 ^^^[]\OT1/lmr/m/n/10.95 ([][]) = \OML/lmm/m/it/10.95 ^^\v[]\OT1/lmr/m/n
 [9
 
 ]
-Overfull \hbox (14.04353pt too wide) detected at line 380
+Overfull \hbox (15.321pt too wide) detected at line 380
 \OMS/lmsy/m/n/10.95 ^^@\OML/lmm/m/it/10.95 ^^\\OMS/lmsy/m/n/10.95 r\OML/lmm/m/i
-t/10.95 ^^^[]\OT1/lmr/m/n/10.95 ([][]) = \OML/lmm/m/it/10.95 ^^\v[]\OT1/lmr/m/n
-/10.95 ([][]) = \OMS/lmsy/m/n/10.95 ^^@\OML/lmm/m/it/10.95 ^^\\OT1/lmr/m/n/10.9
-5 ([][] + \OMS/lmsy/m/n/10.95 r[] []\OT1/lmr/m/n/10.95 )  \OMS/lmsy/m/n/10.95 (
-[])  []\OML/lmm/m/it/10.95 :
+t/10.95 '[]\OT1/lmr/m/n/10.95 ([][]) = \OML/lmm/m/it/10.95 ^^\v[]\OT1/lmr/m/n/1
+0.95 ([][]) = \OMS/lmsy/m/n/10.95 ^^@\OML/lmm/m/it/10.95 ^^\\OT1/lmr/m/n/10.95 
+([][] + \OMS/lmsy/m/n/10.95 r[] []\OT1/lmr/m/n/10.95 )  \OMS/lmsy/m/n/10.95 ([]
+)  []\OML/lmm/m/it/10.95 :
  []
 
 
@@ -1723,12 +1723,12 @@ t/10.95 ^^^[]\OT1/lmr/m/n/10.95 ([][]) = \OML/lmm/m/it/10.95 ^^\v[]\OT1/lmr/m/n
 [10
 
 ]
-Overfull \hbox (14.04353pt too wide) detected at line 380
+Overfull \hbox (15.321pt too wide) detected at line 380
 \OMS/lmsy/m/n/10.95 ^^@\OML/lmm/m/it/10.95 ^^\\OMS/lmsy/m/n/10.95 r\OML/lmm/m/i
-t/10.95 ^^^[]\OT1/lmr/m/n/10.95 ([][]) = \OML/lmm/m/it/10.95 ^^\v[]\OT1/lmr/m/n
-/10.95 ([][]) = \OMS/lmsy/m/n/10.95 ^^@\OML/lmm/m/it/10.95 ^^\\OT1/lmr/m/n/10.9
-5 ([][] + \OMS/lmsy/m/n/10.95 r[] []\OT1/lmr/m/n/10.95 )  \OMS/lmsy/m/n/10.95 (
-[])  []\OML/lmm/m/it/10.95 :
+t/10.95 '[]\OT1/lmr/m/n/10.95 ([][]) = \OML/lmm/m/it/10.95 ^^\v[]\OT1/lmr/m/n/1
+0.95 ([][]) = \OMS/lmsy/m/n/10.95 ^^@\OML/lmm/m/it/10.95 ^^\\OT1/lmr/m/n/10.95 
+([][] + \OMS/lmsy/m/n/10.95 r[] []\OT1/lmr/m/n/10.95 )  \OMS/lmsy/m/n/10.95 ([]
+)  []\OML/lmm/m/it/10.95 :
  []
 
 
@@ -2016,7 +2016,7 @@ m/lmsy8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msa
 m10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.
 pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/zapfchan/uzcmi8a.pfb><c:/texliv
 e/2025/texmf-dist/fonts/type1/public/wasy-type1/wasy10.pfb>
-Output written on beamer_CS26_Quentin_GITON.pdf (43 pages, 533055 bytes).
+Output written on beamer_CS26_Quentin_GITON.pdf (43 pages, 532833 bytes).
 PDF statistics:
  429 PDF objects out of 1000 (max. 8388607)
  300 compressed objects within 3 object streams
