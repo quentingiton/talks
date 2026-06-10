@@ -301,7 +301,7 @@ corners=5pt,thick]
 			\end{equation*}
 			where $\varphi^c(\purp{y}):=\inf_{\rust{x}} c(\rust{x},\purp{y})-\varphi(\rust{x})$.
 			\vspace{.5\baselineskip}
-			\item Let $c(\rust{x},\purp{y})=\alpha\|\rust{x}-\purp{y}\|^2$
+			\item For $c(\rust{x},\purp{y})=\alpha\|\rust{x}-\purp{y}\|^2$
 			\begin{equation*}
 				\nabla_x c(\rust{x},T^\star(\rust{x}))=\nabla\varphi^\star(\rust{x}) \iff T^\star(\rust{x}) - \rust{x} = \underset{\textbf{Displacement}}{\boxed{\purp{y}-\rust{x} = -\frac{1}{2\alpha}\nabla\varphi^\star(\rust{x})}}
 			\end{equation*}
@@ -338,7 +338,7 @@ corners=5pt,thick]
 				\left\{ 
 					\begin{array}{l}
 						\rho_0 = \mu \\
-						\displaystyle \rho_{n+1}^\tau := \argmin{} \mathcal{H}(\rho\vert\gamma)+\frac{1}{2\tau}W_2(\rho_n^\tau,\rho)^2
+						\displaystyle \rho_{n+1}^\tau := \argmin{\rho} \mathcal{H}(\rho\vert\gamma)+\frac{1}{2\tau}W_2(\rho_n^\tau,\rho)^2
 					\end{array}
 				 \right.
 			\end{equation*} 
@@ -391,7 +391,7 @@ corners=5pt,thick]
 			Let $J(\varphi) := \int e^{-\varphi^{c/2\tau}}\d\purp{\gamma}-\int\varphi\d\rust{\rho_n^\tau}$.
 			Then,
 			\begin{equation*}
-				\argmin{\varphi}J(\varphi) \subseteq \argmin{\varphi}
+				\argmin{\varphi}J(\varphi) \subsetneq \argmin{\varphi}
 				\tilde{J}(\varphi) \quad \text{and}\quad \argmin{\int e^{-\varphi^{c/2\tau}}\d\purp{\gamma}=1}\tilde J(\varphi) = \argmin{\varphi}
 				J(\varphi).
 			\end{equation*}
@@ -417,13 +417,13 @@ corners=5pt,thick]
 				\rust{\hat\rho_n^\tau} = \frac{1}{N}\sum_{i=1}^N \delta_{\rust{\hat x_i^{(n)}}} \leadsto 
 				\left\{ 
 					\begin{array}{l}
-						\varphi(x;\theta) = \theta^\top\varphi(x) \\
-						\varphi(x) = (\varphi_1(x),\dots, \varphi_N(x)) \\
-						\varphi_i(x) = \mathds{1}_{\{x = \hat x_i^{(n)}\}}
+						\varphi(x\, ;\theta) = \theta^\top\Phi(x) \\
+						\Phi(x) = (\Phi_1(x),\dots, \Phi_N(x)) \\
+						\Phi_i(x) = \mathds{1}_{\{x = \hat x_i^{(n)}\}}
 					\end{array}\right.
 			\end{equation*}
 			\vspace{\baselineskip}
-			\item $\displaystyle G(\theta) := J(\varphi(\cdot;\theta)) = \mathbb{E}_{\purp{y}\sim\purp{\gamma}}\left[ \exp{-\min_{1\leq i\leq N} \left\{ \frac{c(\rust{\hat x_i^{(n)}},\purp{y})}{2\tau}-\theta_i \right\}}-\frac{1}{N}\sum_{i=1}^N\theta_i \right]$
+			\item $\displaystyle G(\theta) := J(\varphi(\cdot\, ;\theta)) = \mathbb{E}_{\purp{y}\sim\purp{\gamma}}\left[ \exp{-\min_{1\leq i\leq N} \left\{ \frac{c(\rust{\hat x_i^{(n)}},\purp{y})}{2\tau}-\theta_i \right\}}-\frac{1}{N}\sum_{i=1}^N\theta_i \right]$
 		\end{itemize}
 	\end{frame}
 	
@@ -463,8 +463,9 @@ corners=5pt,thick]
 		\end{mythm*}
 		\pause
 		\vspace{1.5\baselineskip}
-		\begin{itemize}
-			\item $B \approx e^{R_\mathrm{proj}}$\hspace{2em} \only<3->{{\Huge\textcolor{brandRed}{\frownie{}}}}
+		\begin{itemize}[<+->]
+			\item $B \approx e^{R_\mathrm{proj}}$
+			\item {\Huge\textcolor{brandRed}{\frownie{}}}
 		\end{itemize}
 	\end{frame}
 	
@@ -525,7 +526,7 @@ corners=5pt,thick]
 				
 				\& \tilde\rho_{n+1}^\tau(\d y)\propto \max_i e^{\theta_i -c_\tau(\hat x_i^{(n)},y)}\gamma(\d y) \arrow[d, phantom, "\rotatebox{90}{$\approx$}"] \\
 				
-				\hat\rho_n=\frac{1}{N}\sum_{i=1}^N \delta_{\hat x_i^{(n)}} \arrow[ru, bend left, "\mathrm{JKO}_\tau",start anchor=north east, end anchor=west] \arrow[r, "\mathrm{pSGD}", start anchor=east, end anchor=west] \arrow[rd, dashed, "\mathpzc{T}"', start anchor=south east, end anchor=west] \& \tilde\rho_K(\d y)\propto \max_i e^{[\hat\theta_K]_i -c_\tau(\hat x_i^{(n)},y)}\gamma(\d y) \arrow[d, "\textrm{Barycentric map}"] \\
+				\hat\rho_n=\frac{1}{N}\sum_{i=1}^N \delta_{\hat x_i^{(n)}} \arrow[ru, dashed, bend left, "\text{Theoretical }\mathrm{JKO}_\tau",start anchor=north east, end anchor=west] \arrow[r, "\mathrm{pSGD}", start anchor=east, end anchor=west] \arrow[rd, "\mathpzc{T}"', line width=1pt, start anchor=south east, end anchor=west] \& \tilde\rho_K(\d y)\propto \max_i e^{[\hat\theta_K]_i -c_\tau(\hat x_i^{(n)},y)}\gamma(\d y) \arrow[d, "\textrm{Barycentric map}"] \\
 				
 				\& \rust{\hat\rho_{n+1}} := \frac{1}{N}\sum_{i=1}^N \delta_{\rust{\hat x_i^{(n+1)}}}
 			\end{tikzcd}
@@ -552,83 +553,83 @@ corners=5pt,thick]
 	\end{frame}
 	
 	
-	\begin{frame}[t]{How to reverse the flow???}
-		\begin{itemize}[<+->]
-			\item The true score is piecewise linear
-			
-			\item So the reverse flow is \textbf{piecewise constant}
-			
-			\item \textbf{No hope} to generate anything, if that's what you had in mind :(
-		\end{itemize}
-		
-		\begin{center}
-			\only<4->{
-			\begin{tikzpicture}[scale=0.8, transform shape]
-				
-				\clip (-4.5, -3.5) rectangle (4.5, 3.8);
-				
-				\coordinate (X1) at (-2.5, -1);
-				\coordinate (X2) at (2.5, -1.5);
-				\coordinate (X3) at (0, 2);
-				
-				\coordinate (V) at (0, -0.2);
-				\coordinate (E1) at (0, -5);
-				\coordinate (E2) at (-6, 3.85);
-				\coordinate (E3) at (6, 3.1);
-				
-				\fill[brandPurple!15] (V) -- (E1) -- (-5, -5) -- (-5, 5) -- (E2) -- cycle;
-				\fill[brandPurple!30] (V) -- (E1) -- (5, -5) -- (5, 5) -- (E3) -- cycle;
-				\fill[brandPurple!10] (V) -- (E2) -- (-5, 5) -- (5, 5) -- (E3) -- cycle;
-				
-				\draw[very thick, dashed, brandPurple!80!black] (V) -- (E1);
-				\draw[very thick, dashed, brandPurple!80!black] (V) -- (E2);
-				\draw[very thick, dashed, brandPurple!80!black] (V) -- (E3);
-				
-				\tikzset{flow/.style={->, thick, brandAccent, shorten >=2pt}}
-				
-				\foreach \pt in {(-3.5, -2), (-2.5, 1.5), (-1, -2.5)} {
-					\fill<4->[gray] \pt circle (1.5pt); 
-					\draw<5->[flow, opacity=0.8] \pt -- (X1); 
-				}
-				
-				\foreach \pt in {(3.5, -2), (2.5, 0.8), (1.5, -2.5)} {
-					\fill<4->[gray] \pt circle (1.5pt); 
-					\draw<5->[flow, opacity=0.8] \pt -- (X2); 
-				}
-				
-				\foreach \pt in {(-2.5, 3), (2.5, 3.2)} {
-					\fill<4->[gray] \pt circle (1.5pt); 
-					\draw<5->[flow, opacity=0.8] \pt -- (X3); 
-				}
-				
-				\fill[brandAccent] (X1) circle (3pt) node[below=4pt, font=\bfseries] {$\hat{x}_1^{(n)}$};
-				\fill[brandAccent] (X2) circle (3pt) node[below=4pt, font=\bfseries] {$\hat{x}_2^{(n)}$};
-				\fill[brandAccent] (X3) circle (3pt) node[right=4pt, font=\bfseries] {$\hat{x}_3^{(n)}$};
-				
-				%\node[brandPurple!90!black, font=\large\bfseries] at (-2, -0.2) {$L_1$};
-				%\node[brandPurple!90!black, font=\large\bfseries] at (2, -0.5) {$L_2$};
-				%\node[brandPurple!90!black, font=\large\bfseries] at (0, 2.8) {$L_3$};
-				
-				%\node[draw, fill=white, rounded corners, right] at (-4.2, -2.5) {
-				%	\footnotesize
-				%	\begin{tabular}{cl}
-				%		\textcolor{gray}{$\bullet$} & Initial Random Noise $Y_0$ \\
-				%		\textcolor{brandAccent}{$\rightarrow$} & Score Flow $\nabla \log \tilde{\rho}_K$ \\
-				%		\textcolor{brandAccent}{\Large $\bullet$} & Memorized Data Point
-				%	\end{tabular}
-				%};
-				
-			\end{tikzpicture}
-		}
-		\end{center}
-	\end{frame}
+%	\begin{frame}[t]{How to reverse the flow???}
+%		\begin{itemize}[<+->]
+%			\item The true score is piecewise linear
+%			
+%			\item So the reverse flow is \textbf{piecewise constant}
+%			
+%			\item \textbf{No hope} to generate anything, if that's what you had in mind :(
+%		\end{itemize}
+%		
+%		\begin{center}
+%			\only<4->{
+%			\begin{tikzpicture}[scale=0.8, transform shape]
+%				
+%				\clip (-4.5, -3.5) rectangle (4.5, 3.8);
+%				
+%				\coordinate (X1) at (-2.5, -1);
+%				\coordinate (X2) at (2.5, -1.5);
+%				\coordinate (X3) at (0, 2);
+%				
+%				\coordinate (V) at (0, -0.2);
+%				\coordinate (E1) at (0, -5);
+%				\coordinate (E2) at (-6, 3.85);
+%				\coordinate (E3) at (6, 3.1);
+%				
+%				\fill[brandPurple!15] (V) -- (E1) -- (-5, -5) -- (-5, 5) -- (E2) -- cycle;
+%				\fill[brandPurple!30] (V) -- (E1) -- (5, -5) -- (5, 5) -- (E3) -- cycle;
+%				\fill[brandPurple!10] (V) -- (E2) -- (-5, 5) -- (5, 5) -- (E3) -- cycle;
+%				
+%				\draw[very thick, dashed, brandPurple!80!black] (V) -- (E1);
+%				\draw[very thick, dashed, brandPurple!80!black] (V) -- (E2);
+%				\draw[very thick, dashed, brandPurple!80!black] (V) -- (E3);
+%				
+%				\tikzset{flow/.style={->, brandAccent, shorten >=2pt}}
+%				
+%				\foreach \pt in {(-3.5, -2), (-2.5, 1), (-1, -2.5)} {
+%					\fill<4->[gray] \pt circle (1.5pt); 
+%					\draw<5->[flow, opacity=0.8] \pt -- (X1); 
+%				}
+%				
+%				\foreach \pt in {(3.5, -2), (2.5, 0.8), (1.5, -2.5)} {
+%					\fill<4->[gray] \pt circle (1.5pt); 
+%					\draw<5->[flow, opacity=0.8] \pt -- (X2); 
+%				}
+%				
+%				\foreach \pt in {(-2.5, 3), (2.5, 3.2)} {
+%					\fill<4->[gray] \pt circle (1.5pt); 
+%					\draw<5->[flow, opacity=0.8] \pt -- (X3); 
+%				}
+%				
+%				\fill[brandAccent] (X1) circle (3pt) node[below=4pt, font=\bfseries] {$\hat{x}_1^{(n)}$};
+%				\fill[brandAccent] (X2) circle (3pt) node[below=4pt, font=\bfseries] {$\hat{x}_2^{(n)}$};
+%				\fill[brandAccent] (X3) circle (3pt) node[right=4pt, font=\bfseries] {$\hat{x}_3^{(n)}$};
+%				
+%				%\node[brandPurple!90!black, font=\large\bfseries] at (-2, -0.2) {$L_1$};
+%				%\node[brandPurple!90!black, font=\large\bfseries] at (2, -0.5) {$L_2$};
+%				%\node[brandPurple!90!black, font=\large\bfseries] at (0, 2.8) {$L_3$};
+%				
+%				%\node[draw, fill=white, rounded corners, right] at (-4.2, -2.5) {
+%				%	\footnotesize
+%				%	\begin{tabular}{cl}
+%				%		\textcolor{gray}{$\bullet$} & Initial Random Noise $Y_0$ \\
+%				%		\textcolor{brandAccent}{$\rightarrow$} & Score Flow $\nabla \log \tilde{\rho}_K$ \\
+%				%		\textcolor{brandAccent}{\Large $\bullet$} & Memorized Data Point
+%				%	\end{tabular}
+%				%};
+%				
+%			\end{tikzpicture}
+%		}
+%		\end{center}
+%	\end{frame}
 	
 	
 	
 	\begin{frame}[t]{What comes next?}
 		\begin{itemize}[<+->]
-			\item Change the parametrisation: $\varphi_\theta := \theta^\top\varphi$
-			\item Choose a good class of functions $\varphi$
+			\item Change the parametrisation: $\varphi_\theta := \theta^\top\Phi$
+			\item Choose a good class of functions $\Phi$
 			\item Do simulations in higher dimensions
 		\end{itemize}
 		\vspace{3\baselineskip}
