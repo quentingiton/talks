@@ -414,13 +414,10 @@ corners=5pt,thick]
 			\vspace{\baselineskip}
 			\item Choice of parametrisation: semi-discrete optimal transport using
 			\begin{equation*}
-				\rust{\hat\rho_n^\tau} = \frac{1}{N}\sum_{i=1}^N \delta_{\rust{\hat x_i^{(n)}}} \leadsto 
-				\left\{ 
-					\begin{array}{l}
-						\varphi(x\, ;\theta) = \theta^\top\Phi(x) \\
-						\Phi(x) = (\Phi_1(x),\dots, \Phi_N(x)) \\
-						\Phi_i(x) = \mathds{1}_{\{x = \hat x_i^{(n)}\}}
-					\end{array}\right.
+				\rust{\hat\rho_n^\tau} = \frac{1}{N}\sum_{i=1}^N \delta_{\rust{\hat x_i^{(n)}}} \leadsto \left\{\begin{array}{l}
+					\varphi(\rust{\hat x_i^{(n)}}) = \theta_i \\
+					\varphi^{c/2\tau}(\purp{y}) = \min_i \left\{ \frac{c(\rust{\hat x_i^{(n)}},\purp{y})}{2\tau}-\theta_i \right\}
+				\end{array}\right.
 			\end{equation*}
 			\vspace{\baselineskip}
 			\item $\displaystyle G(\theta) := J(\varphi(\cdot\, ;\theta)) = \mathbb{E}_{\purp{y}\sim\purp{\gamma}}\left[ \exp{-\min_{1\leq i\leq N} \left\{ \frac{c(\rust{\hat x_i^{(n)}},\purp{y})}{2\tau}-\theta_i \right\}}-\frac{1}{N}\sum_{i=1}^N\theta_i \right]$
@@ -480,9 +477,9 @@ corners=5pt,thick]
 					column 2/.style={anchor=base west}
 					]
 				
-				\& |[visible on=<2->]| \purp{\tilde\rho_{n+1}^\tau(}\d \purp{y)}\propto \max_i e^{\theta_i -c_\tau(\rust{\hat x_i^{(n)}},y)}\purp{\gamma(}\d\purp{y)} \arrow[d, phantom, "\rotatebox{90}{$\approx$}", visible on=<3->] \\
+				\& |[visible on=<2->]| \purp{\tilde\rho_{n+1}^\tau(}\d \purp{y)}\propto \max_i e^{\theta_i^\star -c_\tau(\rust{\hat x_i^{(n)}},\purp{y})}\purp{\gamma(}\d\purp{y)} \arrow[d, phantom, "\rotatebox{90}{$\approx$}", visible on=<3->] \\
 				
-				\rust{\hat\rho_n}=\frac{1}{N}\sum_{i=1}^N \delta_{\rust{\hat x_i^{(n)}}} \arrow[ru, dashed, bend left, "\text{Theoretical }\mathrm{JKO}_\tau", visible on=<2->, start anchor=north east, end anchor=west] \arrow[r, "\mathrm{pSGD}", visible on=<3->, start anchor=east, end anchor=west] \arrow[rd, "\mathbf{\mathpzc{T}}"', visible on=<5->, start anchor=south east, end anchor=west, line width=1pt] \& |[visible on=<3->]| \purp{\tilde\rho_K(}\d \purp{y)}\propto \max_i e^{[\hat\theta_K]_i -c_\tau(\rust{\hat x_i^{(n)}},y)}\purp{\gamma(}\d\purp{y)} \arrow[d, "\textrm{Barycentric map}", visible on=<4->] \\
+				\rust{\hat\rho_n}=\frac{1}{N}\sum_{i=1}^N \delta_{\rust{\hat x_i^{(n)}}} \arrow[ru, dashed, bend left, "\text{Theoretical }\mathrm{JKO}_\tau", visible on=<2->, start anchor=north east, end anchor=west] \arrow[r, "\mathrm{pSGD}", visible on=<3->, start anchor=east, end anchor=west] \arrow[rd, "\mathbf{\mathpzc{T}}"', visible on=<5->, start anchor=south east, end anchor=west, line width=1pt] \& |[visible on=<3->]| \purp{\tilde\rho_K(}\d \purp{y)}\propto \max_i e^{[\hat\theta_K]_i -c_\tau(\rust{\hat x_i^{(n)}},\purp{y})}\purp{\gamma(}\d\purp{y)} \arrow[d, "\textrm{Barycentric map}", visible on=<4->] \\
 				
 				\& |[visible on=<4->]| \only<4-5>{\purp{\hat\rho_{n+1}} := \frac{1}{N}\sum_{i=1}^N \delta_{\purp{\hat x_i^{(n+1)}}}}
 			\end{tikzcd}
@@ -492,7 +489,7 @@ corners=5pt,thick]
 	
 	\begin{frame}[t]{More on the barycentric map}
 		\begin{itemize}[<+->]
-			\item $\purp{\tilde\rho_K(}\d \purp{y)}\propto \max_i e^{[\hat\theta_K]_i -c_\tau(\rust{\hat x_i^{(n)}},y)}\purp{\gamma(}\d\purp{y)}$ is \textbf{piecewise log-quadratic}
+			\item $\purp{\rho(}\d \purp{y)}\propto \max_i e^{\theta_i -c_\tau(\rust{\hat x_i^{(n)}},\purp{y})}\purp{\gamma(}\d\purp{y)}$ is \textbf{piecewise log-quadratic}
 			
 			\item \textbf{Laguerre cells:} $L_i(\theta) := \left\{ \purp{y}\in\mathbb{R}^d\::\: \forall 1\leq i\leq N,\: c_\tau(\rust{\hat x_i^{(n)}},\purp{y})+\theta_i \leq c_\tau(\rust{\hat x_j^{(n)}},\purp{y})+\theta_j \right\}$
 		\end{itemize}
@@ -524,7 +521,7 @@ corners=5pt,thick]
 				column 2/.style={anchor=base west}
 				]
 				
-				\& \tilde\rho_{n+1}^\tau(\d y)\propto \max_i e^{\theta_i -c_\tau(\hat x_i^{(n)},y)}\gamma(\d y) \arrow[d, phantom, "\rotatebox{90}{$\approx$}"] \\
+				\& \tilde\rho_{n+1}^\tau(\d y)\propto \max_i e^{\theta_i^\star -c_\tau(\hat x_i^{(n)},y)}\gamma(\d y) \arrow[d, phantom, "\rotatebox{90}{$\approx$}"] \\
 				
 				\hat\rho_n=\frac{1}{N}\sum_{i=1}^N \delta_{\hat x_i^{(n)}} \arrow[ru, dashed, bend left, "\text{Theoretical }\mathrm{JKO}_\tau",start anchor=north east, end anchor=west] \arrow[r, "\mathrm{pSGD}", start anchor=east, end anchor=west] \arrow[rd, "\mathpzc{T}"', line width=1pt, start anchor=south east, end anchor=west] \& \tilde\rho_K(\d y)\propto \max_i e^{[\hat\theta_K]_i -c_\tau(\hat x_i^{(n)},y)}\gamma(\d y) \arrow[d, "\textrm{Barycentric map}"] \\
 				

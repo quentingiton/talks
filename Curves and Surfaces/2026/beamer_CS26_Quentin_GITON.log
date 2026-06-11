@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.28)  10 JUN 2026 11:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.28)  11 JUN 2026 11:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1744,11 +1744,6 @@ t/10.95 '[]\OT1/lmr/m/n/10.95 ([][]) = \OML/lmm/m/it/10.95 ^^\v[]\OT1/lmr/m/n/1
 [13
 
 ]
-LaTeX Font Info:    Trying to load font information for U+dsrom on input line 4
-28.
- (c:/texlive/2025/texmf-dist/tex/latex/doublestroke/Udsrom.fd
-File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
-)
 
 [14
 
@@ -1761,6 +1756,11 @@ File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
 [16
 
 ]
+LaTeX Font Info:    Trying to load font information for U+dsrom on input line 4
+46.
+ (c:/texlive/2025/texmf-dist/tex/latex/doublestroke/Udsrom.fd
+File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
+)
 
 [17
 
@@ -1782,7 +1782,7 @@ File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
 
 ]
 LaTeX Font Info:    Trying to load font information for OT1+pzc on input line 4
-90.
+87.
  (c:/texlive/2025/texmf-dist/tex/latex/psnfss/ot1pzc.fd
 File: ot1pzc.fd 2020/03/25 font definitions for OT1/pzc.
 )
@@ -1833,7 +1833,7 @@ lls" in version 4-M as previously calculated.>
 <figures/voronoi.png, id=190, 1213.53375pt x 609.77812pt>
 File: figures/voronoi.png Graphic file (type png)
 <use figures/voronoi.png>
-Package pdftex.def Info: figures/voronoi.png  used on input line 515.
+Package pdftex.def Info: figures/voronoi.png  used on input line 512.
 (pdftex.def)             Requested size: 303.38269pt x 152.44415pt.
 
 
@@ -1844,7 +1844,7 @@ s" in version 0-M.>
 <Copying the QR code for "https://quentingiton.github.io/scripts/1d-laguerre-ce
 lls" in version 4-M as previously calculated.>
 
-Overfull \vbox (9.19667pt too high) detected at line 515
+Overfull \vbox (9.19667pt too high) detected at line 512
  []
 
 
@@ -1855,7 +1855,7 @@ Overfull \vbox (9.19667pt too high) detected at line 515
 <figures/lag1.png, id=199, 1212.78094pt x 610.53094pt>
 File: figures/lag1.png Graphic file (type png)
 <use figures/lag1.png>
-Package pdftex.def Info: figures/lag1.png  used on input line 515.
+Package pdftex.def Info: figures/lag1.png  used on input line 512.
 (pdftex.def)             Requested size: 303.19449pt x 152.63235pt.
 
 
@@ -1866,7 +1866,7 @@ s" in version 0-M.>
 <Copying the QR code for "https://quentingiton.github.io/scripts/1d-laguerre-ce
 lls" in version 4-M as previously calculated.>
 
-Overfull \vbox (9.38487pt too high) detected at line 515
+Overfull \vbox (9.38487pt too high) detected at line 512
  []
 
 
@@ -1877,7 +1877,7 @@ Overfull \vbox (9.38487pt too high) detected at line 515
 <figures/lagOpt.png, id=207, 1212.78094pt x 610.53094pt>
 File: figures/lagOpt.png Graphic file (type png)
 <use figures/lagOpt.png>
-Package pdftex.def Info: figures/lagOpt.png  used on input line 515.
+Package pdftex.def Info: figures/lagOpt.png  used on input line 512.
 (pdftex.def)             Requested size: 303.19449pt x 152.63235pt.
 
 
@@ -1888,7 +1888,7 @@ s" in version 0-M.>
 <Copying the QR code for "https://quentingiton.github.io/scripts/1d-laguerre-ce
 lls" in version 4-M as previously calculated.>
 
-Overfull \vbox (9.38487pt too high) detected at line 515
+Overfull \vbox (9.38487pt too high) detected at line 512
  []
 
 
@@ -1907,15 +1907,15 @@ Overfull \vbox (9.38487pt too high) detected at line 515
 <figures/forward_8frames.pdf, id=226, 1156.32pt x 578.16pt>
 File: figures/forward_8frames.pdf Graphic file (type pdf)
 <use figures/forward_8frames.pdf>
-Package pdftex.def Info: figures/forward_8frames.pdf  used on input line 553.
+Package pdftex.def Info: figures/forward_8frames.pdf  used on input line 550.
 (pdftex.def)             Requested size: 404.71806pt x 202.35902pt.
 
-Overfull \hbox (6.37947pt too wide) in paragraph at lines 553--553
+Overfull \hbox (6.37947pt too wide) in paragraph at lines 550--550
  [] 
  []
 
 
-Overfull \vbox (4.55768pt too high) detected at line 553
+Overfull \vbox (4.55768pt too high) detected at line 550
  []
 
 
@@ -1964,10 +1964,10 @@ Package logreq Info: Writing requests to 'beamer_CS26_Quentin_GITON.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 72238 strings out of 467747
- 1802060 string characters out of 5431120
+ 72237 strings out of 467747
+ 1802039 string characters out of 5431120
  3002693 words of memory out of 5000000
- 99902 multiletter control sequences out of 15000+600000
+ 99901 multiletter control sequences out of 15000+600000
  714517 words of font info for 102 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,23n,123p,1896b,1469s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1988,7 +1988,7 @@ m/lmsy8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msa
 m10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.
 pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/zapfchan/uzcmi8a.pfb><c:/texliv
 e/2025/texmf-dist/fonts/type1/public/wasy-type1/wasy10.pfb>
-Output written on beamer_CS26_Quentin_GITON.pdf (38 pages, 525749 bytes).
+Output written on beamer_CS26_Quentin_GITON.pdf (38 pages, 525678 bytes).
 PDF statistics:
  401 PDF objects out of 1000 (max. 8388607)
  277 compressed objects within 3 object streams
