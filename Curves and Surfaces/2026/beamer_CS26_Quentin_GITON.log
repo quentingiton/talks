@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.28)  11 JUN 2026 11:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.28)  11 JUN 2026 12:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1907,15 +1907,15 @@ Overfull \vbox (9.38487pt too high) detected at line 512
 <figures/forward_8frames.pdf, id=226, 1156.32pt x 578.16pt>
 File: figures/forward_8frames.pdf Graphic file (type pdf)
 <use figures/forward_8frames.pdf>
-Package pdftex.def Info: figures/forward_8frames.pdf  used on input line 550.
+Package pdftex.def Info: figures/forward_8frames.pdf  used on input line 552.
 (pdftex.def)             Requested size: 404.71806pt x 202.35902pt.
 
-Overfull \hbox (6.37947pt too wide) in paragraph at lines 550--550
+Overfull \hbox (6.37947pt too wide) in paragraph at lines 552--552
  [] 
  []
 
 
-Overfull \vbox (4.55768pt too high) detected at line 550
+Overfull \vbox (18.15768pt too high) detected at line 552
  []
 
 
@@ -1923,20 +1923,50 @@ Overfull \vbox (4.55768pt too high) detected at line 550
 [34
 
  <./figures/forward_8frames.pdf>]
+<figures/C_first_last.pdf, id=259, 867.24pt x 361.35pt>
+File: figures/C_first_last.pdf Graphic file (type pdf)
+<use figures/C_first_last.pdf>
+Package pdftex.def Info: figures/C_first_last.pdf  used on input line 552.
+(pdftex.def)             Requested size: 433.61894pt x 180.67456pt.
+
+Overfull \hbox (21.05399pt too wide) in paragraph at lines 552--552
+ | [] 
+ []
+
+
 
 [35
 
-]
+ <./figures/C_first_last.pdf>]
+<figures/SR_first_last.pdf, id=311, 867.24pt x 361.35pt>
+File: figures/SR_first_last.pdf Graphic file (type pdf)
+<use figures/SR_first_last.pdf>
+Package pdftex.def Info: figures/SR_first_last.pdf  used on input line 552.
+(pdftex.def)             Requested size: 433.61894pt x 180.67456pt.
+
+Overfull \hbox (23.48732pt too wide) in paragraph at lines 552--552
+ |  [] 
+ []
+
+
 
 [36
 
-]
+ <./figures/SR_first_last.pdf>]
 
 [37
 
 ]
 
 [38
+
+]
+
+[39
+
+]
+
+[40
 
 ]
 \tf@nav=\write7
@@ -1964,10 +1994,10 @@ Package logreq Info: Writing requests to 'beamer_CS26_Quentin_GITON.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 72237 strings out of 467747
- 1802039 string characters out of 5431120
+ 72255 strings out of 467747
+ 1802564 string characters out of 5431120
  3002693 words of memory out of 5000000
- 99901 multiletter control sequences out of 15000+600000
+ 99915 multiletter control sequences out of 15000+600000
  714517 words of font info for 102 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,23n,123p,1896b,1469s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1988,10 +2018,10 @@ m/lmsy8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msa
 m10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.
 pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/zapfchan/uzcmi8a.pfb><c:/texliv
 e/2025/texmf-dist/fonts/type1/public/wasy-type1/wasy10.pfb>
-Output written on beamer_CS26_Quentin_GITON.pdf (38 pages, 525678 bytes).
+Output written on beamer_CS26_Quentin_GITON.pdf (40 pages, 582346 bytes).
 PDF statistics:
- 401 PDF objects out of 1000 (max. 8388607)
- 277 compressed objects within 3 object streams
- 78 named destinations out of 1000 (max. 500000)
- 67 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 505 PDF objects out of 1000 (max. 8388607)
+ 300 compressed objects within 3 object streams
+ 82 named destinations out of 1000 (max. 500000)
+ 77 words of extra memory for PDF output out of 10000 (max. 10000000)
 

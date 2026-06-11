@@ -313,7 +313,7 @@ corners=5pt,thick]
 		\begin{itemize}[<+->]
 			\item\textbf{Forward process:} Ornstein--Uhlenbeck (OU) process:
 			\begin{equation*}
-				\d X_t = - X_t\d t+\sqrt{2}\d\omega_t,\quad  X_0 \sim \mu,\quad t\in[0,T].
+				\d X_t = - X_t\d t+\sqrt{2}\d B_t,\quad  X_0 \sim \mu,\quad t\in[0,T].
 			\end{equation*}
 			Let $\rho_t :=\mathrm{Law}( X_t)$. Then $\rho_t$ solves the Fokker--Planck equation
 			\begin{equation}\label{eq:FPE}
@@ -545,7 +545,9 @@ corners=5pt,thick]
 	
 	\begin{frame}{Some ``animations''}
 		\begin{figure}
-			\includegraphics[scale=0.35]{figures/forward_8frames.pdf}
+			\includegraphics<1>[scale=0.35]{figures/forward_8frames.pdf}
+			\hspace*{-0.5cm}\includegraphics<2>[scale=0.5]{figures/C_first_last.pdf}
+			\includegraphics<3>[scale=0.5]{figures/SR_first_last.pdf}
 		\end{figure}
 	\end{frame}
 	
