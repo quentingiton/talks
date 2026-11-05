@@ -1,16 +1,16 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.28)  5 NOV 2026 12:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.9)  5 NOV 2026 17:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **NumAnalyBesancon.tex
 (./NumAnalyBesancon.tex
 LaTeX2e <2025-06-01> patch level 1
-L3 programming layer <2025-10-24>
+L3 programming layer <2025-08-13>
 (c:/texlive/2025/texmf-dist/tex/latex/beamer/beamer.cls
 Document Class: beamer 2025/08/13 v3.76 A class for typesetting presentations
 (c:/texlive/2025/texmf-dist/tex/latex/beamer/beamerbasemodes.sty
 (c:/texlive/2025/texmf-dist/tex/latex/etoolbox/etoolbox.sty
-Package: etoolbox 2025/10/02 v2.5m e-TeX tools for LaTeX (JAW)
+Package: etoolbox 2025/02/11 v2.5l e-TeX tools for LaTeX (JAW)
 \etb@tempcnta=\count275
 )
 \beamer@tempbox=\box53
@@ -184,7 +184,7 @@ File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 Package graphics Info: Driver file: pdftex.def on input line 106.
 
 (c:/texlive/2025/texmf-dist/tex/latex/graphics-def/pdftex.def
-File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
+File: pdftex.def 2024/04/13 v1.2c Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen183
 \Gin@req@width=\dimen184
@@ -490,14 +490,14 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 Package: sansmathaccent 2020/01/31
 
 (c:/texlive/2025/texmf-dist/tex/latex/koma-script/scrlfile.sty
-Package: scrlfile 2025/09/09 v3.48 KOMA-Script package (file load hooks)
+Package: scrlfile 2025/08/28 v3.47 KOMA-Script package (file load hooks)
 
 (c:/texlive/2025/texmf-dist/tex/latex/koma-script/scrlfile-hook.sty
-Package: scrlfile-hook 2025/09/09 v3.48 KOMA-Script package (using LaTeX hooks)
+Package: scrlfile-hook 2025/08/28 v3.47 KOMA-Script package (using LaTeX hooks)
 
 
 (c:/texlive/2025/texmf-dist/tex/latex/koma-script/scrlogo.sty
-Package: scrlogo 2025/09/09 v3.48 KOMA-Script package (logo)
+Package: scrlogo 2025/08/28 v3.47 KOMA-Script package (logo)
 )))))
 (c:/texlive/2025/texmf-dist/tex/latex/beamer/beamerbasetranslator.sty
 (c:/texlive/2025/texmf-dist/tex/latex/translator/translator.sty
@@ -728,7 +728,7 @@ Package: dsfont 1995/08/01 v0.1 Double stroke roman fonts
 File: dvipsnam.def 2016/06/17 v3.0m Driver-dependent file (DPC,SPQR)
 )
 (c:/texlive/2025/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
-Package: tcolorbox 2025/09/09 version 6.8.0 text color boxes
+Package: tcolorbox 2025/07/08 version 6.7.1 text color boxes
 
 (c:/texlive/2025/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
 (c:/texlive/2025/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
@@ -823,7 +823,7 @@ Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 \tcb@temp=\box91
 )
 (c:/texlive/2025/texmf-dist/tex/latex/tcolorbox/tcbskins.code.tex
-Library (tcolorbox): 'tcbskins.code.tex' version '6.8.0'
+Library (tcolorbox): 'tcbskins.code.tex' version '6.7.1'
 (c:/texlive/2025/texmf-dist/tex/latex/tikzfill/tikzfill.image.sty
 Package: tikzfill.image 2023/08/08 v1.0.1 Image filling library for TikZ
 
@@ -834,9 +834,9 @@ Package: tikzfill-common 2023/08/08 v1.0.1 Auxiliary code for tikzfill
 File: tikzlibraryfill.image.code.tex 2023/08/08 v1.0.1 Image filling library
 \l__tikzfill_img_box=\box92
 )) (c:/texlive/2025/texmf-dist/tex/latex/tcolorbox/tcbskinsjigsaw.code.tex
-Library (tcolorbox): 'tcbskinsjigsaw.code.tex' version '6.8.0'
+Library (tcolorbox): 'tcbskinsjigsaw.code.tex' version '6.7.1'
 )) (c:/texlive/2025/texmf-dist/tex/latex/tcolorbox/tcbtheorems.code.tex
-Library (tcolorbox): 'tcbtheorems.code.tex' version '6.8.0'
+Library (tcolorbox): 'tcbtheorems.code.tex' version '6.7.1'
 ) (c:/texlive/2025/texmf-dist/tex/latex/beamer/multimedia.sty
 Package: multimedia 2012/05/02 ver 0.02
 
@@ -847,19 +847,19 @@ Package: ifpdf 2019/10/25 v3.4 ifpdf legacy package. Use iftex instead.
 )
 (c:/texlive/2025/texmf-dist/tex/latex/fontawesome5/fontawesome5.sty
 (c:/texlive/2025/texmf-dist/tex/latex/l3kernel/expl3.sty
-Package: expl3 2025-10-24 L3 programming layer (loader) 
+Package: expl3 2025-08-13 L3 programming layer (loader) 
 
 (c:/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
+File: l3backend-pdftex.def 2025-06-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count371
 ))
 Package: fontawesome5 2022/05/02 v5.15.4 Font Awesome 5
 
 (c:/texlive/2025/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
-Package: l3keys2e 2025-10-09 LaTeX2e option processing using LaTeX3 keys
+Package: l3keys2e 2024-08-16 LaTeX2e option processing using LaTeX3 keys
 )
 (c:/texlive/2025/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
-Package: xparse 2025-10-09 L3 Experimental document command parser
+Package: xparse 2024-08-16 L3 Experimental document command parser
 )
 (c:/texlive/2025/texmf-dist/tex/latex/fontawesome5/fontawesome5-generic-helper.
 sty
@@ -1445,7 +1445,7 @@ File: biblatex.cfg
 Package biblatex Info: Input encoding 'utf8' detected.
 Package biblatex Info: Document encoding is UTF8 ....
 Package biblatex Info: ... and expl3
-(biblatex)             2025-10-24 L3 programming layer (loader) 
+(biblatex)             2025-08-13 L3 programming layer (loader) 
 (biblatex)             is new enough (at least 2020/04/06),
 (biblatex)             setting 'casechanger=expl3'.
 
@@ -1716,6 +1716,167 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 [14
 
 ]
+LaTeX Font Info:    Trying to load font information for U+dsrom on input line 5
+62.
+ (c:/texlive/2025/texmf-dist/tex/latex/doublestroke/Udsrom.fd
+File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
+)
+
+[15
+
+]
+
+[16
+
+]
+
+[17
+
+]
+
+[18
+
+]
+
+[19
+
+]
+
+[20
+
+]
+
+[21
+
+]
+LaTeX Font Info:    Trying to load font information for OT1+pzc on input line 6
+25.
+ (c:/texlive/2025/texmf-dist/tex/latex/psnfss/ot1pzc.fd
+File: ot1pzc.fd 2020/03/25 font definitions for OT1/pzc.
+)
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 625.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 625.
+
+Overfull \vbox (3.75328pt too high) detected at line 625
+ []
+
+
+
+[22
+
+{c:/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc}]
+Overfull \vbox (3.75328pt too high) detected at line 625
+ []
+
+
+
+[23
+
+]
+Overfull \vbox (3.75328pt too high) detected at line 625
+ []
+
+
+
+[24
+
+]
+LaTeX Font Info:    Trying to load font information for U+euf on input line 670
+.
+ (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/ueuf.fd
+File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
+)
+
+[25
+
+]
+
+[26
+
+]
+
+[27
+
+]
+
+[28
+
+]
+
+[29
+
+]
+Overfull \hbox (1.4102pt too wide) detected at line 715
+\U/msb/m/n/10.95 E\OT1/lmr/m/n/10.95 [\OML/lmm/m/it/10.95 W[]\OT1/lmr/m/n/10.95
+ ([]\OML/lmm/m/it/10.95 ; %[]\OT1/lmr/m/n/10.95 )] \OMS/lmsy/m/n/10.95 ^^T [] \
+OT1/lmr/m/n/10.95 + [] + []\OML/lmm/m/it/10.95 ;
+ []
+
+
+Overfull \vbox (2.51927pt too high) detected at line 715
+ []
+
+
+
+[30
+
+]
+Overfull \hbox (1.4102pt too wide) detected at line 715
+\U/msb/m/n/10.95 E\OT1/lmr/m/n/10.95 [\OML/lmm/m/it/10.95 W[]\OT1/lmr/m/n/10.95
+ ([]\OML/lmm/m/it/10.95 ; %[]\OT1/lmr/m/n/10.95 )] \OMS/lmsy/m/n/10.95 ^^T [] \
+OT1/lmr/m/n/10.95 + [] + []\OML/lmm/m/it/10.95 ;
+ []
+
+
+Overfull \vbox (2.51927pt too high) detected at line 715
+ []
+
+
+
+[31
+
+]
+
+[32
+
+]
+<figures/e1/e1_figA_contraction.pdf, id=212, 907.14911pt x 241.26135pt>
+File: figures/e1/e1_figA_contraction.pdf Graphic file (type pdf)
+<use figures/e1/e1_figA_contraction.pdf>
+Package pdftex.def Info: figures/e1/e1_figA_contraction.pdf  used on input line
+ 734.
+(pdftex.def)             Requested size: 338.59023pt x 90.04942pt.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <14.4> on input line 734.
+
+
+[33
+
+ <./figures/e1/e1_figA_contraction.pdf>]
+<figures/e1/e1_supp_d2_ring.pdf, id=288, 778.86987pt x 347.77728pt>
+File: figures/e1/e1_supp_d2_ring.pdf Graphic file (type pdf)
+<use figures/e1/e1_supp_d2_ring.pdf>
+Package pdftex.def Info: figures/e1/e1_supp_d2_ring.pdf  used on input line 742
+.
+(pdftex.def)             Requested size: 358.50229pt x 160.0803pt.
+
+
+[34
+
+ <./figures/e1/e1_supp_d2_ring.pdf>]
+<figures/e1/e1_supp_d2_moons.pdf, id=348, 778.86987pt x 347.77728pt>
+File: figures/e1/e1_supp_d2_moons.pdf Graphic file (type pdf)
+<use figures/e1/e1_supp_d2_moons.pdf>
+Package pdftex.def Info: figures/e1/e1_supp_d2_moons.pdf  used on input line 74
+2.
+(pdftex.def)             Requested size: 358.50229pt x 160.0803pt.
+
+
+[35
+
+ <./figures/e1/e1_supp_d2_moons.pdf>]
 \tf@nav=\write7
 \openout7 = `NumAnalyBesancon.nav'.
 
@@ -1728,7 +1889,7 @@ LaTeX Font Info:    External font `lmex10' loaded for size
  (./NumAnalyBesancon.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
-L3 programming layer <2025-10-24>
+L3 programming layer <2025-08-13>
  ***********
 Package rerunfilecheck Info: File `NumAnalyBesancon.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
@@ -1737,32 +1898,39 @@ Package logreq Info: Writing requests to 'NumAnalyBesancon.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 72049 strings out of 467747
- 1798699 string characters out of 5431120
- 2971757 words of memory out of 5000000
- 99776 multiletter control sequences out of 15000+600000
- 682188 words of font info for 90 fonts, out of 8000000 for 9000
+ 72546 strings out of 467800
+ 1809103 string characters out of 5436062
+ 2971069 words of memory out of 5000000
+ 100150 multiletter control sequences out of 15000+600000
+ 701046 words of font info for 133 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 128i,12n,123p,1887b,2380s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/texlive/2025
-/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb><c:/texlive/2025/texmf-dist/fonts
-/type1/public/lm/lmex10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/l
-mmi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi5.pfb><c:/texli
-ve/2025/texmf-dist/fonts/type1/public/lm/lmmi6.pfb><c:/texlive/2025/texmf-dist/
-fonts/type1/public/lm/lmmi8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/
-lm/lmmi9.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/te
-xlive/2025/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/texlive/2025/texmf-di
-st/fonts/type1/public/lm/lmr6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/publi
-c/lm/lmr8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr9.pfb><c:/te
-xlive/2025/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2025/texmf-d
-ist/fonts/type1/public/lm/lmsy6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/pub
-lic/lm/lmsy8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbol
-s/msam10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/ms
-bm10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/wasy-type1/wasy10.pfb>
-Output written on NumAnalyBesancon.pdf (14 pages, 296925 bytes).
+ 128i,19n,123p,1887b,2380s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/texlive/2025/texmf-dist/fonts/type1/public/doublestroke/dsrom10.pfb><c:/t
+exlive/2025/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb><c:/texlive
+/2025/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/texlive/2025/texmf-dist/f
+onts/type1/public/lm/lmbxi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public
+/lm/lmex10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:
+/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi12.pfb><c:/texlive/2025/texm
+f-dist/fonts/type1/public/lm/lmmi5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/
+public/lm/lmmi6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi7.pfb
+><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi8.pfb><c:/texlive/2025/t
+exmf-dist/fonts/type1/public/lm/lmmi9.pfb><c:/texlive/2025/texmf-dist/fonts/typ
+e1/public/lm/lmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr12.
+pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr5.pfb><c:/texlive/2025
+/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/texlive/2025/texmf-dist/fonts/ty
+pe1/public/lm/lmr7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr8.p
+fb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr9.pfb><c:/texlive/2025/
+texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/t
+ype1/public/lm/lmsy6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy
+7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy8.pfb><c:/texlive/2
+025/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/texlive/2025/
+texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2025/texm
+f-dist/fonts/type1/urw/zapfchan/uzcmi8a.pfb><c:/texlive/2025/texmf-dist/fonts/t
+ype1/public/wasy-type1/wasy10.pfb>
+Output written on NumAnalyBesancon.pdf (35 pages, 1200530 bytes).
 PDF statistics:
- 210 PDF objects out of 1000 (max. 8388607)
- 143 compressed objects within 2 object streams
- 29 named destinations out of 1000 (max. 500000)
- 47 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 553 PDF objects out of 1000 (max. 8388607)
+ 310 compressed objects within 4 object streams
+ 72 named destinations out of 1000 (max. 500000)
+ 62 words of extra memory for PDF output out of 10000 (max. 10000000)
 

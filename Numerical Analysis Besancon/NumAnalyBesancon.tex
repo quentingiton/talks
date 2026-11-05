@@ -211,167 +211,167 @@ maxcitenames=4
 		\end{itemize}
 	\end{frame}
 	
-%	\begin{frame}[t]{Quick reminders on Optimal Transport 1/2}
-%		\begin{center}
-%			\resizebox{0.8\linewidth}{!}{
-%				\begin{tikzpicture}[>=Stealth, scale=1.3]
-%					\draw[->, thick] (-0.5, 0) -- (10.0, 0) node[right] {$\mathbb{R}$};
-%					
-%					\begin{scope}
-%						\begin{scope}
-%							\clip (0,0) 
-%							.. controls (0.8, 0.1) and (1.2, 2.2) .. (2.0, 2.2)
-%							.. controls (2.8, 2.2) and (3.2, 0.1) .. (4.0, 0) -- (4.0,0) -- (0,0) -- cycle;
-%							\fill[brandAccent!30] (1.3, 0) rectangle (2.1, 2.5);
-%						\end{scope}
-%						
-%						\draw[thick, brandAccent] (0,0) 
-%						.. controls (0.8, 0.1) and (1.2, 2.2) .. (2.0, 2.2)
-%						.. controls (2.8, 2.2) and (3.2, 0.1) .. (4.0, 0)
-%						node[above=2pt] {$\mu$};
-%						
-%						\draw[brandAccent, thick, dashed] (1.3, 0) -- (1.3, 1.65);
-%						\draw[brandAccent, thick, dashed] (2.1, 0) -- (2.1, 2.15);
-%						\node[brandAccent!90!black] at (1.7, 0.8) {$\mu(A)$};
-%						
-%						\draw[brandAccent, line width=3pt] (1.3, 0) -- (2.1, 0);
-%						\draw[brandAccent, thick] (1.3, -0.1) -- (1.3, 0.1); 
-%						\draw[brandAccent, thick] (2.1, -0.1) -- (2.1, 0.1); 
-%						\node[brandAccent!90!black, below=4pt] at (3.125, 0) {$A=\{x\in\mathbb{R}: T(x)\in B\}$};
-%					\end{scope}
-%					
-%					\begin{scope}[xshift=5cm]
-%						\begin{scope}
-%							\clip (0,0) 
-%							.. controls (1.0, 0.1) and (1.5, 1.4) .. (2.5, 1.4)
-%							.. controls (3.5, 1.4) and (3.8, 0.1) .. (4.2, 0) -- (4.2,0) -- (0,0) -- cycle;
-%							\fill[brandPurple!30] (1.6, 0) rectangle (3.2, 2.5);
-%						\end{scope}
-%						
-%						\draw[thick, brandPurple] (0,0) 
-%						.. controls (1.0, 0.1) and (1.5, 1.4) .. (2.5, 1.4)
-%						.. controls (3.5, 1.4) and (3.8, 0.1) .. (4.2, 0)
-%						node[above=2pt] {$\nu$};
-%						
-%						\draw[brandPurple, thick, dashed] (1.6, 0) -- (1.6, 1.025);
-%						\draw[brandPurple, thick, dashed] (3.2, 0) -- (3.2, 1.15);
-%						\node[brandPurple!90!black] at (2.4, 0.5) {$\nu(B)$};
-%						
-%						\draw[brandPurple, line width=3pt] (1.6, 0) -- (3.2, 0);
-%						\draw[brandPurple, thick] (1.6, -0.1) -- (1.6, 0.1); 
-%						\draw[brandPurple, thick] (3.2, -0.1) -- (3.2, 0.1); 
-%						\node[brandPurple!90!black, below=4pt] at (2.4, 0) {$B$};
-%					\end{scope}
-%					
-%					\draw[->, thick, black] (3.25, 1.5) to[bend left=30] node[above, text=black] {$T$} (6.25, 1.5);
-%				\end{tikzpicture}
-%			}
-%		\end{center}
-%		
-%		% DYNAMIC TEXT BLOCK
-%		\begin{itemize}%[<+->]
-%			\item Given ground cost $c(\rust{x},\purp{y}) = \|\rust{x}-\purp{y}\|^2$
-%			
-%			\item Among all maps $T$ satisfying $\forall\textcolor{brandPurple}{B},\ \textcolor{brandPurple}{\nu(B)} = \textcolor{brandAccent}{\mu(}T^{-1}(\textcolor{brandPurple}{B})\textcolor{brandAccent}{)}$
-%			
-%			\item Find the one minimising the average transport cost
-%			\begin{equation*}
-%				W_2(\rust{\mu},\purp{\nu})^2 := \inf_{T\::\: T_\# \rust{\mu}=\purp{\nu}} \int_{\mathbb{R}^d} \|\rust{x}-T(\rust{x})\|^2\textcolor{brandAccent}{\mu(}\mathrm{d}\textcolor{brandAccent}{x)}
-%			\end{equation*}
-%		\end{itemize}
-%	\end{frame}
-%	
-%	\begin{frame}[t]{Quick reminders on Optimal Transport 2/2}
-%		\begin{center}
-%			\resizebox{0.8\linewidth}{!}{
-%				\begin{tikzpicture}[>=Stealth, scale=1.3]
-%					\draw[->, thick] (-0.5, 0) -- (10.0, 0) node[right] {$\mathbb{R}$};
-%					
-%					\begin{scope}
-%						\begin{scope}
-%							\clip (0,0) 
-%							.. controls (0.8, 0.1) and (1.2, 2.2) .. (2.0, 2.2)
-%							.. controls (2.8, 2.2) and (3.2, 0.1) .. (4.0, 0) -- (4.0,0) -- (0,0) -- cycle;
-%							\fill[brandAccent!30] (1.3, 0) rectangle (2.1, 2.5);
-%						\end{scope}
-%						
-%						\draw[thick, brandAccent] (0,0) 
-%						.. controls (0.8, 0.1) and (1.2, 2.2) .. (2.0, 2.2)
-%						.. controls (2.8, 2.2) and (3.2, 0.1) .. (4.0, 0)
-%						node[above=2pt] {$\mu$};
-%						
-%						\draw[brandAccent, thick, dashed] (1.3, 0) -- (1.3, 1.65);
-%						\draw[brandAccent, thick, dashed] (2.1, 0) -- (2.1, 2.15);
-%						\node[brandAccent!90!black] at (1.7, 0.8) {$\mu(A)$};
-%						
-%						\draw[brandAccent, line width=3pt] (1.3, 0) -- (2.1, 0);
-%						\draw[brandAccent, thick] (1.3, -0.1) -- (1.3, 0.1); 
-%						\draw[brandAccent, thick] (2.1, -0.1) -- (2.1, 0.1); 
-%						\node[brandAccent!90!black, below=4pt] at (3.125, 0) {$A=\{x\in\mathbb{R}: T(x)\in B\}$};
-%					\end{scope}
-%					
-%					\begin{scope}[xshift=5cm]
-%						\begin{scope}
-%							\clip (0,0) 
-%							.. controls (1.0, 0.1) and (1.5, 1.4) .. (2.5, 1.4)
-%							.. controls (3.5, 1.4) and (3.8, 0.1) .. (4.2, 0) -- (4.2,0) -- (0,0) -- cycle;
-%							\fill[brandPurple!30] (1.6, 0) rectangle (3.2, 2.5);
-%						\end{scope}
-%						
-%						\draw[thick, brandPurple] (0,0) 
-%						.. controls (1.0, 0.1) and (1.5, 1.4) .. (2.5, 1.4)
-%						.. controls (3.5, 1.4) and (3.8, 0.1) .. (4.2, 0)
-%						node[above=2pt] {$\nu$};
-%						
-%						\draw[brandPurple, thick, dashed] (1.6, 0) -- (1.6, 1.025);
-%						\draw[brandPurple, thick, dashed] (3.2, 0) -- (3.2, 1.15);
-%						\node[brandPurple!90!black] at (2.4, 0.5) {$\nu(B)$};
-%						
-%						\draw[brandPurple, line width=3pt] (1.6, 0) -- (3.2, 0);
-%						\draw[brandPurple, thick] (1.6, -0.1) -- (1.6, 0.1); 
-%						\draw[brandPurple, thick] (3.2, -0.1) -- (3.2, 0.1); 
-%						\node[brandPurple!90!black, below=4pt] at (2.4, 0) {$B$};
-%					\end{scope}
-%					
-%					\draw[->, thick, black] (3.25, 1.5) to[bend left=30] node[above, text=black] {$T$} (6.25, 1.5);
-%				\end{tikzpicture}
-%			}
-%		\end{center}
-%		
-%		% DYNAMIC TEXT BLOCK
-%		\begin{itemize}[<+->]
-%			\item Kantorovich duality
-%			\begin{equation*}
-%				\inf_{T\::\: T_\#\textcolor{brandAccent}{\mu}=\textcolor{brandPurple}{\nu}} \int_{\mathbb{R}^d} \|\rust{x}-\purp{y}\|^2\textcolor{brandAccent}{\mu(}\mathrm{d}\textcolor{brandAccent}{x)} = \sup_{\varphi} \int \varphi(\rust{x})\rust{\mu(}\mathrm{d}\rust{x)}+\int\varphi^c(\purp{y})\purp{\nu(}\mathrm{d}\purp{y)},
-%			\end{equation*}
-%			where $\varphi^c(\purp{y}):=\inf_{\rust{x}} c(\rust{x},\purp{y})-\varphi(\rust{x})$.
-%			\vspace{.5\baselineskip}
-%			\item For $c(\rust{x},\purp{y})=\alpha\|\rust{x}-\purp{y}\|^2$
-%			\begin{equation*}
-%				\nabla_x c(\rust{x},T^\star(\rust{x}))=\nabla\varphi^\star(\rust{x}) \iff T^\star(\rust{x}) - \rust{x} = \underset{\textbf{Displacement}}{\boxed{\purp{y}-\rust{x} = -\frac{1}{2\alpha}\nabla\varphi^\star(\rust{x})}}
-%			\end{equation*}
-%		\end{itemize}
-%	\end{frame}
+	%	\begin{frame}[t]{Quick reminders on Optimal Transport 1/2}
+		%		\begin{center}
+			%			\resizebox{0.8\linewidth}{!}{
+				%				\begin{tikzpicture}[>=Stealth, scale=1.3]
+					%					\draw[->, thick] (-0.5, 0) -- (10.0, 0) node[right] {$\mathbb{R}$};
+					%					
+					%					\begin{scope}
+						%						\begin{scope}
+							%							\clip (0,0) 
+							%							.. controls (0.8, 0.1) and (1.2, 2.2) .. (2.0, 2.2)
+							%							.. controls (2.8, 2.2) and (3.2, 0.1) .. (4.0, 0) -- (4.0,0) -- (0,0) -- cycle;
+							%							\fill[brandAccent!30] (1.3, 0) rectangle (2.1, 2.5);
+							%						\end{scope}
+						%						
+						%						\draw[thick, brandAccent] (0,0) 
+						%						.. controls (0.8, 0.1) and (1.2, 2.2) .. (2.0, 2.2)
+						%						.. controls (2.8, 2.2) and (3.2, 0.1) .. (4.0, 0)
+						%						node[above=2pt] {$\mu$};
+						%						
+						%						\draw[brandAccent, thick, dashed] (1.3, 0) -- (1.3, 1.65);
+						%						\draw[brandAccent, thick, dashed] (2.1, 0) -- (2.1, 2.15);
+						%						\node[brandAccent!90!black] at (1.7, 0.8) {$\mu(A)$};
+						%						
+						%						\draw[brandAccent, line width=3pt] (1.3, 0) -- (2.1, 0);
+						%						\draw[brandAccent, thick] (1.3, -0.1) -- (1.3, 0.1); 
+						%						\draw[brandAccent, thick] (2.1, -0.1) -- (2.1, 0.1); 
+						%						\node[brandAccent!90!black, below=4pt] at (3.125, 0) {$A=\{x\in\mathbb{R}: T(x)\in B\}$};
+						%					\end{scope}
+					%					
+					%					\begin{scope}[xshift=5cm]
+						%						\begin{scope}
+							%							\clip (0,0) 
+							%							.. controls (1.0, 0.1) and (1.5, 1.4) .. (2.5, 1.4)
+							%							.. controls (3.5, 1.4) and (3.8, 0.1) .. (4.2, 0) -- (4.2,0) -- (0,0) -- cycle;
+							%							\fill[brandPurple!30] (1.6, 0) rectangle (3.2, 2.5);
+							%						\end{scope}
+						%						
+						%						\draw[thick, brandPurple] (0,0) 
+						%						.. controls (1.0, 0.1) and (1.5, 1.4) .. (2.5, 1.4)
+						%						.. controls (3.5, 1.4) and (3.8, 0.1) .. (4.2, 0)
+						%						node[above=2pt] {$\nu$};
+						%						
+						%						\draw[brandPurple, thick, dashed] (1.6, 0) -- (1.6, 1.025);
+						%						\draw[brandPurple, thick, dashed] (3.2, 0) -- (3.2, 1.15);
+						%						\node[brandPurple!90!black] at (2.4, 0.5) {$\nu(B)$};
+						%						
+						%						\draw[brandPurple, line width=3pt] (1.6, 0) -- (3.2, 0);
+						%						\draw[brandPurple, thick] (1.6, -0.1) -- (1.6, 0.1); 
+						%						\draw[brandPurple, thick] (3.2, -0.1) -- (3.2, 0.1); 
+						%						\node[brandPurple!90!black, below=4pt] at (2.4, 0) {$B$};
+						%					\end{scope}
+					%					
+					%					\draw[->, thick, black] (3.25, 1.5) to[bend left=30] node[above, text=black] {$T$} (6.25, 1.5);
+					%				\end{tikzpicture}
+				%			}
+			%		\end{center}
+		%		
+		%		% DYNAMIC TEXT BLOCK
+		%		\begin{itemize}%[<+->]
+			%			\item Given ground cost $c(\rust{x},\purp{y}) = \|\rust{x}-\purp{y}\|^2$
+			%			
+			%			\item Among all maps $T$ satisfying $\forall\textcolor{brandPurple}{B},\ \textcolor{brandPurple}{\nu(B)} = \textcolor{brandAccent}{\mu(}T^{-1}(\textcolor{brandPurple}{B})\textcolor{brandAccent}{)}$
+			%			
+			%			\item Find the one minimising the average transport cost
+			%			\begin{equation*}
+				%				W_2(\rust{\mu},\purp{\nu})^2 := \inf_{T\::\: T_\# \rust{\mu}=\purp{\nu}} \int_{\mathbb{R}^d} \|\rust{x}-T(\rust{x})\|^2\textcolor{brandAccent}{\mu(}\mathrm{d}\textcolor{brandAccent}{x)}
+				%			\end{equation*}
+			%		\end{itemize}
+		%	\end{frame}
+	%	
+	%	\begin{frame}[t]{Quick reminders on Optimal Transport 2/2}
+		%		\begin{center}
+			%			\resizebox{0.8\linewidth}{!}{
+				%				\begin{tikzpicture}[>=Stealth, scale=1.3]
+					%					\draw[->, thick] (-0.5, 0) -- (10.0, 0) node[right] {$\mathbb{R}$};
+					%					
+					%					\begin{scope}
+						%						\begin{scope}
+							%							\clip (0,0) 
+							%							.. controls (0.8, 0.1) and (1.2, 2.2) .. (2.0, 2.2)
+							%							.. controls (2.8, 2.2) and (3.2, 0.1) .. (4.0, 0) -- (4.0,0) -- (0,0) -- cycle;
+							%							\fill[brandAccent!30] (1.3, 0) rectangle (2.1, 2.5);
+							%						\end{scope}
+						%						
+						%						\draw[thick, brandAccent] (0,0) 
+						%						.. controls (0.8, 0.1) and (1.2, 2.2) .. (2.0, 2.2)
+						%						.. controls (2.8, 2.2) and (3.2, 0.1) .. (4.0, 0)
+						%						node[above=2pt] {$\mu$};
+						%						
+						%						\draw[brandAccent, thick, dashed] (1.3, 0) -- (1.3, 1.65);
+						%						\draw[brandAccent, thick, dashed] (2.1, 0) -- (2.1, 2.15);
+						%						\node[brandAccent!90!black] at (1.7, 0.8) {$\mu(A)$};
+						%						
+						%						\draw[brandAccent, line width=3pt] (1.3, 0) -- (2.1, 0);
+						%						\draw[brandAccent, thick] (1.3, -0.1) -- (1.3, 0.1); 
+						%						\draw[brandAccent, thick] (2.1, -0.1) -- (2.1, 0.1); 
+						%						\node[brandAccent!90!black, below=4pt] at (3.125, 0) {$A=\{x\in\mathbb{R}: T(x)\in B\}$};
+						%					\end{scope}
+					%					
+					%					\begin{scope}[xshift=5cm]
+						%						\begin{scope}
+							%							\clip (0,0) 
+							%							.. controls (1.0, 0.1) and (1.5, 1.4) .. (2.5, 1.4)
+							%							.. controls (3.5, 1.4) and (3.8, 0.1) .. (4.2, 0) -- (4.2,0) -- (0,0) -- cycle;
+							%							\fill[brandPurple!30] (1.6, 0) rectangle (3.2, 2.5);
+							%						\end{scope}
+						%						
+						%						\draw[thick, brandPurple] (0,0) 
+						%						.. controls (1.0, 0.1) and (1.5, 1.4) .. (2.5, 1.4)
+						%						.. controls (3.5, 1.4) and (3.8, 0.1) .. (4.2, 0)
+						%						node[above=2pt] {$\nu$};
+						%						
+						%						\draw[brandPurple, thick, dashed] (1.6, 0) -- (1.6, 1.025);
+						%						\draw[brandPurple, thick, dashed] (3.2, 0) -- (3.2, 1.15);
+						%						\node[brandPurple!90!black] at (2.4, 0.5) {$\nu(B)$};
+						%						
+						%						\draw[brandPurple, line width=3pt] (1.6, 0) -- (3.2, 0);
+						%						\draw[brandPurple, thick] (1.6, -0.1) -- (1.6, 0.1); 
+						%						\draw[brandPurple, thick] (3.2, -0.1) -- (3.2, 0.1); 
+						%						\node[brandPurple!90!black, below=4pt] at (2.4, 0) {$B$};
+						%					\end{scope}
+					%					
+					%					\draw[->, thick, black] (3.25, 1.5) to[bend left=30] node[above, text=black] {$T$} (6.25, 1.5);
+					%				\end{tikzpicture}
+				%			}
+			%		\end{center}
+		%		
+		%		% DYNAMIC TEXT BLOCK
+		%		\begin{itemize}[<+->]
+			%			\item Kantorovich duality
+			%			\begin{equation*}
+				%				\inf_{T\::\: T_\#\textcolor{brandAccent}{\mu}=\textcolor{brandPurple}{\nu}} \int_{\mathbb{R}^d} \|\rust{x}-\purp{y}\|^2\textcolor{brandAccent}{\mu(}\mathrm{d}\textcolor{brandAccent}{x)} = \sup_{\varphi} \int \varphi(\rust{x})\rust{\mu(}\mathrm{d}\rust{x)}+\int\varphi^c(\purp{y})\purp{\nu(}\mathrm{d}\purp{y)},
+				%			\end{equation*}
+			%			where $\varphi^c(\purp{y}):=\inf_{\rust{x}} c(\rust{x},\purp{y})-\varphi(\rust{x})$.
+			%			\vspace{.5\baselineskip}
+			%			\item For $c(\rust{x},\purp{y})=\alpha\|\rust{x}-\purp{y}\|^2$
+			%			\begin{equation*}
+				%				\nabla_x c(\rust{x},T^\star(\rust{x}))=\nabla\varphi^\star(\rust{x}) \iff T^\star(\rust{x}) - \rust{x} = \underset{\textbf{Displacement}}{\boxed{\purp{y}-\rust{x} = -\frac{1}{2\alpha}\nabla\varphi^\star(\rust{x})}}
+				%			\end{equation*}
+			%		\end{itemize}
+		%	\end{frame}
 	
 	
 	
 	
-%	\begin{frame}[t]{Two problems}
-%		\begin{equation*}
-%			\mathcal E(\rho)=\underbrace{\int V\rho}_{\text{Potential}}+\underbrace{\int\rho\ln{\rho}}_{\text{Entropy}}
-%		\end{equation*}
-%		\vspace{\baselineskip}
-%		\begin{itemize}[<+->]
-%			\item Because of the entropy term, if $\rho_n^\tau$ is discrete, then $\rho_{n+1}^\tau$ is absolutely continuous $\rightarrow$ to iterate the JKO steps, we need to discretise $\rho_{n+1}^\tau$
-%			\vspace{\baselineskip}
-%			\item If $\rho_n^\tau=\frac1N\sum_{i=1}^N\delta_{x_i}$ is discrete, it partitions the space into Laguerre cells
-%			\begin{equation*}
-%				L_i(\theta)=\{y\in\R^d\::\: \forall j,\ \theta_i-\|x_i-y\|^2\geq\theta_j-\|x_j-y\|^2\}
-%			\end{equation*}
-%			that need to be computed $\rightarrow$ how to do it in high dimension?
-%		\end{itemize}
-%	\end{frame}
-
+	%	\begin{frame}[t]{Two problems}
+		%		\begin{equation*}
+			%			\mathcal E(\rho)=\underbrace{\int V\rho}_{\text{Potential}}+\underbrace{\int\rho\ln{\rho}}_{\text{Entropy}}
+			%		\end{equation*}
+		%		\vspace{\baselineskip}
+		%		\begin{itemize}[<+->]
+			%			\item Because of the entropy term, if $\rho_n^\tau$ is discrete, then $\rho_{n+1}^\tau$ is absolutely continuous $\rightarrow$ to iterate the JKO steps, we need to discretise $\rho_{n+1}^\tau$
+			%			\vspace{\baselineskip}
+			%			\item If $\rho_n^\tau=\frac1N\sum_{i=1}^N\delta_{x_i}$ is discrete, it partitions the space into Laguerre cells
+			%			\begin{equation*}
+				%				L_i(\theta)=\{y\in\R^d\::\: \forall j,\ \theta_i-\|x_i-y\|^2\geq\theta_j-\|x_j-y\|^2\}
+				%			\end{equation*}
+			%			that need to be computed $\rightarrow$ how to do it in high dimension?
+			%		\end{itemize}
+		%	\end{frame}
+	
 	\begin{frame}[t]{One (general) JKO step 1/2}
 		\begin{itemize}[<+->]
 			\item Recall, given a time-step $\tau>0$, we are interested in solving
@@ -480,17 +480,17 @@ maxcitenames=4
 						\fill[ForestGreen!70!black] (axis cs:0.6,0) circle (1.6pt) node[below=1pt,black,font=\footnotesize] {$x_3$}; 
 						\fill[Plum!70!black] (axis cs:2.4,0) circle (1.6pt) node[below=1pt,black,font=\footnotesize] {$x_4$}; 
 						
-%						\draw[NavyBlue!70!black,fill=white] (axis cs:-1.73333,0) circle (1.6pt);
-%						\draw[BrickRed!70!black,fill=white] (axis cs:-0.26667,0) circle (1.6pt);
-%						\draw[ForestGreen!70!black,fill=white] (axis cs:0.4,0) circle (1.6pt);
-%						\draw[Plum!70!black,fill=white] (axis cs:1.6,0) circle (1.6pt);
-
-%						\fill[NavyBlue!70!black] (axis cs:-1.87102,0) ++(0pt,2.6pt) -- ++(-2.3pt,-4pt) -- ++(4.6pt,0pt) -- cycle;
-%						\fill[BrickRed!70!black] (axis cs:-0.44428,0) ++(0pt,2.6pt) -- ++(-2.3pt,-4pt) -- ++(4.6pt,0pt) -- cycle;
-%						\fill[ForestGreen!70!black] (axis cs:0.52663,0) ++(0pt,2.6pt) -- ++(-2.3pt,-4pt) -- ++(4.6pt,0pt) -- cycle;
-%						\fill[Plum!70!black] (axis cs:1.78868,0) ++(0pt,2.6pt) -- ++(-2.3pt,-4pt) -- ++(4.6pt,0pt) -- cycle;
+						%						\draw[NavyBlue!70!black,fill=white] (axis cs:-1.73333,0) circle (1.6pt);
+						%						\draw[BrickRed!70!black,fill=white] (axis cs:-0.26667,0) circle (1.6pt);
+						%						\draw[ForestGreen!70!black,fill=white] (axis cs:0.4,0) circle (1.6pt);
+						%						\draw[Plum!70!black,fill=white] (axis cs:1.6,0) circle (1.6pt);
+						
+						%						\fill[NavyBlue!70!black] (axis cs:-1.87102,0) ++(0pt,2.6pt) -- ++(-2.3pt,-4pt) -- ++(4.6pt,0pt) -- cycle;
+						%						\fill[BrickRed!70!black] (axis cs:-0.44428,0) ++(0pt,2.6pt) -- ++(-2.3pt,-4pt) -- ++(4.6pt,0pt) -- cycle;
+						%						\fill[ForestGreen!70!black] (axis cs:0.52663,0) ++(0pt,2.6pt) -- ++(-2.3pt,-4pt) -- ++(4.6pt,0pt) -- cycle;
+						%						\fill[Plum!70!black] (axis cs:1.78868,0) ++(0pt,2.6pt) -- ++(-2.3pt,-4pt) -- ++(4.6pt,0pt) -- cycle;
 					\end{axis}
-%					\node[font=\footnotesize,anchor=north] at ([yshift=+0.2cm]current axis.south) {$\bullet$ points $x_i$};
+					%					\node[font=\footnotesize,anchor=north] at ([yshift=+0.2cm]current axis.south) {$\bullet$ points $x_i$};
 				\end{tikzpicture}
 			}
 		\end{center}
@@ -503,7 +503,7 @@ maxcitenames=4
 				\forall i,\qquad \purp{\rho^\star}(L_i(\theta^\star))=\frac1N.
 			\end{equation*}
 			\vspace{.5\baselineskip}
-			\item $\theta^\star\in\mathcal B$ which is explicit
+			\item $\theta^\star\in\mathcal B$ which is explicit: $\forall i,\ \frac1N\leq A_i\leq 1$
 		\end{itemize}
 		
 		\begin{center}
@@ -534,11 +534,211 @@ maxcitenames=4
 						\node[font=\footnotesize,gray!60!black,anchor=east] (dens) at (axis cs:3.4,0.30) {density of $\rho^\star$: mass $1$};
 						\draw[gray!60!black,->] (dens.south) to[out=-90,in=60] (axis cs:1.9,0.14);
 					\end{axis}
-%					\node[anchor=north,align=center] at ([yshift=-0.3cm]ax.south) {$\dfrac1N=\displaystyle\int_{\mathrm{Lag}_i}A_i\pn_{X,i}\;\leq\;\int_{\R^d}A_i\pn_{X,i}=A_i\;\leq\;\int_{\R^d}\max_jA_j\pn_{X,j}=1$,\\[6pt] hence $\theta_{X,i}^\star=a_i+\kappa+\ln{A_i}\in\big[a_i+\kappa-\ln{N},\,a_i+\kappa\big]$.};
+					%					\node[anchor=north,align=center] at ([yshift=-0.3cm]ax.south) {$\dfrac1N=\displaystyle\int_{\mathrm{Lag}_i}A_i\pn_{X,i}\;\leq\;\int_{\R^d}A_i\pn_{X,i}=A_i\;\leq\;\int_{\R^d}\max_jA_j\pn_{X,j}=1$,\\[6pt] hence $\theta_{X,i}^\star=a_i+\kappa+\ln{A_i}\in\big[a_i+\kappa-\ln{N},\,a_i+\kappa\big]$.};
 				\end{tikzpicture}
 			}
 		\end{center}
-		
+	\end{frame}
+	
+	\begin{frame}[t]{Stochastic gradient descent 1/2}
+		Let $q_s = \mathcal N(0,s^2 I_d)$ with $s^2\geq\frac{\tau}{1+\tau}$ and $w_s(y):=\frac{\gamma(y)}{q_s(y)}$.
+		\vspace{\baselineskip}
+		Projected SGD algorithm:
+		\begin{equation}\label{eq:pSGD_SD}
+			\left\{
+			\begin{array}{l}
+				\text{pick } y\sim q_s \text{ independent of } \theta^{(k)} \text{ and of } y_1,\dots,y_{k-1} \\
+				\text{let } i :=\mathrm{arg}\,\mathrm{min}_j\ \left\{ c_\tau(x_j,y_k)-\theta_j \right\} \\
+				\text{define } e_i \text{ as the $i$-th canonical basis vector of $\R^N$} \\
+				\theta^{(k+1)} := \mathrm{proj}_{\mathcal B}\left( \theta^{(k)} -  \alpha_kw_s(y_k)e^{\theta_i^{(k)}-c_\tau(x_i,y_k)}e_i+ \frac{\alpha_k}{N}\mathds{1} \right)
+			\end{array}
+			\right.
+		\end{equation}
+		\pause
+		\vspace{\baselineskip}
+		\begin{itemize}
+			\item There exists $B_s<+\infty$ such that $\mathbb E\|g_s(y;\theta)\|^2\leq B_s^2$.
+		\end{itemize}
+	\end{frame}
+	
+	
+	
+	\begin{frame}[t]{Stochastic gradient descent 2/2}
+		\begin{mythm*}{\itshape (G.)}
+			\begin{itemize}
+				\item $\alpha_k = \frac{2}{c_{\mathrm{qg}}(k+1)},\quad \hat\theta_K := \frac{2}{K(K+1)}\sum_{k=1}^K k\theta^{(k)}$
+			\end{itemize}
+			Then, it holds that
+			\begin{equation*}
+				0\leq \mathbb E [G(\hat\theta_K)] - G(\theta^\star) \leq \frac{4B_s^2}{c_{\mathrm{qg}}(K+1)}=\mathcal O(K^{-1}),
+			\end{equation*}
+			where $\theta^\star$ denotes the unique minimiser of $G$.
+		\end{mythm*}
+	\end{frame}
+	
+	\begin{frame}[t]{Controlling the cells}
+		\begin{itemize}[<+->]
+			\item $G$ is NOT strongly convex everywhere.
+			\vspace{\baselineskip}
+			\item BUT optimality is a statement on the cells
+			\vspace{\baselineskip}
+			\item A small gap $G(\hat\theta_K)-G(\theta^\star)$ therefore does not directly give the masses of the cells of $\tilde\rho_K(y)$.
+		\end{itemize}
+		\vspace{.3\baselineskip}
+		\uncover<4->{
+			\begin{myprop*}{\itshape (G. 26+)}
+				Let $\mathcal E:=\left\{\|\nabla G(\hat\theta_K)\|_2\leq\frac18N^{-(1+\frac1d)}\right\}$. On $\mathcal E$, every cell satisfies $\tilde\rho_K(L_i(\hat\theta_K))\in\left[\frac{1}{2N},\frac{3}{2N}\right]$, and
+				\begin{equation*}
+					\mathbb P(\mathcal E^c)\leq\delta\qquad\text{as soon as}\qquad K\geq\frac{512L_+B_s^2N^{2(1+\frac1d)}}{c_{\mathrm{qg}}\,\delta}-1.
+				\end{equation*}
+			\end{myprop*}
+		}
+	\end{frame}
+	
+	\begin{frame}[t]{Back to a point cloud}
+		\begin{columns}[T]
+			\begin{column}{0.33\textwidth}
+				\vspace{1.5\baselineskip}
+				\begin{center}
+					\begin{tikzcd}[row sep=large, column sep=normal, ampersand replacement=\&]
+						\& \purp{\rho^\star} \arrow[d, phantom, "\rotatebox{90}{$\approx$}"] \\
+						\rust{\hat\rho_n} \arrow[ru, bend left, "\mathcal J_\tau"] \arrow[r, "\mathrm{pSGD}"] \arrow[rd, dashed, "\mathpzc{T}"'] \& \tilde\rho_K \arrow[d, "\textrm{Barycentric map}"] \\
+						\& \hat\rho_{n+1}
+					\end{tikzcd}
+				\end{center}
+			\end{column}
+			\begin{column}{0.65\textwidth}
+				\small
+				\begin{itemize}[<+->]
+					\item Recall that $\tilde\rho_K$ is absolutely continuous: to iterate, we need to discretise it back on $N$ points.
+					\item \textbf{One Lloyd step:} on $\mathcal E$ every cell has mass $\approx\frac1N$, so one representative per cell can carry mass $\approx\frac1N$. We choose the barycentres
+					\begin{equation*}
+						\bar x_i:=\frac{\int_{L_i(\hat\theta_K)}y\,\tilde\rho_K(\d y)}{\tilde\rho_K(L_i(\hat\theta_K))},\qquad \hat\rho_{n+1}:=\frac1N\sum_{i=1}^N\delta_{\bar x_i}.
+					\end{equation*}
+					\item \textbf{In practice:} importance sampling with the same $q_s$: $Y_1,\dots,Y_M\sim q_s$ and, for $Y_k\in L_i(\hat\theta_K)$, $w(Y_k):=w_s(Y_k)\,e^{\hat\theta_{K,i}-c_\tau(x_i,Y_k)}$,
+					\begin{equation*}
+						\hat x_i=\frac{\sum_k Y_k\,w(Y_k)\mathds 1_{L_i(\hat\theta_K)}(Y_k)}{\sum_k w(Y_k)\mathds 1_{L_i(\hat\theta_K)}(Y_k)},\qquad M\asymp N\ln{N}^{\frac{d+2}{2}}.
+					\end{equation*}
+				\end{itemize}
+			\end{column}
+		\end{columns}
+	\end{frame}
+	
+	\begin{frame}[t]{The barycentric map is bounded}
+		Let $\mathfrak B$ be the barycentric map described in the previous slide: it sends the cloud $X=(x_1,\dots,x_N)$ to the cloud of barycentres of its Laguerre cells $L_i(\theta)$.
+		\vspace{\baselineskip}
+		\begin{mythm*}{\itshape (G. 26+)}
+			Let $R_\star:=\frac{1+\tau}{\tau}\sigma\sqrt{2\ln{2N}}$ and let $R\geq R_\star$.
+			If for all $i$, $L_i(\theta)$ has $\rho_\theta$-mass $\geq\frac{1}{2N}$, then
+			\begin{equation*}
+				X\in B(0,R)^N\implies\mathfrak B(X)\in B(0,R)^N.
+			\end{equation*}
+		\end{mythm*}
+		\pause
+		\vspace{\baselineskip}
+		\begin{itemize}
+			\item Each barycentre is the mean of a Gaussian centred at $\frac{x_i}{1+\tau}$ conditioned on a set of mass at least $\frac{1}{2N}$. So, its norm is at most $\frac{R}{1+\tau}+\sigma\sqrt{2\ln{2N}}$, which is at most $R$ exactly when $R\geq R_\star$.
+		\end{itemize}
+%		\begin{columns}[T]
+%			\begin{column}{0.56\textwidth}
+%				\small
+%				\begin{itemize}
+%					\item On each cell, $\tilde\rho_K$ is a truncated $\mathcal N(\frac{x_i}{1+\tau},\sigma^2I_d)$, hence
+%					\begin{equation*}
+%						\|\bar x_i\|\leq\frac{\|x_i\|}{1+\tau}+\sigma\sqrt{2\ln{2N}}.
+%					\end{equation*}
+%					\item $R\mapsto\frac{R}{1+\tau}+\sigma\sqrt{2\ln{2N}}$ is a contraction with fixed point $R_\star$.
+%					\item The estimates $\hat x_i$ are projected onto $B(0,R_{\max})$, with $R_{\max}:=\max\{R_0,R_\star\}$.
+%				\end{itemize}
+%			\end{column}
+%			\begin{column}{0.40\textwidth}
+%				\begin{center}
+%					\begin{tikzpicture}
+%						\begin{axis}[width=\textwidth,height=3.9cm,axis lines=left,xmin=0,xmax=6.6,ymin=0,ymax=6.6,xtick={3},xticklabels={$R_\star$},ytick={3},yticklabels={$R_\star$},xlabel={$R$},samples=2,clip=false,xlabel style={at={(axis description cs:1,0)},anchor=north}]
+%							% tau=1/2, Delta_N=1: F(R)=R/(1+tau)+Delta_N, fixed point R_star=3
+%							\addplot[gray,dashed,domain=0:6.6] {x};
+%							\addplot[thick,NavyBlue,domain=0:6.6] {x/1.5+1};
+%							\draw[BrickRed,thin] (axis cs:6,6)--(axis cs:6,5)--(axis cs:5,5)--(axis cs:5,4.3333)--(axis cs:4.3333,4.3333)--(axis cs:4.3333,3.8889)--(axis cs:3.8889,3.8889)--(axis cs:3.8889,3.5926)--(axis cs:3.5926,3.5926)--(axis cs:3.5926,3.3951);
+%							\draw[ForestGreen,thin] (axis cs:0.6,0)--(axis cs:0.6,1.4)--(axis cs:1.4,1.4)--(axis cs:1.4,1.9333)--(axis cs:1.9333,1.9333)--(axis cs:1.9333,2.2889)--(axis cs:2.2889,2.2889)--(axis cs:2.2889,2.5259)--(axis cs:2.5259,2.5259)--(axis cs:2.5259,2.6840);
+%							\draw[densely dotted] (axis cs:3,0)--(axis cs:3,3)--(axis cs:0,3);
+%							\fill (axis cs:3,3) circle (1.6pt);
+%						\end{axis}
+%					\end{tikzpicture}
+%				\end{center}
+%			\end{column}
+%		\end{columns}
+	\end{frame}
+	
+	\begin{frame}[t]{Error of one approximate JKO step}
+		Assume $\min_{i\neq j}\|x_i-x_j\|\geq CN^{-\frac1d}$ and let $\nu:=\frac1N\sum_{i=1}^N\delta_{\bar x_i}$ (exact barycentres).
+		\vspace{.3\baselineskip}
+		\begin{mythm*}{\itshape (Heuristic version, G. 26+)}
+			With $M\asymp N\ln{N}^{\frac{d+2}{2}}$ Monte Carlo samples,
+			\begin{equation*}
+				\mathbb E[W_2(\hat\rho_{n+1},\purp{\rho^\star})]\leq \underbrace{\mathbb E[W_2(\hat\rho_{n+1},\nu)]}_{\text{Monte Carlo}}+\underbrace{\mathbb E[W_2(\nu,\tilde\rho_K)]}_{\text{quantisation}}+\underbrace{\mathbb E[W_2(\tilde\rho_K,\purp{\rho^\star})]}_{\text{pSGD}},
+			\end{equation*}
+			with Monte Carlo $\lesssim N^{-\frac{1}{2d}}\ln{N}^{\frac{d-1}{4}}$, quantisation $\lesssim N^{-\frac{1}{2d}}\ln{N}^{\frac{d+1}{4}}$ (both on $\mathcal E$) and pSGD $\lesssim C_NK^{-\frac14}$, where $C_N$ is polynomial in $N$.
+		\end{mythm*}
+		\pause
+		\begin{itemize}
+			\item Quantisation: extension of Mérigot--Santambrogio--Sarrazin (2021) to $\R^d$ and to cells of mass $\approx\frac1N$.
+			\item With $K\gtrsim N^{3+\frac{7}{2d}}$ (up to logarithms), the one-step error is $\lesssim N^{-\frac{1}{2d}}\ln{N}^{\frac{d+1}{4}}$.
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Iterating the whole procedure}
+		\begin{center}
+			\begin{tikzcd}[row sep=normal, column sep=large, ampersand replacement=\&]
+				\hat\rho_0 \arrow[r, "\mathcal J_\tau"] \arrow[rd, "\mathpzc{T}"'] \& \rho_1^\tau \arrow[r, "\mathcal J_\tau"] \& \rho_2^\tau \arrow[r, "\mathcal J_\tau"] \& \cdots \arrow[r, "\mathcal J_\tau"] \& \rho_n^\tau \\
+				\& \hat\rho_1 \arrow[rd, "\mathpzc{T}"'] \arrow[r, "\mathcal J_\tau"] \& \tilde\rho_2^\tau \& \& \\
+				\& \& \hat\rho_2 \arrow[rd, "\mathpzc{T}"'] \arrow[r, "\mathcal J_\tau"] \& \cdots \& \\
+				\& \& \& \cdots \arrow[rd, "\mathpzc{T}"'] \arrow[r, "\mathcal J_\tau"] \& \tilde\rho_n^\tau \\
+				\& \& \& \& \hat\rho_n
+			\end{tikzcd}
+		\end{center}
+	\end{frame}
+	
+	\begin{frame}[t]{Convergence to the Fokker--Planck flow}
+		\begin{mythm*}{\itshape (G. 26+)}
+			Let $(\varrho_t)_t$ solve Fokker--Planck with $\mathrm{KL}(\varrho_0\vert\gamma)<+\infty$. Under separation at every step and the budgets above, for all $n\geq0$,
+			\begin{equation*}
+				\mathbb E[W_2(\hat\rho_n,\varrho_{n\tau})]\leq\underbrace{(1+\tau)^{-\frac n2}W_2(\hat\rho_0,\varrho_0)}_{\text{initial error}}+\underbrace{\frac{1+\tau+\sqrt{1+\tau}}{\tau}\,\bar\eta}_{\text{space}}+\underbrace{c_{n,\tau}\sqrt{\tau\,\mathrm{KL}(\varrho_0\vert\gamma)}}_{\text{time}},
+			\end{equation*}
+			$\bar\eta$: bound on the one-step error; $c_{n,\tau}$: explicit, bounded uniformly in $n$ for $\tau\leq1$.
+		\end{mythm*}
+		\small
+		\begin{itemize}[<+->]
+			\item No accumulation: $\frac{1+\tau+\sqrt{1+\tau}}{\tau}=\sum_{j\geq0}(1+\tau)^{-\frac j2}$, and the space term is $\lesssim\tau^{-1-\frac{d+1}{4}}N^{-\frac{1}{2d}}$ up to logarithms.
+			\item Vanishes uniformly in $n$ as $W_2(\hat\rho_0,\varrho_0)\to0$, $N\to\infty$, $\tau\to0$ with $\tau\geq N^{-\frac{2}{d(d+5)}+\epsilon}$.
+		\end{itemize}
+		% For the blackboard: no two-point contraction of J_tau in W_2 is known for d >= 2, so the proof applies the discrete EVI twice (Lemma 6.4 and Figure 6.2 of the paper).
+	\end{frame}
+	
+	\begin{frame}[t]{In practice}
+		The implemented solver departs from the analysed one:
+		\begin{itemize}
+			\item fixed maximal budget $K=400{,}000$, with an early stop once every cell has mass $\geq\frac{3}{4N}$;
+			\item an extra mass-adaptation step (cyclic coordinate descent);
+			\item barycentres estimated from samples of $\gamma$;
+			\item warm start at the previous potential, suffix averaging of the iterates.
+		\end{itemize}
+		\vspace{\baselineskip}
+		The theorems do not cover this solver: the experiments compare its behaviour with the predicted rates.
+	\end{frame}
+	
+	\begin{frame}[t]{Numerical experiments: $d=1$}
+		\begin{center}
+			\includegraphics[width=0.85\textwidth]{figures/e1/e1_figA_contraction.pdf}
+		\end{center}
+		\small Initial measure: balanced mixture of two Gaussians (centres $\pm2$, standard deviation $0.2$). Dashed: the contraction rate $(1+\tau)^{-n}$ of the JKO scheme in dimension one.
+	\end{frame}
+	
+	\begin{frame}[t]{Numerical experiments: $d=2$, $N=1024$}
+		\begin{center}
+			\includegraphics<1>[width=0.9\textwidth]{figures/e1/e1_supp_d2_ring.pdf}
+			\includegraphics<2>[width=0.9\textwidth]{figures/e1/e1_supp_d2_moons.pdf}
+		\end{center}
+		\small One row per $\tau\in\{0.1,0.3,1\}$, one column per physical time $t=n\tau$. Last column: an i.i.d.\ draw from $\gamma$ of the same size.
 	\end{frame}
 	
 \end{document}
